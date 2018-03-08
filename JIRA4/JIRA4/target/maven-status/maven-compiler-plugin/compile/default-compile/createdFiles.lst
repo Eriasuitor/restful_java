@@ -1,0 +1,4 @@
+com\jira\service\impl\UserServiceImpl.class
+com\jira\dao\IUserDao.class
+com\jira\service\IUserService.class
+com\jira\user\User.class
