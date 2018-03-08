@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import com.jira.bussiness.GetInf;
 import com.jira.user.User;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -25,16 +26,16 @@ public class UserResources {
 	@GET
 	@Path("{id}")
 	public User getUser(@PathParam("id") int cId) {
-		User ret = new User();
-		ret.setId(100);
-		ret.setName("Lory100");
-		ret.setPassword("123456");
-		return ret;
+		// User ret = new User();
+		// ret.setId(100);
+		// ret.setName("Lory100");
+		// ret.setPassword("123456");
+		// return ret;
 
 		// User user = userService.getUserById(1);
 		// return user;
 
-		// return new getInf().test1();
+		return new GetInf().test1();
 
 	}
 

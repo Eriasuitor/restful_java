@@ -1,6 +1,0 @@
-com\jira\controller\UserController.class
-com\jira\service\impl\UserServiceImpl.class
-com\jira\dao\IUserDao.class
-com\jira\service\IUserService.class
-com\jira\ws\UsersResources.class
-com\jira\user\User.class

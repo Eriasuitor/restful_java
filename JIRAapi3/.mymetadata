@@ -3,7 +3,7 @@
   type="WEB"
   name="JIRAapi3"
   id="myeclipse.1520500136604"
-  context-root="/JIRAapi3"
+  context-root="/JIRA"
   j2ee-spec="6.0"
   archive="JIRAapi3.war">
   <attributes>
