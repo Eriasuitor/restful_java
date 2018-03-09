@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MyBatisJIRAapi"
+  id="myeclipse.1520561315980"
+  context-root="/MyBatisJIRAapi"
+  j2ee-spec="6.0"
+  archive="MyBatisJIRAapi.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
