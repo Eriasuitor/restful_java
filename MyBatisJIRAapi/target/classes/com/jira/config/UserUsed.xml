@@ -33,8 +33,8 @@
     <result column="lasteditdate" jdbcType="DATE" property="lasteditdate"/>
   </resultMap>
 
-  <select id="user1" resultMap="UserResult">
-    SELECT * FROM staff WHERE id = 1
+  <select id="user1" parameterType="int" resultMap="UserResult">
+    SELECT * FROM staff WHERE id = #{id:INTEGER}
   </select>
 
 </mapper>

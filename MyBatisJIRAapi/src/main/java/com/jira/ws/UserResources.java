@@ -17,6 +17,6 @@ public class UserResources {
 	@GET
 	@Path("{id}")
 	public User QueryUserInfo(@PathParam("id") int cId) {
-		return new UserService().QueryUserInf(cId);
+		return new UserService().QueryStaffInf(cId);
 	}
 }

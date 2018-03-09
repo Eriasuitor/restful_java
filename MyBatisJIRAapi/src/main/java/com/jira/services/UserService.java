@@ -1,21 +1,10 @@
 package com.jira.services;
 
-import java.io.IOException;
-
-import org.apache.ibatis.session.SqlSession;
-
 import com.jira.bean.User;
-import com.jira.dao.DBAccess;
+import com.jira.dao.StaffDao;
 
 public class UserService {
-	public User QueryUserInf(int id) {
-		DBAccess dbAccess = new DBAccess();
-		SqlSession sqlSession = null;
-		try {
-			sqlSession = dbAccess.getSqlSession();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return sqlSession.selectOne("User.user1");
+	public User QueryStaffInf(int id) {
+		return new StaffDao().query(id);
 	}
 }
