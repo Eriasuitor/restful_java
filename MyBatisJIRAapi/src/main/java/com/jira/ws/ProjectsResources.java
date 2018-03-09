@@ -5,18 +5,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.jira.bean.User;
-import com.jira.services.UserService;
+import com.jira.entity.ProjectList;
+import com.jira.services.ProjectsService;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Produces({ "application/xml", "application/json" })
-@Path("users")
+@Path("projects")
 @Singleton
-public class UserResources {
+public class ProjectsResources {
 
 	@GET
 	@Path("{id}")
-	public User QueryUserInfo(@PathParam("id") int cId) {
-		return new UserService().QueryStaffInf(cId);
+	public ProjectList QueryProjectsName(@PathParam("id") int sId) {
+		return new ProjectsService().queryProjectsName(sId);
 	}
 }

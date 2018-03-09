@@ -21,20 +21,34 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.jira.dao.IStaff">
+<mapper namespace="com.jira.dao.IProjects">
 
-  <resultMap type="com.jira.bean.Staff" id="UserResult">
+  <resultMap type="com.jira.bean.Project" id="ProjectResult">
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
-    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="Status" jdbcType="VARCHAR" property="Status"/>
+    <result column="StartDate" jdbcType="DATE" property="StartDate"/>
+    <result column="EndDate" jdbcType="DATE" property="EndDate"/>
+    <result column="ManagerID" jdbcType="INTEGER" property="ManagerID"/>
+    <result column="TimeCost" jdbcType="INTEGER" property="TimeCost"/>
+    <result column="EconomicCost" jdbcType="FLOAT" property="EconomicCost"/>
+    <result column="RequiredTime" jdbcType="INTEGER" property="RequiredTime"/>
     <result column="insertuser" jdbcType="VARCHAR" property="insertuser"/>
     <result column="insertdate" jdbcType="DATE" property="insertdate"/>
     <result column="lastedituser" jdbcType="VARCHAR" property="lastedituser"/>
     <result column="lasteditdate" jdbcType="DATE" property="lasteditdate"/>
   </resultMap>
+  
+  <resultMap type="com.jira.entity.ProjectList" id="ProjectListResult">
+    <collection property="projectNames" resultMap="ProjectResult"></collection>
+  </resultMap>
 
-  <select id="queryStaffInf" parameterType="int" resultMap="UserResult">
-    SELECT * FROM staff WHERE id = #{id:INTEGER}
+  <select id="queryProjectNameList" parameterType="int" resultMap="ProjectListResult">
+	SELECT NAME 
+	FROM
+		projects 
+	WHERE
+		id IN ( SELECT ProjectID FROM projectparticipants WHERE StaffID = #{id:INTEGER} )
   </select>
 
 </mapper>

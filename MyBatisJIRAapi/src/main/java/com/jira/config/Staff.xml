@@ -21,9 +21,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="User">
+<mapper namespace="com.jira.dao.IStaff">
 
-  <resultMap type="com.jira.bean.User" id="UserResult">
+  <resultMap type="com.jira.bean.Staff" id="UserResult">
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -33,7 +33,7 @@
     <result column="lasteditdate" jdbcType="DATE" property="lasteditdate"/>
   </resultMap>
 
-  <select id="user1" parameterType="int" resultMap="UserResult">
+  <select id="queryStaffInf" parameterType="int" resultMap="UserResult">
     SELECT * FROM staff WHERE id = #{id:INTEGER}
   </select>
 

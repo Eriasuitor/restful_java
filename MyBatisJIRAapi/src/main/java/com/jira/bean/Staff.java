@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class User {
+public class Staff {
 	private Integer id;
 
 	private String name;

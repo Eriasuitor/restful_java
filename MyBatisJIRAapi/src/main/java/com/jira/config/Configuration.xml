@@ -44,6 +44,7 @@
 
   <mappers>
     <mapper resource="com/jira/config/Staff.xml"/>
+    <mapper resource="com/jira/config/Projects.xml"/>
   </mappers>
 
 </configuration>
