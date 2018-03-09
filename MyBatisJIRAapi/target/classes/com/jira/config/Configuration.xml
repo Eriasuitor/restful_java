@@ -43,7 +43,7 @@
   </environments>
 
   <mappers>
-    <mapper resource="com/jira/config/UserUsed.xml"/>
+    <mapper resource="com/jira/config/Staff.xml"/>
   </mappers>
 
 </configuration>
