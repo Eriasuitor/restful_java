@@ -25,30 +25,44 @@
 
   <resultMap type="com.jira.bean.Project" id="ProjectResult">
     <id column="id" jdbcType="INTEGER" property="id"/>
-    <result column="name" jdbcType="VARCHAR" property="name"/>
-    <result column="Status" jdbcType="VARCHAR" property="Status"/>
-    <result column="StartDate" jdbcType="DATE" property="StartDate"/>
-    <result column="EndDate" jdbcType="DATE" property="EndDate"/>
-    <result column="ManagerID" jdbcType="INTEGER" property="ManagerID"/>
-    <result column="TimeCost" jdbcType="INTEGER" property="TimeCost"/>
-    <result column="EconomicCost" jdbcType="FLOAT" property="EconomicCost"/>
-    <result column="RequiredTime" jdbcType="INTEGER" property="RequiredTime"/>
-    <result column="insertuser" jdbcType="VARCHAR" property="insertuser"/>
-    <result column="insertdate" jdbcType="DATE" property="insertdate"/>
-    <result column="lastedituser" jdbcType="VARCHAR" property="lastedituser"/>
-    <result column="lasteditdate" jdbcType="DATE" property="lasteditdate"/>
+    <result column="Name" jdbcType="VARCHAR" property="name"/>
+    <result column="Status" jdbcType="VARCHAR" property="status"/>
+    <result column="StartDate" jdbcType="DATE" property="startDate"/>
+    <result column="EndDate" jdbcType="DATE" property="endDate"/>
+    <result column="ManagerID" jdbcType="INTEGER" property="managerID"/>
+    <result column="TimeCost" jdbcType="INTEGER" property="timeCost"/>
+    <result column="EconomicCost" jdbcType="FLOAT" property="economicCost"/>
+    <result column="RequiredTime" jdbcType="INTEGER" property="requiredTime"/>
+    <result column="insertuser" jdbcType="VARCHAR" property="insertUser"/>
+    <result column="insertdate" jdbcType="DATE" property="insertDate"/>
+    <result column="lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
+    <result column="lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
   
   <resultMap type="com.jira.entity.ProjectList" id="ProjectListResult">
     <collection property="projectNames" resultMap="ProjectResult"></collection>
   </resultMap>
 
-  <select id="queryProjectNameList" parameterType="int" resultMap="ProjectListResult">
-	SELECT NAME 
+  <select id="queryProjectsByStaffId" parameterType="int" resultMap="ProjectListResult">
+	SELECT Name
 	FROM
 		projects 
 	WHERE
-		id IN ( SELECT ProjectID FROM projectparticipants WHERE StaffID = #{id:INTEGER} )
+		id IN ( SELECT ProjectID FROM ProjectParticipants WHERE StaffID = #{id:INTEGER} )
   </select>
+  
+  <select id="queryProjectById" parameterType="int" resultMap="ProjectResult">
+	SELECT *
+	FROM
+		projects 
+	WHERE
+		id = #{id:INTEGER}
+  </select>
+  
+  <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">
+  	INSERT INTO Projects ( Name, Status, StartDate, EndDate, ManagerID, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
+	VALUES
+		( #{name}, #{status}, #{startDate}, #{endDate}, #{managerID}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
+  </insert>
 
 </mapper>

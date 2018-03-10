@@ -6,123 +6,122 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Project {
-	private int ID;
-	private String Name;
-	private String Status;
-	private Date StartDate;
-	private Date EndDate;
-	private int ManagerID;
-	private int TimeCost;
-	private float EconomicCost;
-	private int RequiredTime;
+	private int id;
+	private String name;
+	private String status;
+	private Date startDate;
+	private Date endDate;
+	private int managerID;
+	private int timeCost;
+	private float economicCost;
+	private int requiredTime;
+	private String insertUser;
+	private Date insertDate;
+	private String lastEditUser;
+	private Date lastEditDate;
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
 	public Date getStartDate() {
-		return StartDate;
+		return startDate;
 	}
 
 	public void setStartDate(Date startDate) {
-		StartDate = startDate;
+		this.startDate = startDate;
 	}
 
 	public Date getEndDate() {
-		return EndDate;
+		return endDate;
 	}
 
 	public void setEndDate(Date endDate) {
-		EndDate = endDate;
+		this.endDate = endDate;
 	}
 
 	public int getManagerID() {
-		return ManagerID;
+		return managerID;
 	}
 
 	public void setManagerID(int managerID) {
-		ManagerID = managerID;
+		this.managerID = managerID;
 	}
 
 	public int getTimeCost() {
-		return TimeCost;
+		return timeCost;
 	}
 
 	public void setTimeCost(int timeCost) {
-		TimeCost = timeCost;
+		this.timeCost = timeCost;
 	}
 
 	public float getEconomicCost() {
-		return EconomicCost;
+		return economicCost;
 	}
 
 	public void setEconomicCost(float economicCost) {
-		EconomicCost = economicCost;
+		this.economicCost = economicCost;
 	}
 
 	public int getRequiredTime() {
-		return RequiredTime;
+		return requiredTime;
 	}
 
 	public void setRequiredTime(int requiredTime) {
-		RequiredTime = requiredTime;
+		this.requiredTime = requiredTime;
 	}
 
 	public String getInsertUser() {
-		return InsertUser;
+		return insertUser;
 	}
 
 	public void setInsertUser(String insertUser) {
-		InsertUser = insertUser;
+		this.insertUser = insertUser;
 	}
 
 	public Date getInsertDate() {
-		return InsertDate;
+		return insertDate;
 	}
 
 	public void setInsertDate(Date insertDate) {
-		InsertDate = insertDate;
+		this.insertDate = insertDate;
 	}
 
 	public String getLastEditUser() {
-		return LastEditUser;
+		return lastEditUser;
 	}
 
 	public void setLastEditUser(String lastEditUser) {
-		LastEditUser = lastEditUser;
+		this.lastEditUser = lastEditUser;
 	}
 
 	public Date getLastEditDate() {
-		return LastEditDate;
+		return lastEditDate;
 	}
 
 	public void setLastEditDate(Date lastEditDate) {
-		LastEditDate = lastEditDate;
+		this.lastEditDate = lastEditDate;
 	}
-
-	private String InsertUser;
-	private Date InsertDate;
-	private String LastEditUser;
-	private Date LastEditDate;
 
 }
