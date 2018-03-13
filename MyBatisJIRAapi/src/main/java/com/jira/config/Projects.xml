@@ -44,11 +44,11 @@
   </resultMap>
 
   <select id="queryProjectsByStaffId" parameterType="int" resultMap="ProjectListResult">
-	SELECT Name
+	SELECT *
 	FROM
 		projects 
 	WHERE
-		id IN ( SELECT ProjectID FROM ProjectParticipants WHERE StaffID = #{id:INTEGER} )
+		id IN ( SELECT ProjectID FROM Participants WHERE StaffID = #{id:INTEGER} )
   </select>
   
   <select id="queryProjectById" parameterType="int" resultMap="ProjectResult">
@@ -60,9 +60,9 @@
   </select>
   
   <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO Projects ( Name, Status, StartDate, EndDate, ManagerID, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO Projects ( Name, Status, StartDate, EndDate, Url, ManagerID, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		( #{name}, #{status}, #{startDate}, #{endDate}, #{managerID}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
+		( #{name}, #{status}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
   </insert>
 
 </mapper>

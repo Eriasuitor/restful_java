@@ -45,6 +45,10 @@
   <mappers>
     <mapper resource="com/jira/config/Staff.xml"/>
     <mapper resource="com/jira/config/Projects.xml"/>
+    <mapper resource="com/jira/config/Participants.xml"/>
+    <mapper resource="com/jira/config/Phases.xml"/>
+    <mapper resource="com/jira/config/Subtasks.xml"/>
+    <mapper resource="com/jira/config/Logs.xml"/>
   </mappers>
 
 </configuration>

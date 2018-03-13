@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.jira.bean.Project;
 
 @XmlRootElement
-public class ProjectList {
+public class ProjectList extends GeneralResponse {
 	private List<Project> projectNames;
 
 	public List<Project> getProjectNames() {

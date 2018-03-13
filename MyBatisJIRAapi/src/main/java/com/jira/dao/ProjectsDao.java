@@ -16,6 +16,8 @@ public class ProjectsDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		// return sqlSession.selectList("Namespaces"."FunctionName",
+		// Parameters);
 		return sqlSession.getMapper(IProjects.class).queryProjectsByStaffId(
 				staffId);
 	}

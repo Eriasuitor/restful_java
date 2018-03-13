@@ -5,17 +5,19 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Project {
+public class Subtask {
 	private int id;
 	private String name;
+	private String description;
+	private int phaseID;
 	private String status;
+	private int managerID;
+	private int assignedID;
 	private Date startDate;
 	private Date endDate;
-	private String url;
-	private int managerID;
-	private int timeCost;
-	private float economicCost;
 	private int requiredTime;
+	private int timeCost;
+	private int completed;
 	private String insertUser;
 	private Date insertDate;
 	private String lastEditUser;
@@ -37,12 +39,44 @@ public class Project {
 		this.name = name;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getPhaseID() {
+		return phaseID;
+	}
+
+	public void setPhaseID(int phaseID) {
+		this.phaseID = phaseID;
+	}
+
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getManagerID() {
+		return managerID;
+	}
+
+	public void setManagerID(int managerID) {
+		this.managerID = managerID;
+	}
+
+	public int getAssignedID() {
+		return assignedID;
+	}
+
+	public void setAssignedID(int assignedID) {
+		this.assignedID = assignedID;
 	}
 
 	public Date getStartDate() {
@@ -61,20 +95,12 @@ public class Project {
 		this.endDate = endDate;
 	}
 
-	public String getUrl() {
-		return url;
+	public int getRequiredTime() {
+		return requiredTime;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public int getManagerID() {
-		return managerID;
-	}
-
-	public void setManagerID(int managerID) {
-		this.managerID = managerID;
+	public void setRequiredTime(int requiredTime) {
+		this.requiredTime = requiredTime;
 	}
 
 	public int getTimeCost() {
@@ -85,20 +111,12 @@ public class Project {
 		this.timeCost = timeCost;
 	}
 
-	public float getEconomicCost() {
-		return economicCost;
+	public int getCompleted() {
+		return completed;
 	}
 
-	public void setEconomicCost(float economicCost) {
-		this.economicCost = economicCost;
-	}
-
-	public int getRequiredTime() {
-		return requiredTime;
-	}
-
-	public void setRequiredTime(int requiredTime) {
-		this.requiredTime = requiredTime;
+	public void setCompleted(int completed) {
+		this.completed = completed;
 	}
 
 	public String getInsertUser() {

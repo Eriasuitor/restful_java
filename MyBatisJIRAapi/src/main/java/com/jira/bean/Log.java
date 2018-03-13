@@ -5,17 +5,15 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Project {
+public class Log {
 	private int id;
-	private String name;
-	private String status;
+	private int phaseID;
 	private Date startDate;
 	private Date endDate;
-	private String url;
-	private int managerID;
-	private int timeCost;
+	private int completed;
+	private int assignedID;
 	private float economicCost;
-	private int requiredTime;
+	private String note;
 	private String insertUser;
 	private Date insertDate;
 	private String lastEditUser;
@@ -29,20 +27,12 @@ public class Project {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public int getPhaseID() {
+		return phaseID;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPhaseID(int phaseID) {
+		this.phaseID = phaseID;
 	}
 
 	public Date getStartDate() {
@@ -61,28 +51,20 @@ public class Project {
 		this.endDate = endDate;
 	}
 
-	public String getUrl() {
-		return url;
+	public int getCompleted() {
+		return completed;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setCompleted(int completed) {
+		this.completed = completed;
 	}
 
-	public int getManagerID() {
-		return managerID;
+	public int getAssignedID() {
+		return assignedID;
 	}
 
-	public void setManagerID(int managerID) {
-		this.managerID = managerID;
-	}
-
-	public int getTimeCost() {
-		return timeCost;
-	}
-
-	public void setTimeCost(int timeCost) {
-		this.timeCost = timeCost;
+	public void setAssignedID(int assignedID) {
+		this.assignedID = assignedID;
 	}
 
 	public float getEconomicCost() {
@@ -93,12 +75,12 @@ public class Project {
 		this.economicCost = economicCost;
 	}
 
-	public int getRequiredTime() {
-		return requiredTime;
+	public String getNote() {
+		return note;
 	}
 
-	public void setRequiredTime(int requiredTime) {
-		this.requiredTime = requiredTime;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public String getInsertUser() {

@@ -21,28 +21,31 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.jira.dao.IProjectParticipants">
+<mapper namespace="com.jira.dao.IParticipants">
 
-  <resultMap type="com.jira.bean.Participant" id="ParticipantsResult">
+  <resultMap type="com.jira.bean.Participant" id="ParticipantResult">
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="ProjectID" jdbcType="INTEGER" property="projectId"/>
     <result column="StaffID" jdbcType="INTEGER" property="staffId"/>
-    <result column="insertuser" jdbcType="VARCHAR" property="insertUser"/>
-    <result column="insertdate" jdbcType="DATE" property="insertDate"/>
-    <result column="lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
-    <result column="lasteditdate" jdbcType="DATE" property="lastEditDate"/>
-  </resultMap>
-  
-  <resultMap type="com.jira.entity.ProjectList" id="ProjectListResult">
-    <collection property="projectNames" resultMap="ProjectResult"></collection>
+    <result column="Role" jdbcType="VARCHAR" property="role"/>
+    <result column="Insertuser" jdbcType="VARCHAR" property="insertUser"/>
+    <result column="Insertdate" jdbcType="DATE" property="insertDate"/>
+    <result column="Lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
+    <result column="Lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
   
   <insert id="addParticipants" parameterType="java.util.List">
-  	INSERT INTO ProjectParticipants ( ProjectID, StaffID, Role, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO Participants ( ProjectID, StaffID, Role, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
 	<foreach collection="list" item="item" separator=",">
 		(#{item.projectId}, #{item.staffId}, #{item.role}, #{item.insertUser}, NOW(), #{item.lastEditUser}, NOW())
 	</foreach>
+  </insert>
+  
+  <insert id="addParticipant" parameterType="com.jira.bean.Participant">
+  	INSERT INTO Participants ( ProjectID, StaffID, Role, InsertUser, InsertDate, LastEditUser, LastEditDate )
+	VALUES
+		(#{projectId}, #{staffId}, #{role}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
   </insert>
 
 </mapper>
