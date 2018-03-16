@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import api from './api/index.js'
+import api from './api/index'
+import '../semantic/dist/semantic.min.css'
+import '../semantic/dist/semantic.min.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$api = api

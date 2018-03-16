@@ -3,10 +3,8 @@
 </template>
 <script>
 export default {
-  created(){
-      this.$api.get('topics', null, r => {
-          console.log(r)
-      })
+  created () {
+    console.log(this.$route)
   }
 }
 </script>
