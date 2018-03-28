@@ -1,13 +1,17 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div>
+    <div id="ss"></div>
+    <img src="./assets/logo.png" >
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    console.log(document.getElementById('ss'))
+  }
 }
 </script>
 

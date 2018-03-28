@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Index from '@/page/index'
 import Content from '@/page/content'
 import Projects from '@/page/projects'
+import Project from '@/page/project'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/projects',
       name: 'Projects',
       component: Projects
+    },
+    {
+      path: '/projects/:id',
+      name: 'Projects',
+      component: Project
     }
   ]
 })
