@@ -20,11 +20,11 @@ public class ParticipantsResources {
 	public GeneralResponse addParticipants(ParticipantList participants) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setEffectRows(new ParticipantsService()
-					.addParticipants(participants));
+			resp.setEffectRows(new ParticipantsService().addParticipants(
+					participants.getParticipants(), 0));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
-			resp.setExceptionInf(e.getMessage());
+			resp.setInformation(e.getMessage());
 		}
 		return resp;
 	}

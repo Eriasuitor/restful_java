@@ -1,6 +1,7 @@
 package com.jira.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Project {
 	private int id;
 	private String name;
+	private String description;
 	private String status;
 	private Date startDate;
 	private Date endDate;
@@ -20,6 +22,8 @@ public class Project {
 	private Date insertDate;
 	private String lastEditUser;
 	private Date lastEditDate;
+	private int participants;
+	private List<Participant> participantsList;
 
 	public int getId() {
 		return id;
@@ -35,6 +39,14 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getStatus() {
@@ -131,6 +143,22 @@ public class Project {
 
 	public void setLastEditDate(Date lastEditDate) {
 		this.lastEditDate = lastEditDate;
+	}
+
+	public int getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(int participants) {
+		this.participants = participants;
+	}
+
+	public List<Participant> getParticipantsList() {
+		return participantsList;
+	}
+
+	public void setParticipantsList(List<Participant> participantsList) {
+		this.participantsList = participantsList;
 	}
 
 }

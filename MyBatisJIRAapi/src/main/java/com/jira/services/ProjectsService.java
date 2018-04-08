@@ -1,6 +1,11 @@
 package com.jira.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jira.bean.Participant;
 import com.jira.bean.Project;
+import com.jira.dao.ParticipantsDao;
 import com.jira.dao.ProjectsDao;
 import com.jira.entity.ProjectList;
 
@@ -13,7 +18,20 @@ public class ProjectsService {
 		return new ProjectsDao().queryById(id);
 	}
 
-	public int newProject(Project project) {
-		return new ProjectsDao().create(project);
+	public int newProject(Project project, int userId) {
+		project.setStatus("Proccessing");
+		project.setInsertUser("MyEclipse");
+		project.setLastEditUser("MyEclipse");
+		project.setParticipants(project.getParticipantsList().size());
+		new ProjectsDao().create(project);
+		List<Participant> participantList = new ArrayList<Participant>();
+		participantList.add(new Participant(project.getId(), project
+				.getManagerID(), "Manager"));
+		for (Participant participant : project.getParticipantsList()) {
+			participantList.add(new Participant(project.getId(), participant
+					.getStaffId(), "Developer"));
+		}
+		new ParticipantsDao().addParticipants(participantList, userId);
+		return project.getId();
 	}
 }

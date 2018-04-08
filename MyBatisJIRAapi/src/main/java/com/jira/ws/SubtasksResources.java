@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 import com.jira.bean.Subtask;
 import com.jira.entity.GeneralResponse;
@@ -16,14 +17,14 @@ import com.sun.jersey.spi.resource.Singleton;
 @Singleton
 public class SubtasksResources {
 	@POST
-	public GeneralResponse addSubtask(Subtask subtask) {
+	public Response addSubtask(Subtask subtask) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			resp.setEffectRows(new SubtasksService().addSubtask(subtask));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
-			resp.setExceptionInf(e.getMessage());
+			resp.setInformation(e.getMessage());
 		}
-		return resp;
+		return Response.status(Response.Status.OK).entity(resp).build();
 	}
 }

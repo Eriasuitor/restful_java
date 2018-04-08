@@ -1,7 +1,9 @@
 package com.jira.dao;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -9,15 +11,18 @@ import com.jira.bean.Participant;
 import com.jira.db.DBJIRAAccess;
 
 public class ParticipantsDao {
-	public int addParticipants(List<Participant> participants) {
+	public int addParticipants(List<Participant> participantList, int userId) {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = DBJIRAAccess.getSqlSession();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", participantList);
+		map.put("userId", userId);
 		int effectRows = sqlSession.getMapper(IParticipants.class)
-				.addParticipants(participants);
+				.addParticipants(map);
 		sqlSession.commit();
 		return effectRows;
 	}

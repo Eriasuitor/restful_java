@@ -34,11 +34,11 @@
     <result column="Lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
   
-  <insert id="addParticipants" parameterType="java.util.List">
+  <insert id="addParticipants" parameterType="java.util.Map">
   	INSERT INTO Participants ( ProjectID, StaffID, Role, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
 	<foreach collection="list" item="item" separator=",">
-		(#{item.projectId}, #{item.staffId}, #{item.role}, #{item.insertUser}, NOW(), #{item.lastEditUser}, NOW())
+		(#{item.projectId}, #{item.staffId}, #{item.role}, #{userId}, NOW(), #{userId}, NOW())
 	</foreach>
   </insert>
   

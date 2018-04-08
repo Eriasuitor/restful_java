@@ -15,6 +15,16 @@ public class Participant {
 	private String lastEditUser;
 	private Date lastEditDate;
 
+	public Participant() {
+
+	}
+
+	public Participant(int projectId, int staffId, String role) {
+		this.projectId = projectId;
+		this.staffId = staffId;
+		this.role = role;
+	}
+
 	public int getId() {
 		return id;
 	}

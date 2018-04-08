@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class GeneralResponse {
 	private int responseCode = 200;
 	private boolean isSuccessful = true;
-	private String exceptionInf;
+	private String Information;
 	private int effectRows;
 
 	public int getResponseCode() {
@@ -25,12 +25,12 @@ public class GeneralResponse {
 		this.isSuccessful = isSuccessful;
 	}
 
-	public String getExceptionInf() {
-		return exceptionInf;
+	public String getInformation() {
+		return Information;
 	}
 
-	public void setExceptionInf(String exceptionInf) {
-		this.exceptionInf = exceptionInf;
+	public void setInformation(String Information) {
+		this.Information = Information;
 	}
 
 	public int getEffectRows() {

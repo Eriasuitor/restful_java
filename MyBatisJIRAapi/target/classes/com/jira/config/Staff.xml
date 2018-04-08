@@ -23,7 +23,7 @@
 
 <mapper namespace="com.jira.dao.IStaff">
 
-  <resultMap type="com.jira.bean.Staff" id="UserResult">
+  <resultMap type="com.jira.bean.Staff" id="StaffResult">
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -33,8 +33,17 @@
     <result column="lasteditdate" jdbcType="DATE" property="lasteditdate"/>
   </resultMap>
 
-  <select id="queryStaffInf" parameterType="int" resultMap="UserResult">
+  <select id="queryStaffInf" parameterType="int" resultMap="StaffResult">
     SELECT * FROM staff WHERE id = #{id:INTEGER}
+  </select>
+  
+  <select id="searchStaff" parameterType="String" resultMap="StaffResult">
+    select * from staff 
+	<where>
+	<if test="_parameter!=null and _parameter!='' ">
+	and name like CONCAT('%', #{_parameter:NVARCHAR}, '%')
+	</if>
+	</where>
   </select>
 
 </mapper>

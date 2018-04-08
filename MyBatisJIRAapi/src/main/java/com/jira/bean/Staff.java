@@ -12,13 +12,13 @@ public class Staff {
 
 	private String password;
 
-	private String insertuser;
+	private String insertUser;
 
-	private Date insertdate;
+	private Date insertDate;
 
-	private String lastedituser;
+	private String lastEditUser;
 
-	private Date lasteditdate;
+	private Date lastEditDate;
 
 	public Integer getId() {
 		return id;
@@ -44,35 +44,36 @@ public class Staff {
 		this.password = password == null ? null : password.trim();
 	}
 
-	public String getInsertuser() {
-		return insertuser;
+	public String getInsertUser() {
+		return insertUser;
 	}
 
-	public void setInsertuser(String insertuser) {
-		this.insertuser = insertuser == null ? null : insertuser.trim();
+	public void setInsertUser(String insertUser) {
+		this.insertUser = insertUser;
 	}
 
-	public Date getInsertdate() {
-		return insertdate;
+	public Date getInsertDate() {
+		return insertDate;
 	}
 
-	public void setInsertdate(Date insertdate) {
-		this.insertdate = insertdate;
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
 	}
 
-	public String getLastedituser() {
-		return lastedituser;
+	public String getLastEditUser() {
+		return lastEditUser;
 	}
 
-	public void setLastedituser(String lastedituser) {
-		this.lastedituser = lastedituser == null ? null : lastedituser.trim();
+	public void setLastEditUser(String lastEditUser) {
+		this.lastEditUser = lastEditUser;
 	}
 
-	public Date getLasteditdate() {
-		return lasteditdate;
+	public Date getLastEditDate() {
+		return lastEditDate;
 	}
 
-	public void setLasteditdate(Date lasteditdate) {
-		this.lasteditdate = lasteditdate;
+	public void setLastEditDate(Date lastEditDate) {
+		this.lastEditDate = lastEditDate;
 	}
+
 }

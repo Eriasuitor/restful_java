@@ -116,7 +116,7 @@
             </div>
 
         </div>
-        <button class="ui labeled icon button right floated" @click="getProjects">
+        <button class="ui labeled icon button right floated">
                 <i class="plus icon"></i>测试API</button>
 
     </div>
@@ -141,10 +141,13 @@ export default {
     newProject: function () {
     //   this.isSaving = true
       this.project.managerID = $('.dropdown.manager').dropdown('get value')
-      this.project.staffList = $('.dropdown.participants').dropdown('get value').split(',')
+      this.project.participantsList = []
+      $('.dropdown.participants').dropdown('get value').split(',').forEach(sId => {
+        this.project.participantsList.push({staffId: sId})
+      })
       console.log(this.project)
       this.$api.post(this.$apiUrl + '/projects?staffid=' + this.userId, this.project, data => {
-        window.alert(data.exceptionInf)
+        window.alert(data.information)
       })
     },
     newProjectEvent: function () {
@@ -190,7 +193,7 @@ export default {
       })
     },
     detail: function () {
-      this.$router.push({path: 'projects/1'})
+      this.$router.push('/projects/1')
     }
   }
 }

@@ -23,7 +23,7 @@ public class PhasesResources {
 			resp.setEffectRows(new PhasesService().addPhase(phase));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
-			resp.setExceptionInf(e.getMessage());
+			resp.setInformation(e.getMessage());
 		}
 		return resp;
 	}

@@ -22,7 +22,7 @@ public class LogsResources {
 			resp.setEffectRows(new LogsService().addLog(log));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
-			resp.setExceptionInf(e.getMessage());
+			resp.setInformation(e.getMessage());
 		}
 		return resp;
 	}

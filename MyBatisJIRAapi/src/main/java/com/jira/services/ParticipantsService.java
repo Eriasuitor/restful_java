@@ -1,13 +1,13 @@
 package com.jira.services;
 
+import java.util.List;
+
 import com.jira.bean.Participant;
 import com.jira.dao.ParticipantsDao;
-import com.jira.entity.ParticipantList;
 
 public class ParticipantsService {
-	public int addParticipants(ParticipantList participants) {
-		return new ParticipantsDao().addParticipants(participants
-				.getParticipants());
+	public int addParticipants(List<Participant> participantList, int userId) {
+		return new ParticipantsDao().addParticipants(participantList, userId);
 	}
 
 	public int addParticipant(Participant participant) {

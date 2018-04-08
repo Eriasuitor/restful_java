@@ -37,6 +37,7 @@
     <result column="insertdate" jdbcType="DATE" property="insertDate"/>
     <result column="lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
     <result column="lasteditdate" jdbcType="DATE" property="lastEditDate"/>
+    <result column="Participants" jdbcType="INTEGER" property="participants"/>
   </resultMap>
   
   <resultMap type="com.jira.entity.ProjectList" id="ProjectListResult">
@@ -44,7 +45,7 @@
   </resultMap>
 
   <select id="queryProjectsByStaffId" parameterType="int" resultMap="ProjectListResult">
-	SELECT *
+	SELECT `ID`,`Name`,`Description`,`Status`,`Participants`,`StartDate`,`EndDate`,`Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
 	FROM
 		projects 
 	WHERE
