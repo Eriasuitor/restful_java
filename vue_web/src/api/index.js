@@ -2,6 +2,8 @@
 var root = '/api/v1'
 // 引用axios
 var axios = require('axios')
+
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 // 自定义判断元素类型JS
 function toType (obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
@@ -45,23 +47,14 @@ function apiAxios (method, url, params, success, failure) {
     withCredentials: false
   })
   .then(function (res) {
-    if (res.data.success === true) {
-      if (success) {
-        success(res.data)
-      }
+    if (res.status === 200) {
+      success(res.data)
     } else {
-      if (failure) {
-        failure(res.data)
-      } else {
-        window.alert('error: ' + JSON.stringify(res.data))
-      }
+      failure(res.data)
     }
   })
   .catch(function (err) {
-    let res = err.response
-    if (err) {
-      window.alert('api error, HTTP CODE: ' + res.status)
-    }
+    console.log("Somethings' wrong " + err)
   })
 }
 

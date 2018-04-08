@@ -10,7 +10,7 @@
                 <input class="prompt" type="text" placeholder="项目搜索" @input="search">
                 <i class="search icon"></i>
             </div>
-            <button class="ui labeled icon button right floated" @click="newProject">
+            <button class="ui labeled icon button right floated" @click="newProjectEvent">
                 <i class="plus icon"></i>新建项目</button>
         </div>
 
@@ -18,49 +18,48 @@
             <i class="briefcase icon"></i> 我管理的 </h4>
 
         <div class="ui link cards">
-            <div class="card">
+            <div class="card" @click="detail" v-for="project in projects" :key="project.id">
                 <div class="content">
-                    <div class="header">项目开发管理系统</div>
+                    <div class="header">{{project.name}}</div>
                     <div class="meta">
-                        好友
+                        {{project.status}}
                     </div>
-                    <div class="description ellipsis">Mattheasfw is anasasasdas asdas fsdf dasd d asdas interior designer living in New York. </div>
+                    <div class="description ellipsis">{{project.description}}</div>
                 </div>
                 <div class="extra content">
-                    <span class="right floated">100%完成度 </span>
+                    <span class="right floated"> {{(project.timeCost / project.requiredTime * 100).toFixed(2)}}% 完成度 </span>
                     <span>
-                        <i class="user icon"></i> 75 参与者 </span>
+                        <i class="user icon"></i> {{project.participants}} 参与者 </span>
                 </div>
             </div>
         </div>
 
         <h4 class="ui horizontal divider header">
-            <i class="users icon"></i> 我参与的 </h4>
-
-        project
+            <i class="users icon"></i> 我参与的
+        </h4>
 
         <div class="ui modal">
             <i class="close icon black"></i>
-            <div class="header">
+           <div class="header">
                 新建项目
             </div>
             <div class="content">
                 <form class="ui form">
-                    <div class="field">
+                    <div class="field required">
                         <label>项目名称</label>
-                        <input type="text">
+                        <input type="text" v-model="project.name">
                     </div>
                     <div class="field">
                         <label>描述</label>
-                        <textarea rows="6" maxlength="800"></textarea>
+                        <textarea rows="6" maxlength="800" v-model="project.description"></textarea>
                     </div>
 
                     <div class="fields">
-                        <div class="eight wide field" @click="showDropdown(1)">
+                        <div class="eight wide field required" @click="showDropdown(1)">
                             <label>
                                 负责人
                             </label>
-                            <div class="ui fluid multiple search selection dropdown">
+                            <div class="ui fluid multiple search selection dropdown manager">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -74,24 +73,24 @@
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 开始时间
                             </label>
-                            <input type="datetime-local">
+                            <input type="date" v-model="project.startDate">
                         </div>
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 结束时间
                             </label>
-                            <input type="datetime-local">
+                            <input type="date" v-model="project.endDate">
                         </div>
                     </div>
-                    <div class="field" @click="showDropdown">
+                    <div class="field required" @click="showDropdown">
                         <label>参与人</label>
                         <div class="fields">
                             <div class="fourteen wide field">
-                                <div class="ui fluid multiple search selection dropdown">
+                                <div class="ui fluid multiple search selection dropdown participants">
                                     <input type="hidden" name="receipt">
                                     <i class="dropdown icon"></i>
                                     <div class="default text"></div>
@@ -108,41 +107,74 @@
                 </form>
             </div>
             <div class="actions">
-                <div class="ui positive right button">
+                <div class="ui positive right button" @click="newProject">
                     新建
                 </div>
             </div>
+            <div v-bind:class="{ui:true, dimmer:true, inverted:true, active:isSaving,}">
+                <div class="ui text loader ">保存中</div>
+            </div>
+
         </div>
+        <button class="ui labeled icon button right floated" @click="getProjects">
+                <i class="plus icon"></i>测试API</button>
 
     </div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      projects: [],
+      userId: 2,
+      project: {},
+      isSaving: false
+    }
+  },
   created () {
     console.log(this.$route)
+    this.$api.get(this.$apiUrl + '/projects?staffid=' + this.userId, null, data => {
+      this.projects = data.projectNames
+    })
   },
   methods: {
     newProject: function () {
-      console.log('ADD')
+    //   this.isSaving = true
+      this.project.managerID = $('.dropdown.manager').dropdown('get value')
+      this.project.staffList = $('.dropdown.participants').dropdown('get value').split(',')
+      console.log(this.project)
+      this.$api.post(this.$apiUrl + '/projects?staffid=' + this.userId, this.project, data => {
+        window.alert(data.exceptionInf)
+      })
+    },
+    newProjectEvent: function () {
       $('.ui.modal')
         .modal({
           blurring: true,
           centered: false,
           inverted: true
         })
-        .modal('setting', 'closable', true)
+        .modal('setting', 'closable', false)
         .modal('show')
     },
     showDropdown: function (maxSelections) {
       $('.dropdown').dropdown({
         apiSettings: {
-          url: '//api.semantic-ui.com/tags/{query}'
+          url: this.$apiUrl + '/staff?name={query}'
+        //   , onResponse: function (resp) {
+        //     for (var i = 0; i < resp.results.length; i++) {
+        //       resp.results[i].value = resp.results[i].id
+        //     }
+        //     console.log(resp)
+        //     return resp
+        //   }
         },
+        // saveRemoteData: true,
         maxSelections: maxSelections
       })
     },
     empty: function () {
-      $('.dropdown').dropdown('clear')
+      $('.dropdown.participants').dropdown('clear')
     },
     search: function () {
       $('.ui.search').search({
@@ -156,6 +188,9 @@ export default {
         },
         minCharacters: 3
       })
+    },
+    detail: function () {
+      this.$router.push({path: 'projects/1'})
     }
   }
 }

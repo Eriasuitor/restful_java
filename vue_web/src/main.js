@@ -9,6 +9,7 @@ import '../semantic/dist/semantic.min.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$api = api
+Vue.prototype.$apiUrl = 'http://127.0.0.1:8090/MyBatisJIRAapi'
 
 /* eslint-disable no-new */
 new Vue({
