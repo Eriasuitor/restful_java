@@ -14,13 +14,11 @@
                 <i class="plus icon"></i>新建项目
             </button>
         </div>
-
         <h4 class="ui horizontal divider header">
             <i class="briefcase icon"></i> 我管理的
         </h4>
-
         <div class="ui link cards">
-            <div class="card" @click="detail" v-for="project in projects" :key="project.id">
+            <div class="card" @click="detail(project.id)" v-for="project in projects" :key="project.id">
                 <div class="content">
                     <div class="header">{{project.name}}</div>
                     <div class="meta">
@@ -130,6 +128,7 @@ export default {
     }
   },
   created () {
+    window.localStorage.setItem('12', '123')
     this.refreshProjects()
   },
   methods: {
@@ -179,7 +178,6 @@ export default {
           //     for (var i = 0; i < resp.results.length; i++) {
           //       resp.results[i].value = resp.results[i].id
           //     }
-          //     console.log(resp)
           //     return resp
           //   }
         },
@@ -203,8 +201,8 @@ export default {
         minCharacters: 3
       })
     },
-    detail: function () {
-      this.$router.push('/projects/1')
+    detail: function (pId) {
+      this.$router.push('/projects/' + pId)
     }
   }
 }
