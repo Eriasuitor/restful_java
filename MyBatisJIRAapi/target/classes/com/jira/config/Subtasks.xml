@@ -23,7 +23,7 @@
 
 <mapper namespace="com.jira.dao.ISubtasks">
 
-  <resultMap type="com.jira.bean.Participant" id="ParticipantResult">
+  <resultMap type="com.jira.bean.Subtask" id="SubtaskResult">
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="Name" jdbcType="VARCHAR" property="name"/>
     <result column="description" jdbcType="VARCHAR" property="description"/>
@@ -41,6 +41,17 @@
     <result column="Lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
     <result column="Lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
+  
+  <select id="querySubtasks" parameterType="java.util.List" resultMap="SubtaskResult">
+	SELECT * FROM Subtasks WHERE PhaseID IN 
+  	<foreach collection="list" item="item" separator="," open="(" close=")">
+		#{item}
+	</foreach>
+  </select>
+  
+  <select id="querySubtaskBySubId" parameterType="int" resultMap="SubtaskResult">
+	SELECT * FROM Subtasks WHERE ID = #{id:INTEGER}
+  </select>
   
   <insert id="addSubtask" parameterType="com.jira.bean.Subtask">
   	INSERT INTO subtasks ( NAME, Description, PhaseID, STATUS, ManagerID, AssignedID, StartDate, EndDate, RequiredTime, TimeCost, Completed, InsertUser, InsertDate, LastEditUser, LastEditDate )

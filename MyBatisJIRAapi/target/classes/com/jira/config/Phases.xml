@@ -37,6 +37,10 @@
     <result column="Lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
     <result column="Lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
+  
+  <select id="queryPhases" parameterType="int" resultMap="PhaseResult">
+  	SELECT * FROM Phases WHERE ProjectID = #{id:INTEGER}
+  </select>
 
   <insert id="addPhase" parameterType="com.jira.bean.Phase">
   	INSERT INTO Phases ( NAME, ProjectID, PhaseNum, STATUS, StartDate, EndDate, ManagerID, InsertUser, InsertDate, LastEditUser, LastEditDate )

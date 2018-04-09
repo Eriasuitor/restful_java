@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="ui breadcrumb">
-            <a class="section">Projects</a>
+            <a class="section">JIRA</a>
             <div class="divider"> / </div>
-            <div class="active section">Paper Towels</div>
+            <div class="active section">Projects</div>
         </div>
         <div class="ui search">
             <div class="ui left icon input">
@@ -11,11 +11,13 @@
                 <i class="search icon"></i>
             </div>
             <button class="ui labeled icon button right floated" @click="newProjectEvent">
-                <i class="plus icon"></i>新建项目</button>
+                <i class="plus icon"></i>新建项目
+            </button>
         </div>
 
         <h4 class="ui horizontal divider header">
-            <i class="briefcase icon"></i> 我管理的 </h4>
+            <i class="briefcase icon"></i> 我管理的
+        </h4>
 
         <div class="ui link cards">
             <div class="card" @click="detail" v-for="project in projects" :key="project.id">
@@ -40,7 +42,7 @@
 
         <div class="ui modal">
             <i class="close icon black"></i>
-           <div class="header">
+            <div class="header">
                 新建项目
             </div>
             <div class="content">
@@ -114,11 +116,7 @@
             <div v-bind:class="{ui:true, dimmer:true, inverted:true, active:isSaving,}">
                 <div class="ui text loader ">保存中</div>
             </div>
-
         </div>
-        <button class="ui labeled icon button right floated">
-                <i class="plus icon"></i>测试API</button>
-
     </div>
 </template>
 <script>
@@ -132,23 +130,36 @@ export default {
     }
   },
   created () {
-    console.log(this.$route)
-    this.$api.get(this.$apiUrl + '/projects?staffid=' + this.userId, null, data => {
-      this.projects = data.projectNames
-    })
+    this.refreshProjects()
   },
   methods: {
     newProject: function () {
-    //   this.isSaving = true
+      //   this.isSaving = true
       this.project.managerID = $('.dropdown.manager').dropdown('get value')
       this.project.participantsList = []
-      $('.dropdown.participants').dropdown('get value').split(',').forEach(sId => {
-        this.project.participantsList.push({staffId: sId})
-      })
-      console.log(this.project)
-      this.$api.post(this.$apiUrl + '/projects?staffid=' + this.userId, this.project, data => {
-        window.alert(data.information)
-      })
+      $('.dropdown.participants')
+        .dropdown('get value')
+        .split(',')
+        .forEach(sId => {
+          this.project.participantsList.push({ staffId: sId })
+        })
+      this.$api.post(
+        this.$apiUrl + '/projects?staffid=' + this.userId,
+        this.project,
+        data => {
+          window.alert(data.information)
+          this.refreshProjects()
+        }
+      )
+    },
+    refreshProjects: function () {
+      this.$api.get(
+        this.$apiUrl + '/projects?staffid=' + this.userId,
+        null,
+        data => {
+          this.projects = data.projectNames
+        }
+      )
     },
     newProjectEvent: function () {
       $('.ui.modal')
@@ -164,13 +175,13 @@ export default {
       $('.dropdown').dropdown({
         apiSettings: {
           url: this.$apiUrl + '/staff?name={query}'
-        //   , onResponse: function (resp) {
-        //     for (var i = 0; i < resp.results.length; i++) {
-        //       resp.results[i].value = resp.results[i].id
-        //     }
-        //     console.log(resp)
-        //     return resp
-        //   }
+          //   , onResponse: function (resp) {
+          //     for (var i = 0; i < resp.results.length; i++) {
+          //       resp.results[i].value = resp.results[i].id
+          //     }
+          //     console.log(resp)
+          //     return resp
+          //   }
         },
         // saveRemoteData: true,
         maxSelections: maxSelections

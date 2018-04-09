@@ -1,104 +1,138 @@
 <template>
     <div>
 
-    <div class="ui breadcrumb">
-      <a class="section">Projects</a>
-      <div class="divider"> / </div>
-      <div class="active section">Paper Towels</div>
-    </div>
+        <div class="ui breadcrumb">
+            <a class="section">Projects</a>
+            <div class="divider"> / </div>
+            <div class="active section">Paper Towels</div>
+        </div>
 
         <div class="ui dropdown button" @click="intervalSet()">
-          <span class="text">Choose Category</span>
-          <i class="dropdown icon"></i>
-          <div class="menu">
-            <div class="item">
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
-              <span class="text">1 天</span>
+            <span class="text">Choose Category</span>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item">
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                    <span class="text">1 天</span>
+                </div>
             </div>
-          </div>
         </div>
-        <button class="ui labeled icon button right floated" @click="newPhases">
+        <button class="ui labeled icon button right floated" @click="newPhaseEvent">
             <i class="plus icon"></i>新建阶段任务
         </button>
+        <h3 class="ui dividing header">{{project.name}}
+            <div class="sub header">{{project.description}}</div>
+        </h3>
+        <div class="scrollY">
 
-<div class="scrollY">
-<table class="ui collapsing celled structured small compact single line table ">
-  <thead>
-    <tr>
-      <th rowspan="2">阶段</th>
-      <th rowspan="2" class="subtask">子任务</th>
-      <th rowspan="2" v-for="(item,index) in dates()" :key="index">
+            <table class="ui red table">
+                <thead>
+                    <tr>
+                        <th class="three wide">阶段</th>
+                        <th class="four wide">子任务</th>
+                        <th class="three wide">完成度</th>
+                        <th class="six wide">规划时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template v-for="phase in phases">
+                        <tr :key="phase.id">
+                            <td :rowspan="phase.subtaskList.length + 1">{{phase.name}}{{phase.subtaskList.length}}<br>
+                                <div class="ui fade animated button" @click="newSubtaskEvent(phase.id, phase.phaseNum)">
+                                    <div class="hidden content">子任务</div>
+                                    <div class="visible content">
+                                        <i class="plus icon"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr v-for="subtask in phase.subtaskList" :key="subtask.id">
+                            <td>
+                                <a class="link" v-bind:href="project.id + '/subtasks/' + subtask.id">{{subtask.name}}</a>
+                            </td>
+                            <td>
 
-            <div class="ui mini horizontal statistic red" v-show="item.getDate() / iterval < 1 || index === 0">
-              <div class="value">
-                {{item.getMonth()}}-
-              </div>
+                                <div class="ui tiny progress">
+                                    <div class="bar">
+                                        <div class="progress"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+
+            <table class="ui collapsing celled structured small compact single line table ">
+                <thead>
+                    <tr>
+                        <th rowspan="2">阶段</th>
+                        <th rowspan="2" class="subtask">子任务</th>
+                        <th rowspan="2" class="complete">完成度</th>
+                        <th rowspan="2" v-for="(item,index) in dates()" :key="index">
+                            <div class="ui mini horizontal statistic red" v-show="item.getDate() / iterval < 1 || index === 0">
+                                <div class="value">
+                                    {{item.getMonth()}}-
+                                </div>
+                            </div>
+                            <span></span>
+                            {{item.getDate()}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template v-for="phase in phases">
+                        <tr :key="phase.id">
+                            <td :rowspan="phase.subtaskList.length + 1">{{phase.name}}{{phase.subtaskList.length}}<br>
+                                <div class="ui fade animated button" @click="newSubtaskEvent(phase.id, phase.phaseNum)">
+                                    <div class="hidden content">子任务</div>
+                                    <div class="visible content">
+                                        <i class="plus icon"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr v-for="subtask in phase.subtaskList" :key="subtask.id">
+                            <td>
+                                <a class="link" v-bind:href="project.id + '/subtasks/' + subtask.id">{{subtask.name}}</a>
+                            </td>
+
+                            <td v-for="(item,index) in dates()" :key="index" class="center aligned">
+                                <i class="large green checkmark icon"></i>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            456{{endDate}}
+            <div class="ui animated fade button" tabindex="0">
+                <div class="visible content">&nbsp;</div>
+                <div class="hidden content">
+                    <i class="pencil alternate icon"></i>
+                </div>
             </div>
-            <span ></span>
-            {{item.getDate()}}
-        </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="3">第一阶段<br>
-          <div class="ui fade animated button" @click="newSubtask">
-            <div class="hidden content">子任务</div>
-            <div class="visible content">
-              <i class="plus icon"></i>
-            </div>
-          </div>
-      </td>
-      <td>需求文档撰写</td>
 
-      <td v-for="(item,index) in dates()" :key="index" class="center aligned">
-        <i class="large green checkmark icon"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>需求文档的讨论与定稿</td>
-      <td class="right aligned">12</td>
-      <td></td>
-      <td class="center aligned">
-        <i class="large minus icon"></i>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>去死</td>
-      <td class="right aligned">21</td>
-      <td class="center aligned">
-        <i class="large green checkmark icon"></i>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-      456{{endDate}}
-        <div class="ui animated fade button" tabindex="0">
-            <div class="visible content">&nbsp;</div>
-            <div class="hidden content">
-                <i class="pencil alternate icon"></i>
-            </div>
-        </div>
+            <div>{{endDate.getDate()}}</div>
 
-        <div>{{endDate.getDate()}}</div>
-
-        <!-- <div v-for="(item,index) in dates()" :key="index">
+            <!-- <div v-for="(item,index) in dates()" :key="index">
           <div class="ui mini label"></div>
             <span v-if="item.getDate() === 1 || index === 0">{{item.getMonth()}}</span>-
             {{item.getDate()}}
         </div> -->
-
-  </div>
-           <div class="ui modal phase">
+            <div class="ui progress">
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ui modal phase">
             <i class="close icon black"></i>
             <div class="header">
                 新建阶段任务
@@ -107,11 +141,11 @@
                 <form class="ui form">
                     <div class="field">
                         <label>阶段任务</label>
-                        <input type="text">
+                        <input type="text" v-model="phase.name">
                     </div>
                     <div class="field">
                         <label>描述</label>
-                        <textarea rows="6" maxlength="800"></textarea>
+                        <textarea rows="6" maxlength="800" v-model="phase.description"></textarea>
                     </div>
 
                     <div class="fields">
@@ -119,7 +153,7 @@
                             <label>
                                 负责人
                             </label>
-                            <div class="ui fluid multiple search selection dropdown">
+                            <div class="ui fluid multiple search selection dropdown phase_manger">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -131,19 +165,19 @@
                             <label>
                                 开始时间
                             </label>
-                            <input type="datetime-local">
+                            <input type="date" v-model="phase.startDate">
                         </div>
                         <div class="eight wide field">
                             <label>
                                 结束时间
                             </label>
-                            <input type="datetime-local">
+                            <input type="date" v-model="phase.endDate">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="actions">
-                <div class="ui positive right button">
+                <div class="ui positive right button" @click="newPhase">
                     新建
                 </div>
             </div>
@@ -157,29 +191,29 @@
                 <form class="ui form">
                     <div class="field">
                         <label>任务</label>
-                        <input type="text">
+                        <input type="text" v-model="subtask.name">
                     </div>
                     <div class="field">
                         <label>描述</label>
-                        <textarea rows="6" maxlength="800"></textarea>
+                        <textarea rows="6" maxlength="800" v-model="subtask.description"></textarea>
                     </div>
 
                     <div class="fields">
-                        <div class="eight wide field" @click="showDropdown(1)">
+                        <div class="eight wide field" @click="showDropdown('subtask_manger',1)">
                             <label>
                                 负责人
                             </label>
-                            <div class="ui fluid multiple search selection dropdown">
+                            <div class="ui fluid multiple search selection dropdown subtask_manger">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
                             </div>
                         </div>
-                        <div class="eight wide field" @click="showDropdown(1)">
+                        <div class="eight wide field" @click="showDropdown('subtask_assign', 1)">
                             <label>
                                 分配于
                             </label>
-                            <div class="ui fluid multiple search selection dropdown">
+                            <div class="ui fluid multiple search selection dropdown subtask_assign">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -187,23 +221,26 @@
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="eight wide field" @click="showDropdown(1)">
+
+                        <div class="eight wide field" @click="showDropdownLocal('subtask_phase')">
                             <label>
                                 阶段
                             </label>
-                            <div class="ui fluid multiple search selection dropdown">
-                                <input type="hidden" name="receipt">
-                                <i class="dropdown icon"></i>
-                                <div class="default text"></div>
+                            <div class="ui fluid selection search dropdown subtask_phase">
+                                <input type="hidden" name="phase">
+                                <div class="default text">{{sub_phaseNum}}</div>
+                                <div class="menu">
+                                    <div v-for="phase in phases" :key="phase.id" class="item" :data-value="phase.id">{{phase.phaseNum}}</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="eight wide field" @click="showDropdown(1)">
+                        <div class="eight wide field">
                             <label>
                                 预计用时
                             </label>
                             <div class="ui right labeled input">
-                              <input type="number" step="0.5" min="0">
-                              <div class="ui basic label">小时 </div>
+                                <input type="number" step="0.5" min="0" v-model="subtask.requiredTime">
+                                <div class="ui basic label">小时 </div>
                             </div>
                         </div>
                     </div>
@@ -212,23 +249,24 @@
                             <label>
                                 开始时间
                             </label>
-                            <input type="datetime-local">
+                            <input type="date" v-model="subtask.startDate">
                         </div>
                         <div class="eight wide field">
                             <label>
                                 结束时间
                             </label>
-                            <input type="datetime-local">
+                            <input type="date" v-model="subtask.endDate">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="actions">
-                <div class="ui positive right button">
+                <div class="ui positive right button" @click="addSubtask">
                     新增
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 <script>
@@ -237,7 +275,27 @@ export default {
     return {
       startDate: new Date(),
       sq: null,
-      iterval: 5
+      iterval: 5,
+      userId: 2,
+      phases: {},
+      phase: {},
+      subtask: {},
+      sub_phaseId: 0,
+      sub_phaseNum: 0,
+      project: {}
+    }
+  },
+  created () {
+    this.refreshPhases()
+    if (this.project.id === undefined) {
+      console.log(this.$apiUrl + '/projects/' + this.$route.params.id)
+      this.$api.get(
+        this.$apiUrl + '/projects/' + this.$route.params.id,
+        null,
+        data => {
+          this.project = data
+        }
+      )
     }
   },
   computed: {
@@ -246,7 +304,20 @@ export default {
     }
   },
   methods: {
-    gap: function* () {
+    refreshPhases: function () {
+      this.$api.get(
+        this.$apiUrl +
+          '/projects/' +
+          this.$route.params.id +
+          '/phases?staffid=' +
+          this.userId,
+        null,
+        data => {
+          this.phases = data.phaseList
+        }
+      )
+    },
+    gap: function*() {
       var opeDate = this.startDate
       while (this.opeDate < this.endDate) {
         console.log(1)
@@ -263,30 +334,82 @@ export default {
       }
       return datesRet
     },
-    newPhases: function () {
+    newPhase: function () {
+      this.phase.managerID = $('.dropdown.phase_manger').dropdown('get value')
+      console.log(this.phase)
+      console.log()
+      this.$api.post(
+        this.$apiUrl +
+          '/projects/' +
+          this.$route.params.id +
+          '/phases?staffid=' +
+          this.userId,
+        this.phase,
+        data => {
+          if (data.successful) {
+            this.refreshPhases()
+          }
+          window.alert(data.information)
+        }
+      )
+    },
+    addSubtask: function () {
+      this.subtask.managerID = $('.dropdown.subtask_manger').dropdown(
+        'get value'
+      )
+      this.subtask.assignedID = $('.dropdown.subtask_assign').dropdown(
+        'get value'
+      )
+      this.subtask.phaseID = $('.dropdown.subtask_phase').dropdown('get value')
+      if (this.subtask.phaseID === '') this.subtask.phaseID = this.sub_phaseId
+      this.subtask.insertUser = 'VUE'
+      this.subtask.lastEditUser = 'VUE'
+      this.subtask.status = 'Processing'
+      console.log(this.subtask)
+      this.$api.post(
+        this.$apiUrl +
+          '/projects/' +
+          this.$route.params.id +
+          '/subtasks?staffid=' +
+          this.userId,
+        this.subtask,
+        data => {
+          if (data.successful) {
+            this.refreshPhases()
+          }
+          window.alert(data.information)
+        }
+      )
+    },
+    newPhaseEvent: function () {
       $('.ui.modal.phase')
         .modal({
           blurring: true,
           centered: false,
           inverted: true
         })
-        .modal('setting', 'closable', true)
+        .modal('setting', 'closable', false)
         .modal('show')
     },
-    newSubtask: function () {
+    newSubtaskEvent: function (phaseId, phaseNum) {
+      this.sub_phaseId = phaseId
+      this.sub_phaseNum = phaseNum
       $('.ui.modal.subtask')
         .modal({
           blurring: true,
           centered: false,
           inverted: true
         })
-        .modal('setting', 'closable', true)
+        .modal('setting', 'closable', false)
         .modal('show')
     },
-    showDropdown: function (maxSelections) {
-      $('.dropdown').dropdown({
+    showDropdownLocal: function (className) {
+      $('.' + className).dropdown()
+    },
+    showDropdown: function (className, maxSelections) {
+      $('.' + className).dropdown({
         apiSettings: {
-          url: '//api.semantic-ui.com/tags/{query}'
+          url: this.$apiUrl + '/staff?name={query}'
         },
         maxSelections: maxSelections
       })
@@ -302,11 +425,21 @@ export default {
     this.sq = this.gap()
   }
 }
-
 </script>
 <style scoped>
-.scrollY{
-  overflow-x:scroll;
-  overflow-y:hidden;
+.scrollY {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.link {
+  color: rgba(0, 0, 0, 0.7);
+}
+.link:hover {
+  color: black;
+  cursor: pointer;
+  cursor: hand;
+}
+.complete {
+  width: 500px;
 }
 </style>

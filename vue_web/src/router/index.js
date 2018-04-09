@@ -5,6 +5,7 @@ import Index from '@/page/index'
 import Content from '@/page/content'
 import Projects from '@/page/projects'
 import Project from '@/page/project'
+import Subtask from '@/page/subtask'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/projects/:id',
       name: 'Projects',
       component: Project
+    },
+    {
+      path: '/projects/:id/subtasks/:subId',
+      name: 'Subtask',
+      component: Subtask
     }
   ]
 })

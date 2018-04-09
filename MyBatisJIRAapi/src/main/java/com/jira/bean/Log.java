@@ -7,11 +7,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Log {
 	private int id;
-	private int phaseID;
+	private int subtaskID;
 	private Date startDate;
 	private Date endDate;
 	private int completed;
 	private int assignedID;
+	private int timeCost;
 	private float economicCost;
 	private String note;
 	private String insertUser;
@@ -27,12 +28,12 @@ public class Log {
 		this.id = id;
 	}
 
-	public int getPhaseID() {
-		return phaseID;
+	public int getSubtaskID() {
+		return subtaskID;
 	}
 
-	public void setPhaseID(int phaseID) {
-		this.phaseID = phaseID;
+	public void setSubtaskID(int subtaskID) {
+		this.subtaskID = subtaskID;
 	}
 
 	public Date getStartDate() {
@@ -65,6 +66,14 @@ public class Log {
 
 	public void setAssignedID(int assignedID) {
 		this.assignedID = assignedID;
+	}
+
+	public int getTimeCost() {
+		return timeCost;
+	}
+
+	public void setTimeCost(int timeCost) {
+		this.timeCost = timeCost;
 	}
 
 	public float getEconomicCost() {

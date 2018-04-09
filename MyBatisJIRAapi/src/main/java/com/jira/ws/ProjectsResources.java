@@ -5,6 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
@@ -21,20 +22,24 @@ import com.sun.jersey.spi.resource.Singleton;
 public class ProjectsResources {
 
 	@GET
-	public Response queryProjectsName(@QueryParam("staffid") int staffid) {
+	public Response queryProjectsByUserId(@QueryParam("staffid") int staffid) {
 		return Response.status(Response.Status.OK)
 				.header("Access-Control-Allow-Origin", "*")
 				.entity(new ProjectsService().queryProjectsBySatffId(staffid))
 				.build();
 	}
 
+	@GET
+	@Path("{id}")
+	public Response queryProjectsById(@PathParam("id") int pId) {
+		return Response.status(Response.Status.OK)
+				.header("Access-Control-Allow-Origin", "*")
+				.entity(new ProjectsService().queryProjectById(pId)).build();
+	}
+
 	@POST
 	public Response newProject(Project project,
 			@QueryParam("staffid") int staffid) {
-		// return Response.status(Response.Status.OK)
-		// .header("Access-Control-Allow-Origin", "*")
-		// .entity(new ProjectsService().queryProjectsBySatffId(2))
-		// .build();
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			new ProjectsService().newProject(project, staffid);
@@ -43,6 +48,7 @@ public class ProjectsResources {
 		} catch (Exception e) {
 			// TODO: handle exception
 			resp.setInformation(e.getMessage());
+			resp.setSuccessful(false);
 		}
 		return Response
 				.status(Response.Status.OK)

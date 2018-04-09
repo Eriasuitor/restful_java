@@ -1,5 +1,7 @@
 package com.jira.entity;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -8,6 +10,15 @@ public class GeneralResponse {
 	private boolean isSuccessful = true;
 	private String Information;
 	private int effectRows;
+	private List<?> results;
+
+	public GeneralResponse() {
+
+	}
+
+	public GeneralResponse(List<?> list) {
+		this.results = list;
+	}
 
 	public int getResponseCode() {
 		return responseCode;
@@ -39,6 +50,14 @@ public class GeneralResponse {
 
 	public void setEffectRows(int effectRows) {
 		this.effectRows = effectRows;
+	}
+
+	public List<?> getResults() {
+		return results;
+	}
+
+	public void setResults(List<?> results) {
+		this.results = results;
 	}
 
 }

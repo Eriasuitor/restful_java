@@ -1,6 +1,7 @@
 package com.jira.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,9 +12,11 @@ public class Phase {
 	private int projectID;
 	private int phaseNum;
 	private String status;
+	private String description;
 	private Date startDate;
 	private Date endDate;
 	private int managerID;
+	private List<Subtask> subtaskList;
 	private String insertUser;
 	private Date insertDate;
 	private String lastEditUser;
@@ -59,6 +62,14 @@ public class Phase {
 		this.status = status;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -81,6 +92,14 @@ public class Phase {
 
 	public void setManagerID(int managerID) {
 		this.managerID = managerID;
+	}
+
+	public List<Subtask> getSubtaskList() {
+		return subtaskList;
+	}
+
+	public void setSubtaskList(List<Subtask> subtaskList) {
+		this.subtaskList = subtaskList;
 	}
 
 	public String getInsertUser() {

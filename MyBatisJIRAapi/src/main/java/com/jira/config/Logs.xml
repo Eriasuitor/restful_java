@@ -25,11 +25,12 @@
 
   <resultMap type="com.jira.bean.Log" id="LogResult">
     <id column="ID" jdbcType="INTEGER" property="id"/>
-    <result column="phaseID" jdbcType="INTEGER" property="phaseID"/>
+    <result column="SubtaskID" jdbcType="INTEGER" property="subtaskID"/>
     <result column="startDate" jdbcType="DATE" property="startDate"/>
     <result column="endDate" jdbcType="DATE" property="endDate"/>
     <result column="completed" jdbcType="INTEGER" property="completed"/>
     <result column="assignedID" jdbcType="INTEGER" property="assignedID"/>
+    <result column="timeCost" jdbcType="INTEGER" property="timeCost"/>
     <result column="economicCost" jdbcType="FLOAT" property="economicCost"/>
     <result column="note" jdbcType="VARCHAR" property="note"/>
     <result column="Insertuser" jdbcType="VARCHAR" property="insertUser"/>
@@ -38,10 +39,14 @@
     <result column="Lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
 
+  <select id="getLogsBySubId" parameterType="int" resultMap="LogResult">
+  	SELECT * FROM Logs WHERE SubtaskID = #{id:INTEGER}
+  </select>
+
   <insert id="addLog" parameterType="com.jira.bean.Log">
-  	INSERT LOGS ( PhaseID, StartDate, EndDate, Completed, AssignedID, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT LOGS ( SubtaskID, StartDate, EndDate, Completed, AssignedID, TimeCost, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		(#{phaseID}, #{startDate}, #{endDate}, #{completed}, #{assignedID}, #{economicCost}, #{note}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
+		(#{subtaskID}, #{startDate}, #{endDate}, #{completed}, #{assignedID}, #{timeCost}, #{economicCost}, #{note}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
   </insert>
 
 </mapper>

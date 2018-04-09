@@ -1,6 +1,7 @@
 package com.jira.dao;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -8,6 +9,19 @@ import com.jira.bean.Log;
 import com.jira.db.DBJIRAAccess;
 
 public class LogsDao {
+
+	public List<Log> getLogsBySubId(int subId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		List<Log> logList = sqlSession.getMapper(ILogs.class).getLogsBySubId(
+				subId);
+		return logList;
+	}
+
 	public int addLog(Log log) {
 		SqlSession sqlSession = null;
 		try {

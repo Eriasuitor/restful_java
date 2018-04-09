@@ -27,6 +27,7 @@
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="Name" jdbcType="VARCHAR" property="name"/>
     <result column="Status" jdbcType="VARCHAR" property="status"/>
+    <result column="Description" jdbcType="NVARCHAR" property="description"/>
     <result column="StartDate" jdbcType="DATE" property="startDate"/>
     <result column="EndDate" jdbcType="DATE" property="endDate"/>
     <result column="ManagerID" jdbcType="INTEGER" property="managerID"/>
@@ -61,9 +62,9 @@
   </select>
   
   <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO Projects ( Name, Status, StartDate, EndDate, Url, ManagerID, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO Projects ( Name, Status, Description, StartDate, EndDate, Url, ManagerID, Participants, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		( #{name}, #{status}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
+		( #{name}, #{status}, #{description}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{participants}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
   </insert>
 
 </mapper>

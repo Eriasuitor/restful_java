@@ -1,6 +1,7 @@
 package com.jira.dao;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,5 +20,25 @@ public class SubtasksDao {
 				subtask);
 		sqlSession.commit();
 		return effectRows;
+	}
+
+	public List<Subtask> querySubtasks(List<Integer> phaseIDList) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(ISubtasks.class).querySubtasks(phaseIDList);
+	}
+
+	public Subtask querySubtaskBySubId(int subId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(ISubtasks.class).querySubtaskBySubId(subId);
 	}
 }
