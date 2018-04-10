@@ -141,7 +141,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="ui modal phase">
+        <div class="ui modal phase" id='phase'>
             <i class="close icon black"></i>
             <div class="header">
                 新建阶段任务
@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui modal subtask">
+        <div class="ui modal subtask" id='subtask'>
             <i class="close icon black"></i>
             <div class="header">
                 新增子任务
@@ -429,25 +429,25 @@ export default {
       )
     },
     newPhaseEvent: function () {
-      $('.ui.modal.phase')
+      $('.phase')
         .modal({
+          centered: true,
           blurring: true,
-          centered: false,
-          inverted: true
+          inverted: false,
+          closable: false
         })
-        .modal('setting', 'closable', false)
         .modal('show')
     },
     newSubtaskEvent: function (phaseId, subPhaseName) {
       this.sub_phaseId = phaseId
       this.phaseName = subPhaseName
-      $('.ui.modal.subtask')
+      $('.subtask')
         .modal({
+          centered: true,
           blurring: true,
-          centered: false,
-          inverted: true
+          inverted: false,
+          closable: false
         })
-        .modal('setting', 'closable', false)
         .modal('show')
     },
     showDropdownLocal: function (className) {

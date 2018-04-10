@@ -38,7 +38,7 @@
             <i class="users icon"></i> 我参与的
         </h4>
 
-        <div class="ui modal">
+        <div class="ui modal newProject" id='newProject'>
             <i class="close icon black"></i>
             <div class="header">
                 新建项目
@@ -102,7 +102,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>
@@ -111,14 +110,19 @@
                     新建
                 </div>
             </div>
-            <div v-bind:class="{ui:true, dimmer:true, inverted:true, active:isSaving,}">
+            <div v-bind:class="{ui:true, dimmer:true, inverted:true, active:isSaving}">
                 <div class="ui text loader ">保存中</div>
             </div>
         </div>
+        <a href="http://127.0.0.1:8080/projects/43">C</a>
+        <input>
+        <!-- <new-porject-model></new-porject-model>1 -->
     </div>
 </template>
 <script>
+import NewPorjectModel from '../components/newPorjectModel'
 export default {
+  components: {NewPorjectModel},
   data () {
     return {
       projects: [],
@@ -161,13 +165,14 @@ export default {
       )
     },
     newProjectEvent: function () {
-      $('.ui.modal')
+      console.log(this.project)
+      $('.newProject')
         .modal({
+          centered: true,
           blurring: true,
-          centered: false,
-          inverted: true
+          inverted: false,
+          closable: false
         })
-        .modal('setting', 'closable', false)
         .modal('show')
     },
     showDropdown: function (maxSelections) {
@@ -202,7 +207,7 @@ export default {
       })
     },
     detail: function (pId) {
-      this.$router.push('/projects/' + pId)
+      this.$router.push({path: '/projects/' + pId, replace: true})
     }
   }
 }
