@@ -21,10 +21,11 @@ import com.sun.jersey.spi.resource.Singleton;
 public class SubtasksResources {
 	@GET
 	@Path("{id}")
-	public Response queryProjectsById(@PathParam("id") int subId) {
+	public Response querySubtaskWithStaffById(@PathParam("id") int subId) {
 		return Response.status(Response.Status.OK)
 				.header("Access-Control-Allow-Origin", "*")
-				.entity(new SubtasksService().querySubtasks(subId)).build();
+				.entity(new SubtasksService().querySubtasksWithStaff(subId))
+				.build();
 	}
 
 	@POST

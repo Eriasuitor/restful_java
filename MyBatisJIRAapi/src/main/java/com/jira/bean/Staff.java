@@ -12,6 +12,8 @@ public class Staff {
 
 	private String password;
 
+	private String Image;
+
 	private String insertUser;
 
 	private Date insertDate;
@@ -42,6 +44,14 @@ public class Staff {
 
 	public void setPassword(String password) {
 		this.password = password == null ? null : password.trim();
+	}
+
+	public String getImage() {
+		return Image;
+	}
+
+	public void setImage(String image) {
+		Image = image;
 	}
 
 	public String getInsertUser() {

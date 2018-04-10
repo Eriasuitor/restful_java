@@ -29,7 +29,7 @@ export default new Router({
     },
     {
       path: '/projects/:id',
-      name: 'Projects',
+      name: 'Project',
       component: Project
     },
     {

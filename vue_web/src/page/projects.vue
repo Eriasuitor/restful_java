@@ -196,14 +196,20 @@ export default {
     search: function () {
       $('.ui.search').search({
         apiSettings: {
-          url: '//api.github.com/search/repositories?q={query}'
+          onResponse: (resp) => {
+            $.each(resp.projectNames, function (index, item) {
+              item.url = '/projects/' + item.id
+            })
+            return resp
+          },
+          url: this.$apiUrl + '/projects?q={query}'
         },
         fields: {
-          results: 'items',
+          results: 'projectNames',
           title: 'name',
-          url: 'html_url'
+          url: 'url'
         },
-        minCharacters: 3
+        minCharacters: 1
       })
     },
     detail: function (pId) {

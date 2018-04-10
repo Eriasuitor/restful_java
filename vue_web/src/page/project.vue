@@ -31,15 +31,40 @@
         <h3 class="ui dividing header">{{project.name}}
             <div class="sub header">{{project.description}}</div>
         </h3>
+        <div class="ui secondary segment">
+            <div class="ui blue image label"><img :src="project.staff.image"> {{project.staff.name}}
+                <div class="detail">负责人</div>
+            </div>
+            <p>日期：{{formatDate(project.startDate)}} 至 {{formatDate(project.endDate)}} 代码库：{{project.url}}</p>
+            <div class="ui statistics">
+                <div class="statistic">
+                    <div class="value">
+                        {{project.completed}}%
+                    </div>
+                    <div class="label">完成</div>
+                </div>
+                <div class="statistic">
+                    <div class="value">{{project.timeCost}}</div>
+                    <div class="label">时间花费</div>
+                </div>
+                <div class="statistic">
+                    <div class="value">{{project.economicCost}}元</div>
+                    <div class="label">费用产生</div>
+                </div>
+                <div class="statistic">
+                    <div class="value">#</div>
+                    <div class="label">参与人数</div>
+                </div>
+            </div>
+        </div>
         <div class="scrollY">
-
             <table class="ui compact red table">
                 <thead>
                     <tr>
-                        <th class="three wide">阶段</th>
-                        <th class="four wide">子任务</th>
-                        <th class="three wide">完成度</th>
-                        <th class="six wide" id='temporalPlanning' ref='temporalPlanning'>时间规划</th>
+                        <th class="two wide">阶段</th>
+                        <th class="three wide">子任务</th>
+                        <th class="four wide">完成度</th>
+                        <th class="seven wide" id='temporalPlanning' ref='temporalPlanning'>时间规划</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -290,7 +315,7 @@ export default {
       subtask: {},
       sub_phaseId: 0,
       phaseName: 0,
-      project: {},
+      project: {staff: {}},
       dateNum: 0,
       dateList: [],
       redMap: {}
@@ -322,14 +347,17 @@ export default {
       return true
     },
     getDateList: function () {
-      var gapDays = Math.ceil((
-        new Date(this.project.endDate).getTime() -
-        new Date(this.project.startDate).getTime()) / 86400000)
+      var gapDays = Math.ceil(
+        (new Date(this.project.endDate).getTime() -
+          new Date(this.project.startDate).getTime()) /
+          86400000
+      )
       var gapDayBall = Math.ceil(gapDays / (this.dateNum - 1))
       for (var i = 0; i < this.dateNum - 1; i++) {
         this.dateList.push(
           new Date(
-            new Date(this.project.startDate).getTime() + gapDayBall * i * 86400000
+            new Date(this.project.startDate).getTime() +
+              gapDayBall * i * 86400000
           )
         )
       }
@@ -360,7 +388,9 @@ export default {
         null,
         data => {
           this.phases = data.phaseList
-          setTimeout(this.refreshProgressBar, 20)
+          if (this.phases != null) {
+            setTimeout(() => { this.refreshProgressBar() }, 20)
+          }
         }
       )
     },
@@ -384,6 +414,7 @@ export default {
       }
       return datesRet
     },
+
     newPhase: function () {
       this.phase.managerID = $('.dropdown.phase_manger').dropdown('get value')
       this.$api.post(
@@ -429,7 +460,7 @@ export default {
       )
     },
     newPhaseEvent: function () {
-      $('.phase')
+      $('.ui.modal')
         .modal({
           centered: true,
           blurring: true,
@@ -470,6 +501,17 @@ export default {
       $('#' + id).progress({
         percent: destination
       })
+    },
+    formatDate: function (date) {
+      date = new Date(date)
+      return (
+        date.getFullYear() +
+        ' 年 ' +
+        date.getMonth() +
+        ' 月 ' +
+        date.getDate() +
+        ' 日 '
+      )
     },
     format (datePar) {
       var date = new Date(datePar)

@@ -27,6 +27,7 @@
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="image" jdbcType="VARCHAR" property="image"/>
     <result column="insertuser" jdbcType="VARCHAR" property="insertuser"/>
     <result column="insertdate" jdbcType="DATE" property="insertdate"/>
     <result column="lastedituser" jdbcType="VARCHAR" property="lastedituser"/>
@@ -37,11 +38,18 @@
     SELECT * FROM staff WHERE id = #{id:INTEGER}
   </select>
   
+   <select id="queryStaffInfs" parameterType="java.util.Set" resultMap="StaffResult">
+    SELECT * FROM staff WHERE id IN 
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+		#{item:INTEGER}
+	</foreach>
+  </select>
+  
   <select id="searchStaff" parameterType="String" resultMap="StaffResult">
     select * from staff 
 	<where>
 	<if test="_parameter!=null and _parameter!='' ">
-	and name like CONCAT('%', #{_parameter:NVARCHAR}, '%')
+		name like CONCAT('%', #{_parameter:NVARCHAR}, '%')
 	</if>
 	</where>
   </select>

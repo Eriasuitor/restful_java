@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jira.bean.Subtask;
 import com.jira.dao.SubtasksDao;
+import com.jira.entity.SubtaskWithStaff;
 
 public class SubtasksService {
 	public int addSubtask(Subtask subtask) {
@@ -18,4 +19,13 @@ public class SubtasksService {
 		return new SubtasksDao().querySubtaskBySubId(subId);
 	}
 
+	public SubtaskWithStaff querySubtasksWithStaff(int subId) {
+		SubtaskWithStaff subStaff = new SubtaskWithStaff(
+				new SubtasksDao().querySubtaskBySubId(subId));
+		subStaff.setManagerStaff(new StaffService().queryStaffInf(subStaff
+				.getManagerID()));
+		subStaff.setAssignedStaff(new StaffService().queryStaffInf(subStaff
+				.getAssignedID()));
+		return subStaff;
+	}
 }

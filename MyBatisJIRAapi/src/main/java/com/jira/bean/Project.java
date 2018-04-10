@@ -24,6 +24,7 @@ public class Project {
 	private Date lastEditDate;
 	private int participants;
 	private List<Participant> participantsList;
+	private Staff staff;
 
 	public int getId() {
 		return id;
@@ -159,6 +160,14 @@ public class Project {
 
 	public void setParticipantsList(List<Participant> participantsList) {
 		this.participantsList = participantsList;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 
 }

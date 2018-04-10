@@ -22,11 +22,18 @@ import com.sun.jersey.spi.resource.Singleton;
 public class ProjectsResources {
 
 	@GET
-	public Response queryProjectsByUserId(@QueryParam("staffid") int staffid) {
+	public Response queryProjectsByUserId(@QueryParam("staffid") int staffid,
+			@QueryParam("q") String pName) {
+		if (pName == null) {
+			return Response
+					.status(Response.Status.OK)
+					.header("Access-Control-Allow-Origin", "*")
+					.entity(new ProjectsService()
+							.queryProjectsBySatffId(staffid)).build();
+		}
 		return Response.status(Response.Status.OK)
 				.header("Access-Control-Allow-Origin", "*")
-				.entity(new ProjectsService().queryProjectsBySatffId(staffid))
-				.build();
+				.entity(new ProjectsService().searchProject(pName)).build();
 	}
 
 	@GET

@@ -61,6 +61,17 @@
 		id = #{id:INTEGER}
   </select>
   
+  <select id="searchProjects" parameterType="String" resultMap="ProjectResult">
+	SELECT `ID`,`Name`,`Description`,`Status`
+	FROM
+		projects 
+	<where>
+	<if test="_parameter!=null and _parameter!='' ">
+		name like CONCAT('%', #{_parameter:VARCHAR}, '%')
+	</if>
+	</where>
+  </select>
+  
   <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">
   	INSERT INTO Projects ( Name, Status, Description, StartDate, EndDate, Url, ManagerID, Participants, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES

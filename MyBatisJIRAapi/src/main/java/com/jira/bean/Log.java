@@ -15,9 +15,10 @@ public class Log {
 	private int timeCost;
 	private float economicCost;
 	private String note;
-	private String insertUser;
+	private Staff staff;
+	private int insertUser;
 	private Date insertDate;
-	private String lastEditUser;
+	private int lastEditUser;
 	private Date lastEditDate;
 
 	public int getId() {
@@ -92,11 +93,19 @@ public class Log {
 		this.note = note;
 	}
 
-	public String getInsertUser() {
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
+	public int getInsertUser() {
 		return insertUser;
 	}
 
-	public void setInsertUser(String insertUser) {
+	public void setInsertUser(int insertUser) {
 		this.insertUser = insertUser;
 	}
 
@@ -108,11 +117,11 @@ public class Log {
 		this.insertDate = insertDate;
 	}
 
-	public String getLastEditUser() {
+	public int getLastEditUser() {
 		return lastEditUser;
 	}
 
-	public void setLastEditUser(String lastEditUser) {
+	public void setLastEditUser(int lastEditUser) {
 		this.lastEditUser = lastEditUser;
 	}
 

@@ -7,5 +7,7 @@ import com.jira.bean.Staff;
 public interface IStaff {
 	public Staff queryStaffInf(int id);
 
+	public List<Staff> queryStaffInfs(List<Integer> idSet);
+
 	public List<Staff> searchStaff(String name);
 }

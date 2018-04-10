@@ -15,7 +15,16 @@ public class ProjectsService {
 	}
 
 	public Project queryProjectById(int id) {
-		return new ProjectsDao().queryById(id);
+		Project project = new ProjectsDao().queryById(id);
+		project.setStaff(new StaffService().queryStaffInf(project
+				.getManagerID()));
+		return project;
+	}
+
+	public ProjectList searchProject(String pName) {
+		ProjectList projectList = new ProjectList();
+		projectList.setProjectNames(new ProjectsDao().searchProjects(pName));
+		return projectList;
 	}
 
 	public int newProject(Project project, int userId) {

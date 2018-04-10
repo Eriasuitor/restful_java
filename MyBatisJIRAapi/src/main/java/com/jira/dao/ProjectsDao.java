@@ -1,6 +1,7 @@
 package com.jira.dao;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -30,6 +31,16 @@ public class ProjectsDao {
 			e.printStackTrace();
 		}
 		return sqlSession.getMapper(IProjects.class).queryProjectById(id);
+	}
+
+	public List<Project> searchProjects(String pName) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IProjects.class).searchProjects(pName);
 	}
 
 	public int create(Project project) {
