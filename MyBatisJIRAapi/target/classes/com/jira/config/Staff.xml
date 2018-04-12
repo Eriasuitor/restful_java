@@ -45,6 +45,10 @@
 	</foreach>
   </select>
   
+  <select id="queryStaffInfsByProjectID" parameterType="int" resultMap="StaffResult">
+    SELECT * FROM staff WHERE id IN (SELECT StaffID FROM Participants WHERE ProjectID = #{id:INTEGER})
+  </select>
+  
   <select id="searchStaff" parameterType="String" resultMap="StaffResult">
     select * from staff 
 	<where>

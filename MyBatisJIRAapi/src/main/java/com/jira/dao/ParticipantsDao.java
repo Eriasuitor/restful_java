@@ -11,6 +11,17 @@ import com.jira.bean.Participant;
 import com.jira.db.DBJIRAAccess;
 
 public class ParticipantsDao {
+	public List<Participant> queryParticipantsByPId(int pId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IParticipants.class)
+				.queryParticipantsByPId(pId);
+	}
+
 	public int addParticipants(List<Participant> participantList, int userId) {
 		SqlSession sqlSession = null;
 		try {
@@ -39,4 +50,21 @@ public class ParticipantsDao {
 		sqlSession.commit();
 		return effectRows;
 	}
+
+	public int deleteParticipant(int pId, int sId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("pId", pId);
+		map.put("sId", sId);
+		int effectRows = sqlSession.getMapper(IParticipants.class)
+				.deleteParticipant(map);
+		sqlSession.commit();
+		return effectRows;
+	}
+
 }

@@ -25,6 +25,7 @@ public class Project {
 	private int participants;
 	private List<Participant> participantsList;
 	private Staff staff;
+	private List<Staff> staffList;
 
 	public int getId() {
 		return id;
@@ -168,6 +169,14 @@ public class Project {
 
 	public void setStaff(Staff staff) {
 		this.staff = staff;
+	}
+
+	public List<Staff> getStaffList() {
+		return staffList;
+	}
+
+	public void setStaffList(List<Staff> staffList) {
+		this.staffList = staffList;
 	}
 
 }

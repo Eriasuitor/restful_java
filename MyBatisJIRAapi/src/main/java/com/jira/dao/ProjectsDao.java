@@ -55,4 +55,27 @@ public class ProjectsDao {
 		sqlSession.commit();
 		return projectId;
 	}
+
+	public void modifyProject(Project project) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		sqlSession.getMapper(IProjects.class).modifyProject(project);
+		sqlSession.commit();
+	}
+
+	public void modifyManagerID(Project project) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		sqlSession.getMapper(IProjects.class).modifyManagerID(project);
+		sqlSession.commit();
+
+	}
 }

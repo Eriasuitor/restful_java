@@ -34,6 +34,10 @@
     <result column="Lasteditdate" jdbcType="DATE" property="lastEditDate"/>
   </resultMap>
   
+  <select id="queryParticipantsByPId" parameterType="int" resultMap="ParticipantResult">
+  	SELECT * FROM Participants WHERE ProjectID = #{id:INTEGER}
+  </select>
+  
   <insert id="addParticipants" parameterType="java.util.Map">
   	INSERT INTO Participants ( ProjectID, StaffID, Role, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
@@ -47,5 +51,7 @@
 	VALUES
 		(#{projectId}, #{staffId}, #{role}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
   </insert>
-
+	<delete id="deleteParticipant" parameterType="java.util.Map">
+		DELETE FROM Participants WHERE ProjectID = #{pId:INTEGER} AND StaffID = #{sId:INTEGER}
+	</delete>
 </mapper>

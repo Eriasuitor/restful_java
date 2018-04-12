@@ -33,6 +33,17 @@ public class StaffDao {
 		return sqlSession.getMapper(IStaff.class).queryStaffInfs(idList);
 	}
 
+	public List<Staff> queryStaffInfsByProjectID(int pId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IStaff.class)
+				.queryStaffInfsByProjectID(pId);
+	}
+
 	public List<Staff> searchStaff(String name) {
 		SqlSession sqlSession = null;
 		try {

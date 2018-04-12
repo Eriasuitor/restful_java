@@ -29,12 +29,12 @@ export default new Router({
     },
     {
       path: '/projects/:id',
-      name: 'Project',
+      name: 'Projects',
       component: Project
     },
     {
       path: '/projects/:id/subtasks/:subId',
-      name: 'Subtask',
+      name: 'Projects',
       component: Subtask
     }
   ]

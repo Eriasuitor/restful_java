@@ -78,4 +78,12 @@
 		( #{name}, #{status}, #{description}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{participants}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
   </insert>
 
+	<update id="modifyProject" parameterType="com.jira.bean.Project">
+		UPDATE Projects SET Name = #{name}, Description = #{description}, Url = #{url}, StartDate = #{startDate}, EndDate = #{endDate}, LastEditUser = #{lastEditUser}, LastEditDate = NOW() WHERE ID = #{id};
+	</update>
+	
+	<update id="modifyManagerID" parameterType="com.jira.bean.Project">
+		UPDATE Projects SET ManagerID = #{managerID}, LastEditUser = #{lastEditUser}, LastEditDate = NOW() WHERE ID = #{id};
+	</update>
+
 </mapper>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div2>
         <div class="ui breadcrumb">
             <a class="section">JIRA</a>
             <div class="divider"> / </div>
@@ -18,7 +18,7 @@
             <i class="briefcase icon"></i> 我管理的
         </h4>
         <div class="ui link cards">
-            <div class="card" @click="detail(project.id)" v-for="project in projects" :key="project.id">
+            <div class="card" @click="detail(project.id)" v-for="project in projects" v-if="project.managerID === userId" :key="project.id">
                 <div class="content">
                     <div class="header">{{project.name}}</div>
                     <div class="meta">
@@ -37,7 +37,22 @@
         <h4 class="ui horizontal divider header">
             <i class="users icon"></i> 我参与的
         </h4>
-
+        <div class="ui link cards">
+            <div class="card" @click="detail(project.id)" v-for="project in projects" v-if="project.managerID != userId" :key="project.id">
+                <div class="content">
+                    <div class="header">{{project.name}}</div>
+                    <div class="meta">
+                        {{project.status}}
+                    </div>
+                    <div class="description ellipsis">{{project.description}}</div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated"> {{(project.timeCost / project.requiredTime * 100).toFixed(2)}}% 完成度 </span>
+                    <span>
+                        <i class="user icon"></i> {{project.participants}} 参与者 </span>
+                </div>
+            </div>
+        </div>
         <div class="ui modal newProject" id='newProject'>
             <i class="close icon black"></i>
             <div class="header">
@@ -114,15 +129,14 @@
                 <div class="ui text loader ">保存中</div>
             </div>
         </div>
-        <a href="http://127.0.0.1:8080/projects/43">C</a>
-        <input>
-        <!-- <new-porject-model></new-porject-model>1 -->
-    </div>
+
+        <!-- <new-porject-modal :project="project"></new-porject-modal>1 -->
+    </div2>
 </template>
 <script>
-import NewPorjectModel from '../components/newPorjectModel'
+// import NewPorjectModal from '../components/newPorjectModal'
 export default {
-  components: {NewPorjectModel},
+//   components: { NewPorjectModal },
   data () {
     return {
       projects: [],
@@ -165,13 +179,13 @@ export default {
       )
     },
     newProjectEvent: function () {
-      console.log(this.project)
       $('.newProject')
         .modal({
           centered: true,
           blurring: true,
           inverted: false,
-          closable: false
+          closable: false,
+          context: 'div2'
         })
         .modal('show')
     },
@@ -196,7 +210,7 @@ export default {
     search: function () {
       $('.ui.search').search({
         apiSettings: {
-          onResponse: (resp) => {
+          onResponse: resp => {
             $.each(resp.projectNames, function (index, item) {
               item.url = '/projects/' + item.id
             })
@@ -213,7 +227,7 @@ export default {
       })
     },
     detail: function (pId) {
-      this.$router.push({path: '/projects/' + pId, replace: true})
+      this.$router.push({ path: '/projects/' + pId, replace: true })
     }
   }
 }

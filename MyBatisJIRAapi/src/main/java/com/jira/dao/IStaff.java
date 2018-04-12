@@ -9,5 +9,7 @@ public interface IStaff {
 
 	public List<Staff> queryStaffInfs(List<Integer> idSet);
 
+	public List<Staff> queryStaffInfsByProjectID(int pId);
+
 	public List<Staff> searchStaff(String name);
 }

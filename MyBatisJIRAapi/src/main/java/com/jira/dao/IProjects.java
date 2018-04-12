@@ -13,4 +13,8 @@ public interface IProjects {
 	public List<Project> searchProjects(String pName);
 
 	public int newProject(Project project);
+
+	public int modifyProject(Project project);
+
+	public int modifyManagerID(Project project);
 }
