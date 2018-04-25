@@ -17,4 +17,6 @@ public interface IProjects {
 	public int modifyProject(Project project);
 
 	public int modifyManagerID(Project project);
+
+	public int deleteProject(int id);
 }

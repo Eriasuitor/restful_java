@@ -53,5 +53,7 @@
 	UPDATE Projects SET TimeCost = TimeCost + #{timeCost}, EconomicCost = EconomicCost + #{economicCost};
 	COMMIT;
   </insert>
-
+	<delete id="deleteLog" parameterType="int">
+		DELETE FROM LOGS WHERE ID = #{id:INTEGER}
+	</delete>
 </mapper>

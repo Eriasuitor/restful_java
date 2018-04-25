@@ -85,5 +85,9 @@
 	<update id="modifyManagerID" parameterType="com.jira.bean.Project">
 		UPDATE Projects SET ManagerID = #{managerID}, LastEditUser = #{lastEditUser}, LastEditDate = NOW() WHERE ID = #{id};
 	</update>
+	
+	<delete id="deleteProject" parameterType="int">
+		DELETE FROM PROJECTS WHERE ID = #{id:INTEGER}
+	</delete>
 
 </mapper>

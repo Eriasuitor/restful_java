@@ -30,4 +30,8 @@ public class LogsService {
 	public int addLog(Log log) {
 		return new LogsDao().addLog(log);
 	}
+
+	public int deleteLog(int id) {
+		return new LogsDao().deleteLog(id);
+	}
 }

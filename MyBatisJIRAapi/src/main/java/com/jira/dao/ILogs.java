@@ -8,4 +8,6 @@ public interface ILogs {
 	public int addLog(Log log);
 
 	public List<Log> getLogsBySubId(int subId);
+
+	public int deleteLog(int id);
 }

@@ -33,4 +33,16 @@ public class LogsDao {
 		sqlSession.commit();
 		return effectRows;
 	}
+
+	public int deleteLog(int id) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int effectRows = sqlSession.getMapper(ILogs.class).deleteLog(id);
+		sqlSession.commit();
+		return effectRows;
+	}
 }

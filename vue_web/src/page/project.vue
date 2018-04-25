@@ -1,6 +1,5 @@
 <template>
     <div2>
-
         <div class="ui breadcrumb">
             <a class="section">JIRA</a>
             <div class="divider"> / </div>
@@ -8,56 +7,10 @@
             <div class="divider"> / </div>
             <div class="active section">{{project.name}}</div>
         </div>
-
-        <!-- <div class="ui dropdown button" @click="intervalSet()">
-<span class="text">Choose Category</span>
-<i class="dropdown icon"></i>
-<div class="menu">
-<div class="item">
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-    <span class="text">1 天</span>
-</div>
-</div>
-</div> -->
-        <!-- <button class="ui labeled icon button right floated" @click="newPhaseEvent">
-<i class="plus icon"></i>新建阶段任务
-</button> -->
         <div class="ui image icon right floated">
             <i class="circular edit outline link icon" @click="editProjectEvent()"></i>
-            <i class="circular delete link icon"></i>
+            <i class="circular delete link icon" @click="deleteProject()"></i>
         </div>
-        <div class="ui segment testNote">
-            <div class="ui button testButton" @click="testMt()">Show flowing popup</div>
-            <div class="ui flowing popup top left transition hidden ">
-                <div class="ui three column divided center aligned grid">
-                    <div class="column">
-                        <h4 class="ui header">Basic Plan</h4>
-                        <p>
-                            <b>2</b> projects, $10 a month</p>
-                        <div class="ui button">Choose</div>
-                    </div>
-                    <div class="column">
-                        <h4 class="ui header">Business Plan</h4>
-                        <p>
-                            <b>5</b> projects, $20 a month</p>
-                        <div class="ui button">Choose</div>
-                    </div>
-                    <div class="column">
-                        <h4 class="ui header">Premium Plan</h4>
-                        <p>
-                            <b>8</b> projects, $25 a month</p>
-                        <div class="ui button">Choose</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <h3 class="ui dividing header">{{project.name}}
             <div class="sub header">{{project.description}}</div>
         </h3>
@@ -85,8 +38,6 @@
                     </div>
                 </div>
             </div>
-
-            <i class="small circular edit outline link icon" @click="modifyManagerEvent()"></i>
 
             <p>日期：{{formatDate(project.startDate)}} 至 {{formatDate(project.endDate)}} 代码库：{{project.url}}</p>
 
@@ -131,7 +82,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <i class="small circular plus link icon" @click="newPhaseEvent"></i>新建阶段任务
         <div class="scrollY">
@@ -147,21 +97,8 @@
                 <tbody>
                     <template v-for="phase in phases">
                         <tr :key="'pha' + phase.id">
-                            <td :rowspan="phase.subtaskList.length + 2">{{phase.name}}{{phase.subtaskList.length}}
-                                <!-- <div class="ui fade animated button" @click="newSubtaskEvent(phase.id, phase.name)">
-                    <div class="hidden content">子任务</div>
-                    <div class="visible content">
-                        <i class="plus icon"></i>
-                    </div>
-                </div> -->
-                                <!-- <i class="small circular plus link icon" @click="newSubtaskEvent(phase.id, phase.name)"></i> -->
+                            <td :rowspan="phase.subtaskList.length + 2">{{phase.name}}
                                 <i class="small circular edit outline link icon"></i>
-                                <!-- <div class="ui fade animated button" @click="newSubtaskEvent(phase.id, phase.name)">
-                    <div class="hidden content">编辑</div>
-                    <div class="visible content">
-                        <i class="edit icon"></i>
-                    </div>
-                </div> -->
                             </td>
                         </tr>
                         <tr v-for="subtask in phase.subtaskList" :key="'sub' + subtask.id">
@@ -187,68 +124,6 @@
                     </template>
                 </tbody>
             </table>
-
-            <!-- <table class="ui collapsing celled structured small compact single line table ">
-<thead>
-    <tr>
-        <th rowspan="2">阶段</th>
-        <th rowspan="2" class="subtask">子任务</th>
-        <th rowspan="2" class="complete">完成度</th>
-        <th rowspan="2" v-for="(item,index) in dates()" :key="index">
-            <div class="ui mini horizontal statistic red" v-show="item.getDate() / iterval < 1 || index === 0">
-                <div class="value">
-                    {{item.getMonth()}}-
-                </div>
-            </div>
-            <span></span>
-            {{item.getDate()}}
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <template v-for="phase in phases">
-        <tr :key="phase.id">
-            <td :rowspan="phase.subtaskList.length + 1">{{phase.name}}{{phase.subtaskList.length}}<br>
-                <div class="ui fade animated button" @click="newSubtaskEvent(phase.id, phase.phaseNum)">
-                    <div class="hidden content">子任务</div>
-                    <div class="visible content">
-                        <i class="plus icon"></i>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr v-for="subtask in phase.subtaskList" :key="subtask.id">
-            <td>
-                <a class="link" v-bind:href="project.id + '/subtasks/' + subtask.id">{{subtask.name}}</a>
-            </td>
-
-            <td v-for="(item,index) in dates()" :key="index" class="center aligned">
-                <i class="large green checkmark icon"></i>
-            </td>
-        </tr>
-    </template>
-</tbody>
-</table> -->
-            <!-- 456{{endDate}}
-<div class="ui animated fade button" tabindex="0">
-<div class="visible content">&nbsp;</div>
-<div class="hidden content">
-    <i class="pencil alternate icon"></i>
-</div>
-</div>
-
-<div>{{endDate.getDate()}}</div> -->
-
-            <!-- <div v-for="(item,index) in dates()" :key="index">
-<div class="ui mini label"></div>
-<span v-if="item.getDate() === 1 || index === 0">{{item.getMonth()}}</span>-
-{{item.getDate()}}
-</div> -->
-            <!-- <div class="ui small progress" id='test' @click="progress('test', 50)">
-<div class="bar">
-    <div class="progress"></div>
-</div>
-</div> -->
         </div>
         <div class="ui modal phase" id='phase'>
             <i class="close icon black"></i>
@@ -357,7 +232,7 @@
                                 预计用时
                             </label>
                             <div class="ui right labeled input">
-                                <input type="number" step="0.5" min="0" v-model="subtask.requiredTime">
+                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="subtask.requiredTime">
                                 <div class="ui basic label">小时 </div>
                             </div>
                         </div>
@@ -384,7 +259,6 @@
                 </div>
             </div>
         </div>
-        <!-- <project-modal :project='project' @save='putProject'></project-modal> -->
         <div class="ui modal editProject">
             <i class="close icon black"></i>
             <div class="header">
@@ -431,24 +305,6 @@
             </div>
             <div v-bind:class="{ui:true, dimmer:true, inverted:true, active:isSaving}">
                 <div class="ui text loader ">保存中</div>
-            </div>
-        </div>
-
-        <!-- <input type="date" v-model="test">{{test}}{{typeof(test)}} -->
-        <input type="date" :value="test">
-        <input v-model="projectToPut.name">
-
-        <div class="ui menu">
-            <div class="ui button bt1" @click="testMt()">Show flowing popup</div>
-            <div class="ui flowing popup top left transition hidden">
-                <div class="ui three column divided center aligned grid">
-                    <div class="column">
-                        <h4 class="ui header">Basic Plan</h4>
-                        <p>
-                            <b>2</b> projects, $10 a month</p>
-                        <div class="ui button">Choose</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div2>
@@ -528,8 +384,18 @@ export default {
     }
   },
   methods: {
-    modifyManagerEvent: function () {
-      window.alert('Modify')
+    deleteProject: function () {
+      this.$api.delete(
+        this.$apiUrl +
+          '/projects/' +
+          this.project.id,
+        null,
+        data => {
+          window.alert(data.information)
+          if (data.successful) {
+            this.$router.push('/projects')
+          }
+        })
     },
     addParticipantEvent: function () {
       window.alert('add')

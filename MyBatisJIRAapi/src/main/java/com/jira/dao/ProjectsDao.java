@@ -78,4 +78,17 @@ public class ProjectsDao {
 		sqlSession.commit();
 
 	}
+
+	public int deleteProject(int id) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int effectRows = sqlSession.getMapper(IProjects.class)
+				.deleteProject(id);
+		sqlSession.commit();
+		return effectRows;
+	}
 }

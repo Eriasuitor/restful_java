@@ -1,6 +1,7 @@
 package com.jira.ws;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
@@ -142,5 +143,26 @@ public class ProjectsResources {
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
 				.header("Access-Control-Allow-Methods",
 						"GET,PUT,DELETE,OPTIONS").build();
+	}
+
+	@DELETE
+	@Path("{id}")
+	public Response modifyProject(@PathParam("id") int id) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			resp.setEffectRows(new ProjectsService().deleteProject(id));
+			resp.setInformation("删除成功");
+		} catch (Exception e) {
+			// TODO: handle exception
+			resp.setInformation(e.getMessage());
+			resp.setSuccessful(false);
+		}
+		return Response
+				.status(Response.Status.OK)
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods",
+						"GET,PUT,DELETE,OPTIONS").entity(resp).build();
 	}
 }

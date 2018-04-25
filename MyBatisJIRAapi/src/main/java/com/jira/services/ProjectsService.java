@@ -67,4 +67,8 @@ public class ProjectsService {
 				.getManagerID()));
 		return project;
 	}
+
+	public int deleteProject(int id) {
+		return new ProjectsDao().deleteProject(id);
+	}
 }
