@@ -70,11 +70,11 @@
                     </div>
 
                     <div class="fields">
-                        <div class="eight wide field required" @click="showDropdown(1)">
+                        <div class="eight wide field required">
                             <label>
                                 负责人
                             </label>
-                            <div class="ui fluid multiple search selection dropdown manager">
+                            <div class="ui fluid multiple search selection dropdown manager staffDropdown">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -101,11 +101,11 @@
                             <input type="date" v-model="project.endDate">
                         </div>
                     </div>
-                    <div class="field required" @click="showDropdown">
+                    <div class="field required">
                         <label>参与人</label>
                         <div class="fields">
                             <div class="fourteen wide field">
-                                <div class="ui fluid multiple search selection dropdown participants">
+                                <div class="ui fluid multiple search selection dropdown participants staffDropdownComplex">
                                     <input type="hidden" name="receipt">
                                     <i class="dropdown icon"></i>
                                     <div class="default text"></div>
@@ -192,21 +192,6 @@ export default {
         })
         .modal('show')
     },
-    showDropdown: function (maxSelections) {
-      $('.dropdown').dropdown({
-        apiSettings: {
-          url: this.$apiUrl + '/staff?name={query}'
-          //   , onResponse: function (resp) {
-          //     for (var i = 0; i < resp.results.length; i++) {
-          //       resp.results[i].value = resp.results[i].id
-          //     }
-          //     return resp
-          //   }
-        },
-        // saveRemoteData: true,
-        maxSelections: maxSelections
-      })
-    },
     empty: function () {
       $('.dropdown.participants').dropdown('clear')
     },
@@ -232,6 +217,19 @@ export default {
     detail: function (pId) {
       this.$router.push({ path: '/projects/' + pId, replace: true })
     }
+  },
+  mounted () {
+    $('.staffDropdown').dropdown({
+      apiSettings: {
+        url: this.$apiUrl + '/staff?name={query}'
+      },
+      maxSelections: 1
+    })
+    $('.staffDropdownComplex').dropdown({
+      apiSettings: {
+        url: this.$apiUrl + '/staff?name={query}'
+      }
+    })
   }
 }
 

@@ -114,11 +114,11 @@
                                 <div class="ui basic label">% </div>
                             </div>
                         </div>
-                        <div class="four wide field" @click="dropdownEvent('log_assign', 1)">
+                        <div class="four wide field">
                             <label>
                                 分配于
                             </label>
-                            <div class="ui fluid multiple search selection dropdown log_assign">
+                            <div class="ui fluid multiple search selection dropdown log_assign staffDropdown">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -251,16 +251,15 @@ export default {
           context: 'div2'
         })
         .modal('show')
-    },
-    dropdownEvent: function (className, maxSelections) {
-      $('.' + className).dropdown({
-        apiSettings: {
-          url: this.$apiUrl + '/staff?name={query}'
-        },
-        // saveRemoteData: true,
-        maxSelections: maxSelections
-      })
     }
+  },
+  mounted () {
+    $('.staffDropdown').dropdown({
+      apiSettings: {
+        url: this.$apiUrl + '/staff?name={query}'
+      },
+      maxSelections: 1
+    })
   }
 }
 </script>
