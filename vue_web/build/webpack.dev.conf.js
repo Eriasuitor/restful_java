@@ -52,7 +52,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       $: 'jquery',
 
       jQuery: 'jquery',
-
+      "root.jQuery"  : "jquery",
       'window.jQuery': 'jquery',
       semantic: 'semantic-ui-css',
       Semantic: 'semantic-ui-css',

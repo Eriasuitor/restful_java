@@ -170,6 +170,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="newPhase">
                     新建
                 </div>
@@ -254,6 +257,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="addSubtask">
                     新增
                 </div>
@@ -299,6 +305,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="save()">
                     更改
                 </div>
@@ -498,7 +507,7 @@ export default {
       $('.editProject')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'
@@ -630,7 +639,7 @@ export default {
       $('.phase')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'
@@ -643,7 +652,7 @@ export default {
       $('.subtask')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'

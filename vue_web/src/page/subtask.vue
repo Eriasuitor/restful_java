@@ -51,7 +51,7 @@
                         <div class="label">完成</div>
                     </div>
                     <div class="statistic">
-                        <div class="value">{{subtask.timeCost}}</div>
+                        <div class="value">{{subtask.timeCost}} H</div>
                         <div class="label">时间花费</div>
                     </div>
                     <div class="statistic">
@@ -132,6 +132,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="postLog">
                     Log
                 </div>
@@ -242,7 +245,7 @@ export default {
       $('.newLog')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'

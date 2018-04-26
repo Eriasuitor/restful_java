@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="ui modal newProject" id='newProject'>
-            <i class="close icon black"></i>
+            <i class="close icon"></i>
             <div class="header">
                 新建项目
             </div>
@@ -121,6 +121,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="newProject">
                     新建
                 </div>
@@ -182,8 +185,8 @@ export default {
       $('.newProject')
         .modal({
           centered: true,
-          blurring: true,
           inverted: false,
+          blurring: false,
           closable: false,
           context: 'div2'
         })
