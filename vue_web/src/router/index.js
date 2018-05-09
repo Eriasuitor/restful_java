@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Index from '@/page/index'
 import Content from '@/page/content'
 import Projects from '@/page/projects'
 import Project from '@/page/project'
 import Subtask from '@/page/subtask'
+import Subtasks from '@/page/subtasks'
+import Bugs from '@/page/bugs'
 
 Vue.use(Router)
 
@@ -36,6 +37,16 @@ export default new Router({
       path: '/projects/:id/subtasks/:subId',
       name: 'Projects',
       component: Subtask
+    },
+    {
+      path: '/statistics/subtasks',
+      name: 'Subtasks',
+      component: Subtasks
+    },
+    {
+      path: '/statistics/bugs',
+      name: 'Bugs',
+      component: Bugs
     }
   ]
 })

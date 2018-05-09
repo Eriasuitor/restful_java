@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import api from './api/index'
-import semantic from 'semantic'
 import '../node_modules/semantic-ui-css/semantic.min.css'
+require('semantic')
 
 Vue.config.productionTip = false
 Vue.prototype.$api = api
