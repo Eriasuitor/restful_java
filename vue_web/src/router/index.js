@@ -7,6 +7,8 @@ import Project from '@/page/project'
 import Subtask from '@/page/subtask'
 import Subtasks from '@/page/subtasks'
 import Bugs from '@/page/bugs'
+import History from '@/page/history'
+import Login from '@/page/login'
 
 Vue.use(Router)
 
@@ -47,6 +49,16 @@ export default new Router({
       path: '/statistics/bugs',
       name: 'Bugs',
       component: Bugs
+    },
+    {
+      path: '/history',
+      name: 'History',
+      component: History
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

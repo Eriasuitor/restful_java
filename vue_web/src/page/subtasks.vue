@@ -3,6 +3,9 @@
 
 <div class="ui segment">
   <a class="ui blue ribbon label"> 尚未完成 </a>
+  <h3 class="ui dividing header">年代建设
+            <div class="sub header">没有描述</div>
+        </h3>
   <div class="ui clearing divider"></div>
   <div class="ui cards">
         <div class="card">
@@ -36,7 +39,8 @@
 <div class="note">50% 已完成
             </div>
             
-              <div class="note">5 個 Bug 尚待解決，共 10 個已知 Bug
+              <div class="note">5 個 Bug 尚待解決，共 10 個已知 Bug</div>
+                <div class="note">来自项目：超级无敌建设
             </div>
             </div>
             <div class="description">Jenny是一名在该新学校学习媒体管理的在校生。 </div>
