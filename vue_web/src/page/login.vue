@@ -1,8 +1,8 @@
 <template>
 <div class="ui two column very relaxed grid bki myCol">
   <div class="column jira"><span>JIRA</span><br>项目开发管理系统</div>
-  <div class="column loginCol">
-    <div class="ui card myCard right floated">
+  <div class="column">
+    <div class="ui card myCard">
     <form class="ui form loginPad">
   <div class="field">
     <label>员工名</label>
