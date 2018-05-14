@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <div class="ui menu">
+    <div class="ui menu" v-if="pageName != 'Login'">
       <div class='item'>J I R A</div>
       <a :class="['item', {'active': pageName === 'Dashboard'}]" href="/">总览</a>
       <a :class="['item', {'active': pageName === 'Projects'}]" href="/projects">项目</a>
-      <a :class="['item', {'active': pageName === 'Assign'}]">任务 </a>
-      <a :class="['item', {'active': pageName === 'Assign'}]">历史 </a>
+      <a :class="['item', {'active': pageName === 'Subtasks'}]" href="/statistics/subtasks">任务</a>
+      <a :class="['item', {'active': pageName === 'Bugs'}]" href="/statistics/bugs">Bugs</a>
+      <a :class="['item', {'active': pageName === 'History'}]" href="/history">历史 </a>
       <div class="right menu">
         <a class="ui item image label"><img src="http://imgsrc.baidu.com/imgad/pic/item/5882b2b7d0a20cf46234df507c094b36adaf999c.jpg"> Joe </a>
         <a class="ui item">登出</a>

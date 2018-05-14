@@ -1,19 +1,5 @@
 <template>
     <div2>
-        <div class="ui breadcrumb">
-            <a class="section">JIRA</a>
-            <div class="divider"> / </div>
-            <div class="active section">Projects</div>
-        </div>
-        <div class="ui search">
-            <div class="ui left icon input">
-                <input class="prompt" type="text" placeholder="项目搜索" @input="search">
-                <i class="search icon"></i>
-            </div>
-            <button class="ui labeled icon button right floated" @click="newProjectEvent">
-                <i class="plus icon"></i>新建项目
-            </button>
-        </div>
         <h4 class="ui horizontal divider header">
             <i class="briefcase icon"></i> 我管理的
         </h4>

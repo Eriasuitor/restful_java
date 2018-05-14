@@ -142,11 +142,11 @@
                     </div>
 
                     <div class="fields">
-                        <div class="eight wide field" @click="showDropdown('phase_manger', 1)">
+                        <div class="eight wide field">
                             <label>
                                 负责人
                             </label>
-                            <div class="ui fluid multiple search selection dropdown phase_manger">
+                            <div class="ui fluid multiple search selection dropdown phase_manger staffDropdown">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -170,6 +170,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="newPhase">
                     新建
                 </div>
@@ -192,21 +195,21 @@
                     </div>
 
                     <div class="fields">
-                        <div class="eight wide field" @click="showDropdown('subtask_manger',1)">
+                        <div class="eight wide field">
                             <label>
                                 负责人
                             </label>
-                            <div class="ui fluid multiple search selection dropdown subtask_manger">
+                            <div class="ui fluid multiple search selection dropdown subtask_manger staffDropdown">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
                             </div>
                         </div>
-                        <div class="eight wide field" @click="showDropdown('subtask_assign', 1)">
+                        <div class="eight wide field">
                             <label>
                                 分配于
                             </label>
-                            <div class="ui fluid multiple search selection dropdown subtask_assign">
+                            <div class="ui fluid multiple search selection dropdown subtask_assign staffDropdown">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -215,11 +218,11 @@
                     </div>
                     <div class="fields">
 
-                        <div class="eight wide field" @click="showDropdownLocal('subtask_phase')">
+                        <div class="eight wide field">
                             <label>
                                 阶段
                             </label>
-                            <div class="ui fluid selection search dropdown subtask_phase">
+                            <div class="ui fluid selection search dropdown subtask_phase phaseDropdown">
                                 <input type="hidden" name="phase">
                                 <div class="default text">{{phaseName}}</div>
                                 <div class="menu">
@@ -254,6 +257,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="addSubtask">
                     新增
                 </div>
@@ -299,6 +305,9 @@
                 </form>
             </div>
             <div class="actions">
+                <div class="ui red deny button">
+                    取消
+                </div>
                 <div class="ui positive right button" @click="save()">
                     更改
                 </div>
@@ -396,9 +405,6 @@ export default {
             this.$router.push('/projects')
           }
         })
-    },
-    addParticipantEvent: function () {
-      window.alert('add')
     },
     removeParticipant: function (staffId) {
       console.log(
@@ -498,7 +504,7 @@ export default {
       $('.editProject')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'
@@ -528,12 +534,6 @@ export default {
         )
       }
       this.dateList.push(new Date(this.project.endDate))
-      //   //   var datesRet = []
-      //   while (opeDate < this.endDate) {
-      //     datesRet.push(opeDate)
-      //     opeDate = new Date(opeDate.setDate(opeDate.getDate() + this.iterval))
-      //   }
-      //   return datesRet
     },
     refreshProgressBar: function () {
       for (var i = 0; i < this.phases.length; i++) {
@@ -630,7 +630,7 @@ export default {
       $('.phase')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'
@@ -643,7 +643,7 @@ export default {
       $('.subtask')
         .modal({
           centered: true,
-          blurring: true,
+          blurring: false,
           inverted: false,
           closable: false,
           context: 'div2'
@@ -688,21 +688,13 @@ export default {
     this.dateNum = parseInt(
       (this.$refs.temporalPlanning.getBoundingClientRect().width - 19.6) / 42.03
     )
-    $('.menu .bt1').popup({
-      inline: true,
-      hoverable: true,
-      position: 'bottom left',
-      delay: {
-        show: 0,
-        hide: 0
-      }
-    })
     $('.staffDropdown').dropdown({
       apiSettings: {
         url: this.$apiUrl + '/staff?name={query}'
       },
       maxSelections: 1
     })
+    $('.phaseDropdown').dropdown()
     $('.popupTriger').popup({
       inline: true,
       hoverable: true,
