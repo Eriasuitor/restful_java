@@ -18,6 +18,10 @@ public class SubtasksService {
 	public Subtask querySubtasks(int subId) {
 		return new SubtasksDao().querySubtaskBySubId(subId);
 	}
+	
+	public List<Subtask> querySubtasksByUId(int uId) {
+		return new SubtasksDao().querySubtasksByUId(uId);
+	}
 
 	public SubtaskWithStaff querySubtasksWithStaff(int subId) {
 		SubtaskWithStaff subStaff = new SubtaskWithStaff(

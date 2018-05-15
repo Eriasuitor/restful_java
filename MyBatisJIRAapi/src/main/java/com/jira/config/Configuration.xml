@@ -37,7 +37,7 @@
         <property name="driver" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://rm-wz9n50vs552eq4rm9so.mysql.rds.aliyuncs.com:3306/jira?allowMultiQueries=true"/>
         <property name="username" value="root"/>
-        <property name="password" value="FunTreealiyuN9"/>
+        <property name="password" value="SUSE0nly"/>
       </dataSource>
     </environment>
   </environments>

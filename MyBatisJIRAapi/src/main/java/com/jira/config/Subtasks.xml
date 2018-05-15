@@ -49,6 +49,10 @@
 	</foreach>
   </select>
   
+  <select id="querySubtasksByUId" parameterType="int" resultMap="SubtaskResult">
+	SELECT * FROM Subtasks WHERE AssignedID = #{id:INTEGER}
+  </select>
+  
   <select id="querySubtaskBySubId" parameterType="int" resultMap="SubtaskResult">
 	SELECT * FROM Subtasks WHERE ID = #{id:INTEGER}
   </select>

@@ -21,6 +21,16 @@ public class SubtasksDao {
 		sqlSession.commit();
 		return effectRows;
 	}
+	
+	public List<Subtask> querySubtasksByUId(int uId){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(ISubtasks.class).querySubtasksByUId(uId);
+	}
 
 	public List<Subtask> querySubtasks(List<Integer> phaseIDList) {
 		SqlSession sqlSession = null;
