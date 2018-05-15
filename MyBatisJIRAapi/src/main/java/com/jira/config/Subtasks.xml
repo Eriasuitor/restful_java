@@ -50,7 +50,7 @@
   </select>
   
   <select id="querySubtasksByUId" parameterType="int" resultMap="SubtaskResult">
-	SELECT * FROM Subtasks WHERE AssignedID = #{id:INTEGER}
+	SELECT * FROM Subtasks WHERE AssignedID = #{id:INTEGER} AND Status = 'processing';
   </select>
   
   <select id="querySubtaskBySubId" parameterType="int" resultMap="SubtaskResult">

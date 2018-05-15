@@ -49,6 +49,7 @@
     <mapper resource="com/jira/config/Phases.xml"/>
     <mapper resource="com/jira/config/Subtasks.xml"/>
     <mapper resource="com/jira/config/Logs.xml"/>
+    <mapper resource="com/jira/config/Bugs.xml"/>
   </mappers>
 
 </configuration>

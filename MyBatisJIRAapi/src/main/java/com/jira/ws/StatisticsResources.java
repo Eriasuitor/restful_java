@@ -9,12 +9,10 @@ import javax.ws.rs.core.Response;
 
 import com.jira.entity.GeneralResponse;
 import com.jira.services.SubtasksService;
-import com.jira.bean.Subtask;
 import com.sun.jersey.spi.resource.Singleton;
 
-
-@Consumes({ "application/xml", "application/json" })
-@Produces({ "application/xml", "application/json" })
+@Consumes({ "application/json" })
+@Produces({ "application/json" })
 @Path("statistics/subtasks")
 @Singleton
 public class StatisticsResources {
@@ -27,7 +25,6 @@ public class StatisticsResources {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
 		}
-		System.out.println(resp);
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 }
