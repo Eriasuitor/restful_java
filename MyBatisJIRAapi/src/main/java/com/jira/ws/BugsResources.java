@@ -1,10 +1,12 @@
 package com.jira.ws;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.jira.bean.Bug;
@@ -28,7 +30,7 @@ public class BugsResources {
 	// }
 
 	@POST
-	public Response addBug(Bug bug) {
+	public Response addBug(@QueryParam("token") String token, Bug bug) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			resp.setEffectRows(new BugsService().addBug(bug));
@@ -41,6 +43,18 @@ public class BugsResources {
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
 				.header("Access-Control-Allow-Methods", "*").entity(resp).build();
+	}
+
+	@GET
+	public Response getBugsBySubId(@QueryParam("token") String token, @QueryParam("subId") int subId) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			resp.setResults(new BugsService().getBugsBySubId(subId));
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 
 	// @DELETE

@@ -8,19 +8,35 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.jira.entity.GeneralResponse;
+import com.jira.services.BugsService;
 import com.jira.services.SubtasksService;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
-@Path("statistics/subtasks")
+@Path("statistics")
 @Singleton
 public class StatisticsResources {
+
 	@GET
-	public Response querySubtasksByStaffID(@QueryParam("uId") int uId) {
+	@Path("subtasks")
+	public Response querySubtasksByStaffID(@QueryParam("token") String token, @QueryParam("uId") int uId) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			resp.setResults(new SubtasksService().querySubtasksByUId(uId));
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
+	}
+
+	@GET
+	@Path("bugs")
+	public Response getBugsByUId(@QueryParam("token") String token, @QueryParam("uId") int uId) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			resp.setResults(new BugsService().getBugsByUId(uId));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());

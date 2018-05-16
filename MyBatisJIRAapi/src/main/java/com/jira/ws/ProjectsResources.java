@@ -25,31 +25,36 @@ import com.sun.jersey.spi.resource.Singleton;
 public class ProjectsResources {
 
 	@GET
-	public Response queryProjectsByUserId(@QueryParam("staffid") int staffid,
+	public Response queryProjectsByUserId(@QueryParam("token") String token, @QueryParam("staffid") int staffid,
 			@QueryParam("q") String pName) {
 		if (pName == null) {
-			return Response
-					.status(Response.Status.OK)
-					.header("Access-Control-Allow-Origin", "*")
-					.entity(new ProjectsService()
-							.queryProjectsBySatffId(staffid)).build();
+			return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+					.entity(new ProjectsService().queryProjectsBySatffId(staffid)).build();
 		}
-		return Response.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.entity(new ProjectsService().searchProject(pName)).build();
 	}
 
 	@GET
 	@Path("{id}")
-	public Response queryProjectsById(@PathParam("id") int pId) {
-		return Response.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
-				.entity(new ProjectsService().queryProjectById(pId)).build();
+	public Response queryProjectsById(@QueryParam("token") String token, @PathParam("id") int pId) {
+		ProjectResponse projectResp = new ProjectResponse();
+		try {
+			// if (LoginService.getUserId(token) == 0) {
+			// projectResp.setResponseCode(401);
+			// throw new Exception("无效的Token");
+			// }
+			projectResp.setProject(new ProjectsService().queryProjectById(pId));
+		} catch (Exception e) {
+			projectResp.setSuccessful(false);
+			projectResp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(projectResp)
+				.build();
 	}
 
 	@POST
-	public Response newProject(Project project,
-			@QueryParam("staffid") int staffid) {
+	public Response newProject(@QueryParam("token") String token, Project project, @QueryParam("staffid") int staffid) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			new ProjectsService().newProject(project, staffid);
@@ -60,20 +65,15 @@ public class ProjectsResources {
 			resp.setInformation(e.getMessage());
 			resp.setSuccessful(false);
 		}
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods", "*").entity(resp)
-				.build();
+				.header("Access-Control-Allow-Methods", "*").entity(resp).build();
 	}
 
 	@OPTIONS
 	public Response newProjectOptions() {
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
 				.header("Access-Control-Allow-Methods", "*").build();
@@ -81,7 +81,7 @@ public class ProjectsResources {
 
 	@PUT
 	@Path("{id}")
-	public Response modifyProject(Project project) {
+	public Response modifyProject(@QueryParam("token") String token, Project project) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			new ProjectsService().modifyProject(project);
@@ -91,18 +91,15 @@ public class ProjectsResources {
 			resp.setInformation(e.getMessage());
 			resp.setSuccessful(false);
 		}
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods",
-						"GET,PUT,DELETE,OPTIONS").entity(resp).build();
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").entity(resp).build();
 	}
 
 	@PUT
 	@Path("{id}/manager")
-	public Response modifyManagerID(Project project) {
+	public Response modifyManagerID(@QueryParam("token") String token, Project project) {
 		ProjectResponse resp = new ProjectResponse();
 		try {
 			resp.setProject(new ProjectsService().modifyManagerID(project));
@@ -112,42 +109,33 @@ public class ProjectsResources {
 			resp.setInformation(e.getMessage());
 			resp.setSuccessful(false);
 		}
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods",
-						"GET,PUT,DELETE,OPTIONS").entity(resp).build();
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").entity(resp).build();
 	}
 
 	@OPTIONS
 	@Path("{id}/manager")
 	public Response modifyProjectOptionsOptions() {
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods",
-						"GET,PUT,DELETE,OPTIONS").build();
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").build();
 	}
 
 	@OPTIONS
 	@Path("{id}")
 	public Response modifyProjectOptions() {
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods",
-						"GET,PUT,DELETE,OPTIONS").build();
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").build();
 	}
 
 	@DELETE
 	@Path("{id}")
-	public Response modifyProject(@PathParam("id") int id) {
+	public Response modifyProject(@QueryParam("token") String token, @PathParam("id") int id) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			resp.setEffectRows(new ProjectsService().deleteProject(id));
@@ -157,12 +145,9 @@ public class ProjectsResources {
 			resp.setInformation(e.getMessage());
 			resp.setSuccessful(false);
 		}
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods",
-						"GET,PUT,DELETE,OPTIONS").entity(resp).build();
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").entity(resp).build();
 	}
 }

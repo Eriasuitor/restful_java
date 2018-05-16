@@ -17,16 +17,14 @@ public class StaffResources {
 
 	@GET
 	@Path("{id}")
-	public Response QueryStaffInfo(@PathParam("id") int id) {
-		return Response.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+	public Response QueryStaffInfo(@QueryParam("token") String token, @PathParam("id") int id) {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.entity(new StaffService().queryStaffInf(id)).build();
 	}
 
 	@GET
-	public Response SearchStaff(@QueryParam("name") String name) {
-		return Response.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+	public Response SearchStaff(@QueryParam("token") String token, @QueryParam("name") String name) {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.entity(new StaffService().searchStaff(name)).build();
 	}
 }

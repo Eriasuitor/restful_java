@@ -23,7 +23,7 @@ import com.sun.jersey.spi.resource.Singleton;
 public class PhasesResources {
 
 	@GET
-	public Response queryPhases(@PathParam("projectid") int projectId) {
+	public Response queryPhases(@QueryParam("token") String token, @PathParam("projectid") int projectId) {
 		PhaseList resp = new PhaseList();
 		try {
 			resp.setPhaseList(new PhasesService().queryPhase(projectId));
@@ -32,13 +32,11 @@ public class PhasesResources {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
 		}
-		return Response.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*").entity(resp)
-				.build();
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 
 	@POST
-	public Response addPhase(Phase phase, @QueryParam("staffid") int userId,
+	public Response addPhase(@QueryParam("token") String token, Phase phase, @QueryParam("staffid") int userId,
 			@PathParam("projectid") int projectId) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
@@ -50,20 +48,15 @@ public class PhasesResources {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
 		}
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods", "*").entity(resp)
-				.build();
+				.header("Access-Control-Allow-Methods", "*").entity(resp).build();
 	}
 
 	@OPTIONS
 	public Response addPhaseOptions() {
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
 				.header("Access-Control-Allow-Methods", "*").build();

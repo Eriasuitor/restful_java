@@ -1,5 +1,7 @@
 package com.jira.services;
 
+import java.util.List;
+
 import com.jira.bean.Bug;
 import com.jira.dao.BugsDao;
 
@@ -26,6 +28,13 @@ public class BugsService {
 		return new BugsDao().addBug(bug);
 	}
 
+	public List<Bug> getBugsByUId(int uId) {
+		return new BugsDao().getBugsByUId(uId);
+	}
+
+	public List<Bug> getBugsBySubId(int subId) {
+		return new BugsDao().getBugsBySubId(subId);
+	}
 	// public int deleteLog(int id) {
 	// return new LogsDao().deleteLog(id);
 	// }

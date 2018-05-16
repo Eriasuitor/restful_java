@@ -33,8 +33,13 @@
 		<result column="Lasteditdate" jdbcType="TIMESTAMP" property="lastEditDate" />
 	</resultMap>
 
-	<select id="getLogsBySubId" parameterType="int" resultMap="LogResult">
-		SELECT * FROM Logs WHERE SubtaskID = #{id:INTEGER}
+	<select id="getBugsBySubId" parameterType="int" resultMap="BugResult">
+		SELECT * FROM Bugs WHERE SubtaskID = #{id:INTEGER}
+	</select>
+
+	<select id="getBugsByUId" parameterType="int" resultMap="BugResult">
+		SELECT *
+		FROM Bugs WHERE AssignedID = #{id:INTEGER}
 	</select>
 
 	<insert id="addBug" parameterType="com.jira.bean.Bug">

@@ -7,6 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.jira.bean.Subtask;
@@ -21,15 +22,13 @@ import com.sun.jersey.spi.resource.Singleton;
 public class SubtasksResources {
 	@GET
 	@Path("{id}")
-	public Response querySubtaskWithStaffById(@PathParam("id") int subId) {
-		return Response.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
-				.entity(new SubtasksService().querySubtasksWithStaff(subId))
-				.build();
+	public Response querySubtaskWithStaffById(@QueryParam("token") String token, @PathParam("id") int subId) {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.entity(new SubtasksService().querySubtasksWithStaff(subId)).build();
 	}
 
 	@POST
-	public Response addSubtask(Subtask subtask) {
+	public Response addSubtask(@QueryParam("token") String token, Subtask subtask) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			resp.setEffectRows(new SubtasksService().addSubtask(subtask));
@@ -38,23 +37,17 @@ public class SubtasksResources {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
 		}
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods", "*").entity(resp)
-				.build();
+				.header("Access-Control-Allow-Methods", "*").entity(resp).build();
 	}
 
 	@OPTIONS
 	public Response addSubtaskOptions() {
-		return Response
-				.status(Response.Status.OK)
-				.header("Access-Control-Allow-Origin", "*")
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
 				.header("Access-Control-Allow-Methods", "*").build();
 	}
-
 }
