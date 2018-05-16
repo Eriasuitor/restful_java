@@ -3,6 +3,9 @@
 
 <div class="ui segment">
   <a class="ui blue ribbon label"> 尚未解决 </a>
+  <button class="ui labeled icon button right floated" @click="submitBugEvent">
+     <i class="plus icon"></i>提交新 Bug
+</button>
   <div class="ui clearing divider"></div>
   <div class="ui cards">
         <div class="card">
@@ -92,23 +95,42 @@
       </div>
 </div>
       
-      <div class="ui modal newLog" id='newLog'>
+      <div class="ui modal newBug" id='newBug'>
             <i class="close icon black"></i>
             <div class="header">
-                New Log
+                提交新 Bug
             </div>
             <div class="content">
                 <form class="ui form">
                     <div class="fields">
                         <div class="eight wide field required">
                             <label>
-                                开始时间
+                                所属项目
                             </label>
-                            <input type="date" v-model="log.startDate">
+                            <div class="ui fluid multiple search selection dropdown projectDropdown">
+                                <input type="hidden" name="receipt">
+                                <i class="dropdown icon"></i>
+                                <div class="default text"></div>
+                            </div>
                         </div>
                         <div class="eight wide field required">
                             <label>
-                                结束时间
+                                所属子任务
+                            </label>
+                            <div class="ui fluid multiple search selection dropdown subtaskDropdown">
+                                <input type="hidden" name="subtask">
+                                <i class="dropdown icon"></i>
+                                <div class="default text"></div>
+                            </div>
+                            <!-- <div class="ui fluid multiple search selection dropdown subtaskDropdown" @click="subtaskDropdown()">
+                                <input type="hidden" name="receipt">
+                                <i class="dropdown icon"></i>
+                                <div class="default text"></div>
+                            </div> -->
+                        </div>
+                        <div class="eight wide field required">
+                            <label>
+                                名称
                             </label>
                             <input type="date" v-model="log.endDate">
                         </div>
@@ -116,7 +138,7 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>
-                                用时
+                                描述
                             </label>
                             <div class="ui right labeled input">
                                 <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.timeCost">
@@ -125,7 +147,7 @@
                         </div>
                         <div class="four wide field">
                             <label>
-                                花费
+                                重要程度
                             </label>
                             <div class="ui right labeled input">
                                 <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.economicCost">
@@ -134,7 +156,7 @@
                         </div>
                         <div class="four wide field">
                             <label>
-                                完成度
+                                起源
                             </label>
                             <div class="ui right labeled input">
                                 <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.completed">
@@ -143,7 +165,7 @@
                         </div>
                         <div class="four wide field">
                             <label>
-                                分配于
+                                来源
                             </label>
                             <div class="ui fluid multiple search selection dropdown log_assign staffDropdown">
                                 <input type="hidden" name="receipt">
@@ -152,9 +174,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label>备注</label>
-                        <textarea rows="6" maxlength="800" v-model="log.note"></textarea>
+                    <div class="fields">
+                        <div class="four wide field">
+                            <label>
+                                严重程度
+                            </label>
+                            <div class="ui right labeled input">
+                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.timeCost">
+                                <div class="ui basic label">小时 </div>
+                            </div>
+                        </div>
+                        <div class="four wide field">
+                            <label>
+                                优先级
+                            </label>
+                            <div class="ui right labeled input">
+                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.economicCost">
+                                <div class="ui basic label">元 </div>
+                            </div>
+                        </div>
+                        <div class="four wide field">
+                            <label>
+                                分配给
+                            </label>
+                            <div class="ui right labeled input">
+                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.completed">
+                                <div class="ui basic label">% </div>
+                            </div>
+                        </div>
+                        <div class="four wide field">
+                            <label>
+                                @
+                            </label>
+                            <div class="ui fluid multiple search selection dropdown log_assign staffDropdown">
+                                <input type="hidden" name="receipt">
+                                <i class="dropdown icon"></i>
+                                <div class="default text"></div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -178,6 +235,8 @@ export default {
 //   components: { NewPorjectModal },
   data () {
     return {
+      subtasks: [],
+      bug: {},
       projects: [],
       userId: 2,
       project: {},
@@ -188,8 +247,8 @@ export default {
   created () {
   },
   methods: {
-    logEvent: function () {
-      $('.newLog')
+    submitBugEvent: function () {
+      $('.newBug')
         .modal({
           centered: true,
           blurring: false,
@@ -199,71 +258,11 @@ export default {
         })
         .modal('show')
     },
-    newProject: function () {
-      //   this.isSaving = true
-      this.project.managerID = $('.dropdown.manager').dropdown('get value')
-      this.project.participantsList = []
-      $('.dropdown.participants')
-        .dropdown('get value')
-        .split(',')
-        .forEach(sId => {
-          this.project.participantsList.push({ staffId: sId })
-        })
-      this.$api.post(
-        this.$apiUrl + '/projects?staffid=' + this.userId,
-        this.project,
-        data => {
-          window.alert(data.information)
-          this.refreshProjects()
-        }
-      )
-    },
-    refreshProjects: function () {
-      this.$api.get(
-        this.$apiUrl + '/projects?staffid=' + this.userId,
-        null,
-        data => {
-          this.projects = data.projectNames
-        }
-      )
-    },
-    newProjectEvent: function () {
-      $('.newProject')
-        .modal({
-          centered: true,
-          inverted: false,
-          blurring: false,
-          closable: false,
-          context: 'div2'
-        })
-        .modal('show')
-    },
-    empty: function () {
-      $('.dropdown.participants').dropdown('clear')
-    },
-    search: function () {
-      $('.ui.search').search({
-        apiSettings: {
-          onResponse: resp => {
-            $.each(resp.projectNames, function (index, item) {
-              item.url = '/projects/' + item.id
-            })
-            return resp
-          },
-          url: this.$apiUrl + '/projects?q={query}'
-        },
-        fields: {
-          results: 'projectNames',
-          title: 'name',
-          url: 'url'
-        },
-        minCharacters: 1
-      })
-    },
-    detail: function (pId) {
-      this.$router.push({ path: '/projects/' + pId, replace: true })
-    },
-    
+    subtaskDropdown: function() {
+      console.log(this.$apiUrl + '/projects/' + $('.dropdown.projectDropdown').dropdown('get value') + '/phases')
+     
+    // $('.subtaskDropdown').dropdown()
+    }
   },
   mounted () {
     $('.staffDropdown').dropdown({
@@ -276,6 +275,55 @@ export default {
       apiSettings: {
         url: this.$apiUrl + '/staff?name={query}'
       }
+    })
+    $('.projectDropdown').dropdown({
+      apiSettings: {
+          onResponse: resp => {
+            resp.results = resp.projectNames;
+            $.each(resp.projectNames, function (index, item) {
+              item.value = item.id
+            })
+            return resp
+          },
+          url: this.$apiUrl + '/projects?q={query}'
+        },
+        maxSelections: 1
+    })
+    // $('.subtaskDropdown').dropdown({
+    //   apiSettings: {
+    //       onResponse: resp => {
+    //         resp.results = resp.projectNames;
+    //         $.each(resp.projectNames, function (index, item) {
+    //           item.value = item.id
+    //         })
+    //         return resp
+    //       },
+    //       url: this.$apiUrl + '/projects?q={query}'
+    //     },
+    //     maxSelections: 1
+    // })
+     $('.subtaskDropdown').dropdown({
+      apiSettings: {
+          onResponse: resp => {
+            let subtasks = []
+            resp.phaseList.forEach(element => {
+              element.subtaskList.forEach(item => subtasks.push({value: item.id, name : item.name}))
+            })
+            resp.results = subtasks
+            return resp
+          },
+          url: this.$apiUrl + '/projects/1/phases?q=11{query}'
+        },
+        maxSelections: 1
+        //  onResponse: resp => {
+        //     resp.results = resp.projectNames;
+        //     $.each(resp.projectNames, function (index, item) {
+        //       item.value = item.id
+        //     })
+        //     return resp
+        //   },
+        //   url: this.$apiUrl + '/projects?q={query}'
+        // },
     })
   }
 }
