@@ -113,11 +113,11 @@
                                 <div class="default text"></div>
                             </div>
                         </div>
-                        <div class="eight wide field required">
+                        <div class="eight wide field required" @click ="subtaskDropdown()">
                             <label>
                                 所属子任务
                             </label>
-                            <div class="ui fluid multiple search selection dropdown subtaskDropdown">
+                            <div class="ui fluid multiple search selection dropdown subtaskDropdown" >
                                 <input type="hidden" name="subtask">
                                 <i class="dropdown icon"></i>
                                 <div class="default text"></div>
@@ -128,23 +128,22 @@
                                 <div class="default text"></div>
                             </div> -->
                         </div>
-                        <div class="eight wide field required">
+                        
+                    </div>
+                        <div class="field required">
                             <label>
                                 名称
                             </label>
-                            <input type="date" v-model="log.endDate">
+                            <input type="text" v-model="log.endDate">
                         </div>
+                        
+                        <div class="field">
+                        <label>描述</label>
+                        <textarea rows="6" maxlength="800" v-model="project.description"></textarea>
                     </div>
+                        
+
                     <div class="fields">
-                        <div class="four wide field">
-                            <label>
-                                描述
-                            </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.timeCost">
-                                <div class="ui basic label">小时 </div>
-                            </div>
-                        </div>
                         <div class="four wide field">
                             <label>
                                 重要程度
@@ -259,9 +258,20 @@ export default {
         .modal('show')
     },
     subtaskDropdown: function() {
-      console.log(this.$apiUrl + '/projects/' + $('.dropdown.projectDropdown').dropdown('get value') + '/phases')
-     
-    // $('.subtaskDropdown').dropdown()
+      $('.subtaskDropdown').dropdown({
+      apiSettings: {
+          onResponse: resp => {
+            let subtasks = []
+            resp.phaseList.forEach(element => {
+              element.subtaskList.forEach(item => subtasks.push({value: item.id, name : item.name}))
+            })
+            resp.results = subtasks
+            return resp
+          },
+          url: this.$apiUrl + '/projects/'+ $('.projectDropdown').dropdown('get value')+'/phases?q=11{query}'
+        },
+        maxSelections: 1
+    })
     }
   },
   mounted () {
@@ -302,29 +312,7 @@ export default {
     //     },
     //     maxSelections: 1
     // })
-     $('.subtaskDropdown').dropdown({
-      apiSettings: {
-          onResponse: resp => {
-            let subtasks = []
-            resp.phaseList.forEach(element => {
-              element.subtaskList.forEach(item => subtasks.push({value: item.id, name : item.name}))
-            })
-            resp.results = subtasks
-            return resp
-          },
-          url: this.$apiUrl + '/projects/1/phases?q=11{query}'
-        },
-        maxSelections: 1
-        //  onResponse: resp => {
-        //     resp.results = resp.projectNames;
-        //     $.each(resp.projectNames, function (index, item) {
-        //       item.value = item.id
-        //     })
-        //     return resp
-        //   },
-        //   url: this.$apiUrl + '/projects?q={query}'
-        // },
-    })
+     
   }
 }
 </script>
