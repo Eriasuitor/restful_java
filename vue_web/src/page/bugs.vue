@@ -102,6 +102,17 @@
             </div>
             <div class="content">
                 <form class="ui form">
+                    <div class="field required">
+                            <label>
+                                名称
+                            </label>
+                            <input type="text" v-model="bug.name">
+                        </div>
+                        
+                        <div class="field">
+                        <label>描述</label>
+                        <textarea rows="6" maxlength="800" v-model="bug.description"></textarea>
+                    </div>
                     <div class="fields">
                         <div class="eight wide field required">
                             <label>
@@ -110,7 +121,7 @@
                             <div class="ui fluid multiple search selection dropdown projectDropdown">
                                 <input type="hidden" name="receipt">
                                 <i class="dropdown icon"></i>
-                                <div class="default text"></div>
+                                <div class="default text">点击选择</div>
                             </div>
                         </div>
                         <div class="eight wide field required" @click ="subtaskDropdown()">
@@ -120,95 +131,72 @@
                             <div class="ui fluid multiple search selection dropdown subtaskDropdown" >
                                 <input type="hidden" name="subtask">
                                 <i class="dropdown icon"></i>
-                                <div class="default text"></div>
-                            </div>
-                            <!-- <div class="ui fluid multiple search selection dropdown subtaskDropdown" @click="subtaskDropdown()">
-                                <input type="hidden" name="receipt">
-                                <i class="dropdown icon"></i>
-                                <div class="default text"></div>
-                            </div> -->
-                        </div>
-                        
-                    </div>
-                        <div class="field required">
-                            <label>
-                                名称
-                            </label>
-                            <input type="text" v-model="log.endDate">
-                        </div>
-                        
-                        <div class="field">
-                        <label>描述</label>
-                        <textarea rows="6" maxlength="800" v-model="project.description"></textarea>
-                    </div>
-                        
-
-                    <div class="fields">
-                        <div class="four wide field">
-                            <label>
-                                重要程度
-                            </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.economicCost">
-                                <div class="ui basic label">元 </div>
-                            </div>
-                        </div>
-                        <div class="four wide field">
-                            <label>
-                                起源
-                            </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.completed">
-                                <div class="ui basic label">% </div>
-                            </div>
-                        </div>
-                        <div class="four wide field">
-                            <label>
-                                来源
-                            </label>
-                            <div class="ui fluid multiple search selection dropdown log_assign staffDropdown">
-                                <input type="hidden" name="receipt">
-                                <i class="dropdown icon"></i>
-                                <div class="default text"></div>
+                                <div class="default text">点击选择</div>
                             </div>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
+                            <label>
+                                源于
+                            </label>
+                             <div class="ui fluid selection dropdown source defaultDropdown">
+                                <input type="hidden" name="phase">
+                                <div class="default text">编码</div>
+                                <div class="menu">
+                                    <div class="item" value="需求">需求</div>
+                                    <div class="item" value="架构">架构</div>
+                                    <div class="item" value="设计">设计</div>
+                                    <div class="item" value="编码">编码</div>
+                                    <div class="item" value="测试">测试</div>
+                                    <div class="item" value="集成">集成</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four wide field">
+                            <label>
+                                发现于
+                            </label>
+                            <div class="ui fluid selection dropdown origin defaultDropdown">
+                                <input type="hidden" name="phase">
+                                <div class="default text">测试阶段</div>
+                                <div class="menu">
+                                    <div class="item" value="需求阶段">需求阶段</div>
+                                    <div class="item" value="架构阶段">架构阶段</div>
+                                    <div class="item" value="设计阶段">设计阶段</div>
+                                    <div class="item" value="编码阶段">编码阶段</div>
+                                    <div class="item" value="测试阶段">测试阶段</div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="four wide field">
                             <label>
                                 严重程度
                             </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.timeCost">
-                                <div class="ui basic label">小时 </div>
+                            <div class="ui fluid selection dropdown severity defaultDropdown">
+                                <input type="hidden" name="phase">
+                                <div class="default text">Major</div>
+                                <div class="menu">
+                                    <div class="item" value="Critical">Critical</div>
+                                    <div class="item" value="Major">Major</div>
+                                    <div class="item" value="Minor">Minor</div>
+                                    <div class="item" value="Cosmetic">Cosmetic</div>
+                                    <div class="item" value="Other">Other</div>
+                                </div>
                             </div>
                         </div>
                         <div class="four wide field">
                             <label>
                                 优先级
                             </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.economicCost">
-                                <div class="ui basic label">元 </div>
-                            </div>
-                        </div>
-                        <div class="four wide field">
-                            <label>
-                                分配给
-                            </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.completed">
-                                <div class="ui basic label">% </div>
-                            </div>
-                        </div>
-                        <div class="four wide field">
-                            <label>
-                                @
-                            </label>
-                            <div class="ui fluid multiple search selection dropdown log_assign staffDropdown">
-                                <input type="hidden" name="receipt">
-                                <i class="dropdown icon"></i>
-                                <div class="default text"></div>
+                            <div class="ui fluid selection dropdown priority defaultDropdown">
+                                <input type="hidden" name="phase">
+                                <div class="default text">Normal</div>
+                                <div class="menu">
+                                    <div class="item" value="Immediately">Immediately</div>
+                                    <div class="item" value="Normal">Normal</div>
+                                    <div class="item" value="Not Urgent">Not Urgent</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,7 +207,7 @@
                     取消
                 </div>
                 <div class="ui positive right button" @click="postLog">
-                    Log
+                    提交
                 </div>
             </div>
             <div v-bind:class="{ui:true, dimmer:true, inverted:true}">
@@ -256,6 +244,15 @@ export default {
           context: 'div2'
         })
         .modal('show')
+    },
+    submitBug: function() {
+        this.bug.ProjectID = $('.projectDropdown').dropdown('get value')
+        this.bug.SubtaskID = $('.subtaskDropdown').dropdown('get value')
+        this.bug.Status = 'Opened'
+        this.bug.Origin = $('.origin').dropdown('get value')
+        this.bug.Source = $('.source').dropdown('get value')
+        this.bug.Severity = $('.subtaskDropdown').dropdown('get value')
+        this.bug.Priority
     },
     subtaskDropdown: function() {
       $('.subtaskDropdown').dropdown({
@@ -299,6 +296,21 @@ export default {
         },
         maxSelections: 1
     })
+    $('.subtaskDropdown').dropdown({
+      apiSettings: {
+          onResponse: resp => {
+            let subtasks = []
+            resp.phaseList.forEach(element => {
+              element.subtaskList.forEach(item => subtasks.push({value: item.id, name : item.name}))
+            })
+            resp.results = subtasks
+            return resp
+          },
+          url: null
+        },
+        maxSelections: 1
+    })
+    $('.defaultDropdown').dropdown()
     // $('.subtaskDropdown').dropdown({
     //   apiSettings: {
     //       onResponse: resp => {
