@@ -27,6 +27,12 @@ public class SubtasksResources {
 				.entity(new SubtasksService().querySubtasksWithStaff(subId)).build();
 	}
 
+	@GET
+	public Response querySubtaskByProjectId(@QueryParam("token") String token, @PathParam("projectid") int pId) {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.entity(new SubtasksService().querySubtasksWithStaff(pId)).build();
+	}
+
 	@POST
 	public Response addSubtask(@QueryParam("token") String token, Subtask subtask) {
 		GeneralResponse resp = new GeneralResponse();
