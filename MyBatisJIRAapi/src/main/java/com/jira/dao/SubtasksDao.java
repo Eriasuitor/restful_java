@@ -16,13 +16,22 @@ public class SubtasksDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int effectRows = sqlSession.getMapper(ISubtasks.class).addSubtask(
-				subtask);
+		int effectRows = sqlSession.getMapper(ISubtasks.class).addSubtask(subtask);
 		sqlSession.commit();
 		return effectRows;
 	}
-	
-	public List<Subtask> querySubtasksByUId(int uId){
+
+	public List<Subtask> querySubtasksByIds(List<Integer> dis) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(ISubtasks.class).querySubtasksByIds(dis);
+	}
+
+	public List<Subtask> querySubtasksByUId(int uId) {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = DBJIRAAccess.getSqlSession();

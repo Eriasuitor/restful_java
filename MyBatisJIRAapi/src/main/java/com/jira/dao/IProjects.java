@@ -10,6 +10,8 @@ public interface IProjects {
 
 	public Project queryProjectById(int id);
 
+	public List<Project> queryProjects(List<Integer> ids);
+
 	public List<Project> searchProjects(String pName);
 
 	public int newProject(Project project);

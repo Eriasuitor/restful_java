@@ -54,7 +54,7 @@ function apiAxios (method, url, params, success, failure) {
     }
   })
   .catch(function (err) {
-    console.log("Somethings' wrong " + err)
+    console.log("api default error: " + err)
   })
 }
 

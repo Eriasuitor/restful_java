@@ -19,8 +19,7 @@ public class ProjectsService {
 
 	public Project queryProjectById(int id) {
 
-		List<Participant> participantList = new ParticipantsService()
-				.queryParticipants(id);
+		List<Participant> participantList = new ParticipantsService().queryParticipants(id);
 		Set<Integer> idSet = new HashSet<Integer>();
 		for (Participant participant : participantList) {
 			idSet.add(participant.getStaffId());
@@ -28,8 +27,7 @@ public class ProjectsService {
 		List<Staff> staffList = new StaffService().queryStaffInf(idSet);
 
 		Project project = new ProjectsDao().queryById(id);
-		project.setStaff(new StaffService().queryStaffInf(project
-				.getManagerID()));
+		project.setStaff(new StaffService().queryStaffInf(project.getManagerID()));
 		project.setStaffList(staffList);
 		return project;
 	}
@@ -40,18 +38,18 @@ public class ProjectsService {
 		return projectList;
 	}
 
-	public int newProject(Project project, int userId) {
-		project.setStatus("Proccessing");
-		project.setInsertUser("MyEclipse");
-		project.setLastEditUser("MyEclipse");
-		project.setParticipants(project.getParticipantsList().size());
+	public int newProject(Project project, int userId) throws Exception {
+		// private Staff staff;
+		if (project.getName() == null || project.getManagerID() == 0 || project.getStartDate() == null
+				|| project.getEndDate() == null || project.getEndDate().before(project.getStartDate()))
+			throw new Exception("Invalidate Post");
+		project.setInsertUser(userId);
+		project.setLastEditUser(userId);
 		new ProjectsDao().create(project);
 		List<Participant> participantList = new ArrayList<Participant>();
-		participantList.add(new Participant(project.getId(), project
-				.getManagerID(), "Manager"));
+		participantList.add(new Participant(project.getId(), project.getManagerID(), "Manager"));
 		for (Participant participant : project.getParticipantsList()) {
-			participantList.add(new Participant(project.getId(), participant
-					.getStaffId(), "Developer"));
+			participantList.add(new Participant(project.getId(), participant.getStaffId(), "Developer"));
 		}
 		new ParticipantsDao().addParticipants(participantList, userId);
 		return project.getId();
@@ -63,8 +61,7 @@ public class ProjectsService {
 
 	public Project modifyManagerID(Project project) {
 		new ProjectsDao().modifyManagerID(project);
-		project.setStaff(new StaffService().queryStaffInf(project
-				.getManagerID()));
+		project.setStaff(new StaffService().queryStaffInf(project.getManagerID()));
 		return project;
 	}
 

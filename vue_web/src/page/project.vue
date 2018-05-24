@@ -65,7 +65,7 @@
                 <div class="ui image label" v-for="staff in project.staffList" v-if="staff.id != project.managerID" :key="'staff' + staff.id" @click="removeParticipant(staff.id)"><img :src="staff.image"> {{staff.name}}
                     <i class="delete icon"></i>
                 </div>
-                <i class="small circular add link icon addParticipant popupTriger"></i>
+                <i class="small circular add user link icon addParticipant popupTriger"></i>
                 <div class="ui flowing popup top left transition hidden">
                     <div class="ui divided center aligned grid">
                         <div class="column">
@@ -348,7 +348,7 @@ export default {
         this.$apiUrl + '/projects/' + this.$route.params.id,
         null,
         data => {
-          this.project = data
+          this.project = data.project
           this.getDateList()
         }
       )

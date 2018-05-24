@@ -32,13 +32,13 @@
     <result column="EndDate" jdbcType="DATE" property="endDate"/>
     <result column="ManagerID" jdbcType="INTEGER" property="managerID"/>
     <result column="TimeCost" jdbcType="INTEGER" property="timeCost"/>
+    <result column="completed" jdbcType="INTEGER" property="completed"/>
     <result column="EconomicCost" jdbcType="FLOAT" property="economicCost"/>
     <result column="RequiredTime" jdbcType="INTEGER" property="requiredTime"/>
-    <result column="insertuser" jdbcType="VARCHAR" property="insertUser"/>
+    <result column="insertuser" jdbcType="INTEGER" property="insertUser"/>
     <result column="insertdate" jdbcType="DATE" property="insertDate"/>
-    <result column="lastedituser" jdbcType="VARCHAR" property="lastEditUser"/>
+    <result column="lastedituser" jdbcType="INTEGER" property="lastEditUser"/>
     <result column="lasteditdate" jdbcType="DATE" property="lastEditDate"/>
-    <result column="Participants" jdbcType="INTEGER" property="participants"/>
   </resultMap>
   
   <resultMap type="com.jira.entity.ProjectList" id="ProjectListResult">
@@ -46,11 +46,24 @@
   </resultMap>
 
   <select id="queryProjectsByStaffId" parameterType="int" resultMap="ProjectListResult">
-	SELECT `ID`,`Name`,`Description`,`Status`,`Participants`,`StartDate`,`EndDate`,`Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
+	SELECT `ID`,`Name`,`Description`,`Status`,`StartDate`,`EndDate`, `Completed`, `Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
 	FROM
 		projects 
 	WHERE
+		status != 'Closed' AND
 		id IN ( SELECT ProjectID FROM Participants WHERE StaffID = #{id:INTEGER} )
+	ORDER BY `StartDate`
+  </select>
+  
+  <select id="queryProjects" parameterType="java.util.List" resultMap="ProjectResult">
+	SELECT `ID`,`Name`,`Description`,`Status`,`StartDate`, `completed`,`EndDate`,`Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
+	FROM
+		projects 
+	WHERE
+		id IN 
+		<foreach collection="list" item="item" separator="," open="(" close=")">
+			#{item:INTEGER}
+		</foreach>
   </select>
   
   <select id="queryProjectById" parameterType="int" resultMap="ProjectResult">
@@ -73,9 +86,9 @@
   </select>
   
   <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO Projects ( Name, Status, Description, StartDate, EndDate, Url, ManagerID, Participants, TimeCost, EconomicCost, RequiredTime, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO Projects ( Name, Description, StartDate, EndDate, Url, ManagerID, requiredTime,InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		( #{name}, #{status}, #{description}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{participants}, #{timeCost}, #{economicCost}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
+		( #{name}, #{description}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
   </insert>
 
 	<update id="modifyProject" parameterType="com.jira.bean.Project">

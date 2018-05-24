@@ -19,8 +19,7 @@ public class ProjectsDao {
 		}
 		// return sqlSession.selectList("Namespaces"."FunctionName",
 		// Parameters);
-		return sqlSession.getMapper(IProjects.class).queryProjectsByStaffId(
-				staffId);
+		return sqlSession.getMapper(IProjects.class).queryProjectsByStaffId(staffId);
 	}
 
 	public Project queryById(int id) {
@@ -31,6 +30,16 @@ public class ProjectsDao {
 			e.printStackTrace();
 		}
 		return sqlSession.getMapper(IProjects.class).queryProjectById(id);
+	}
+
+	public List<Project> queryProjects(List<Integer> ids) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IProjects.class).queryProjects(ids);
 	}
 
 	public List<Project> searchProjects(String pName) {
@@ -50,8 +59,7 @@ public class ProjectsDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int projectId = sqlSession.getMapper(IProjects.class).newProject(
-				project);
+		int projectId = sqlSession.getMapper(IProjects.class).newProject(project);
 		sqlSession.commit();
 		return projectId;
 	}
@@ -86,8 +94,7 @@ public class ProjectsDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int effectRows = sqlSession.getMapper(IProjects.class)
-				.deleteProject(id);
+		int effectRows = sqlSession.getMapper(IProjects.class).deleteProject(id);
 		sqlSession.commit();
 		return effectRows;
 	}

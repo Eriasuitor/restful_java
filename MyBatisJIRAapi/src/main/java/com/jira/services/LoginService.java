@@ -9,6 +9,10 @@ import com.jira.entity.LoginInfo;
 public class LoginService {
 	private static Map<String, LoginInfo> tokens = new HashMap<String, LoginInfo>();
 
+	public static int validateToken(String token) {
+		return tokens.get(token).getId();
+	}
+
 	public static int getUserId(String token) {
 		int id = tokens.get(token) == null ? 0 : tokens.get(token).getId();
 		return id;

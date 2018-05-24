@@ -17,12 +17,12 @@ public class Project {
 	private int managerID;
 	private int timeCost;
 	private float economicCost;
+	private int completed;
 	private int requiredTime;
-	private String insertUser;
+	private int insertUser;
 	private Date insertDate;
-	private String lastEditUser;
+	private int lastEditUser;
 	private Date lastEditDate;
-	private int participants;
 	private List<Participant> participantsList;
 	private Staff staff;
 	private List<Staff> staffList;
@@ -65,6 +65,14 @@ public class Project {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public int getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(int completed) {
+		this.completed = completed;
 	}
 
 	public Date getEndDate() {
@@ -115,11 +123,11 @@ public class Project {
 		this.requiredTime = requiredTime;
 	}
 
-	public String getInsertUser() {
+	public int getInsertUser() {
 		return insertUser;
 	}
 
-	public void setInsertUser(String insertUser) {
+	public void setInsertUser(int insertUser) {
 		this.insertUser = insertUser;
 	}
 
@@ -131,11 +139,11 @@ public class Project {
 		this.insertDate = insertDate;
 	}
 
-	public String getLastEditUser() {
+	public int getLastEditUser() {
 		return lastEditUser;
 	}
 
-	public void setLastEditUser(String lastEditUser) {
+	public void setLastEditUser(int lastEditUser) {
 		this.lastEditUser = lastEditUser;
 	}
 
@@ -145,14 +153,6 @@ public class Project {
 
 	public void setLastEditDate(Date lastEditDate) {
 		this.lastEditDate = lastEditDate;
-	}
-
-	public int getParticipants() {
-		return participants;
-	}
-
-	public void setParticipants(int participants) {
-		this.participants = participants;
 	}
 
 	public List<Participant> getParticipantsList() {

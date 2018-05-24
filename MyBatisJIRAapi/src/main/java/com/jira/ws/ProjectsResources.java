@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import com.jira.bean.Project;
 import com.jira.entity.GeneralResponse;
 import com.jira.entity.ProjectResponse;
+import com.jira.services.LoginService;
 import com.jira.services.ProjectsService;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -25,14 +26,25 @@ import com.sun.jersey.spi.resource.Singleton;
 public class ProjectsResources {
 
 	@GET
-	public Response queryProjectsByUserId(@QueryParam("token") String token, @QueryParam("staffid") int staffid,
-			@QueryParam("q") String pName) {
-		if (pName == null) {
+	public Response queryProjectsByUserId(@QueryParam("token") String token, @QueryParam("q") String pName) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			if (pName == null) {
+				return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+						.entity(new ProjectsService().queryProjectsBySatffId(staffid)).build();
+			}
 			return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-					.entity(new ProjectsService().queryProjectsBySatffId(staffid)).build();
+					.entity(new ProjectsService().searchProject(pName)).build();
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
 		}
-		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-				.entity(new ProjectsService().searchProject(pName)).build();
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 
 	@GET
@@ -54,14 +66,17 @@ public class ProjectsResources {
 	}
 
 	@POST
-	public Response newProject(@QueryParam("token") String token, Project project, @QueryParam("staffid") int staffid) {
+	public Response newProject(@QueryParam("token") String token, Project project) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
 			new ProjectsService().newProject(project, staffid);
 			resp.setInformation("项目创建成功");
-
 		} catch (Exception e) {
-			// TODO: handle exception
 			resp.setInformation(e.getMessage());
 			resp.setSuccessful(false);
 		}

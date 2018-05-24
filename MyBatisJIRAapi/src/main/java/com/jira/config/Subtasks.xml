@@ -49,6 +49,13 @@
 	</foreach>
   </select>
   
+   <select id="querySubtasksByIds" parameterType="java.util.List" resultMap="SubtaskResult">
+	SELECT * FROM Subtasks WHERE id IN 
+  	<foreach collection="list" item="item" separator="," open="(" close=")">
+		#{item:INTEGER}
+	</foreach>
+  </select>
+  
   <select id="querySubtasksByUId" parameterType="int" resultMap="SubtaskResult">
 	SELECT * FROM Subtasks WHERE AssignedID = #{id:INTEGER} AND Status = 'processing';
   </select>

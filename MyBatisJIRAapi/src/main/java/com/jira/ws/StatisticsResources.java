@@ -35,12 +35,12 @@ public class StatisticsResources {
 	@Path("bugs")
 	public Response getBugsByUId(@QueryParam("token") String token, @QueryParam("uId") int uId) {
 		GeneralResponse resp = new GeneralResponse();
-		try {
-			resp.setResults(new BugsService().getBugsByUId(uId));
-		} catch (Exception e) {
-			resp.setSuccessful(false);
-			resp.setInformation(e.getMessage());
-		}
+		// try {
+		resp.setResults(new BugsService().getBugsByUId(uId));
+		// } catch (Exception e) {
+		// resp.setSuccessful(false);
+		// resp.setInformation(e.getMessage());
+		// }
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 }

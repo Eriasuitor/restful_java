@@ -17,9 +17,18 @@ public class LogsDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		List<Log> logList = sqlSession.getMapper(ILogs.class).getLogsBySubId(
-				subId);
+		List<Log> logList = sqlSession.getMapper(ILogs.class).getLogsBySubId(subId);
 		return logList;
+	}
+
+	public List<Log> getLastLog(List<Integer> subIds) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(ILogs.class).getLastLog(subIds);
 	}
 
 	public int addLog(Log log) {

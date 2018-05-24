@@ -27,6 +27,24 @@ public class LogsService {
 		return logList;
 	}
 
+	public List<Log> getLastLog(List<Integer> subIds) {
+		List<Log> logList = new LogsDao().getLastLog(subIds);
+		Set<Integer> idSet = new HashSet<Integer>();
+		for (Log log : logList) {
+			idSet.add(log.getInsertUser());
+		}
+		List<Staff> staffList = new StaffService().queryStaffInf(idSet);
+		for (Log log : logList) {
+			for (Staff staff : staffList) {
+				if (staff.getId() == log.getInsertUser()) {
+					log.setStaff(staff);
+					break;
+				}
+			}
+		}
+		return logList;
+	}
+
 	public int addLog(Log log) {
 		return new LogsDao().addLog(log);
 	}

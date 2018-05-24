@@ -27,10 +27,11 @@ public class LoginResources {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			loginInfo.setLoginDate(new Date());
-			resp.setInformation(new LoginService().login(loginInfo));
+			resp.setInformation(LoginService.login(loginInfo));
 			if (resp.getInformation() == null) {
+				resp.setResponseCode(401);
 				resp.setSuccessful(false);
-				resp.setInformation("密码错误");
+				resp.setInformation("用户名或密码错误");
 			}
 		} catch (Exception e) {
 			resp.setSuccessful(false);
@@ -46,7 +47,7 @@ public class LoginResources {
 	public Response deleteLog(@QueryParam("token") String token) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			new LoginService().logout(token);
+			LoginService.logout(token);
 			resp.setInformation("注销成功");
 		} catch (Exception e) {
 			resp.setSuccessful(false);

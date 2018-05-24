@@ -5,7 +5,9 @@ import java.util.Date;
 public class Bug {
 	private int id;
 	private int projectID;
+	private Project project;
 	private int subtaskID;
+	private Subtask subtask;
 	private String name;
 	private String description;
 	private int importance;
@@ -15,11 +17,21 @@ public class Bug {
 	private String severity;
 	private String priority;
 	private int assignedID;
+	private Staff assignedStaff;
 	private String note;
-	private String insertUser;
+	private int insertUser;
 	private Date insertDate;
-	private String lastEditUser;
+	private int lastEditUser;
+	private Staff lasEditStaff;
 	private Date lastEditDate;
+
+	public Staff getAssignedStaff() {
+		return assignedStaff;
+	}
+
+	public void setAssignedStaff(Staff assignedStaff) {
+		this.assignedStaff = assignedStaff;
+	}
 
 	public int getId() {
 		return id;
@@ -37,12 +49,28 @@ public class Bug {
 		this.projectID = projectID;
 	}
 
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	public int getSubtaskID() {
 		return subtaskID;
 	}
 
 	public void setSubtaskID(int subtaskID) {
 		this.subtaskID = subtaskID;
+	}
+
+	public Subtask getSubtask() {
+		return subtask;
+	}
+
+	public void setSubtask(Subtask subtask) {
+		this.subtask = subtask;
 	}
 
 	public String getName() {
@@ -125,11 +153,11 @@ public class Bug {
 		this.note = note;
 	}
 
-	public String getInsertUser() {
+	public int getInsertUser() {
 		return insertUser;
 	}
 
-	public void setInsertUser(String insertUser) {
+	public void setInsertUser(int insertUser) {
 		this.insertUser = insertUser;
 	}
 
@@ -141,12 +169,20 @@ public class Bug {
 		this.insertDate = insertDate;
 	}
 
-	public String getLastEditUser() {
+	public int getLastEditUser() {
 		return lastEditUser;
 	}
 
-	public void setLastEditUser(String lastEditUser) {
+	public void setLastEditUser(int lastEditUser) {
 		this.lastEditUser = lastEditUser;
+	}
+
+	public Staff getLasEditStaff() {
+		return lasEditStaff;
+	}
+
+	public void setLasEditStaff(Staff lasEditStaff) {
+		this.lasEditStaff = lasEditStaff;
 	}
 
 	public Date getLastEditDate() {

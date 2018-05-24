@@ -44,6 +44,25 @@
   	SELECT * FROM Logs WHERE SubtaskID = #{id:INTEGER}
   </select>
 
+  <select id="getLastLog" parameterType="java.util.List" resultMap="LogResult">
+	  select `ID`,
+	    `SubtaskID`,
+	    `StartDate`,
+	    `EndDate`,
+	    `Completed`,
+	    `AssignedID`,
+	    `TimeCost`,
+	    `EconomicCost`,
+	    `Note`,
+	    `InsertUser`,
+	    `LastEditUser`,
+	    `LastEditDate`,max(insertDate) as InsertDate from logs
+	where `subtaskID` in
+	<foreach collection="list" item="item" separator="," open="(" close=")">
+		#{item}
+	</foreach>
+  </select>
+
   <insert id="addLog" parameterType="com.jira.bean.Log">
   START TRANSACTION;
   	INSERT LOGS (SubtaskID, StartDate, EndDate, Completed, AssignedID, TimeCost, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
