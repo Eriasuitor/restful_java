@@ -12,11 +12,11 @@
             </div>
             <button class="ui labeled icon button right floated" @click="newProjectEvent"><i class="plus icon"></i>新建项目</button>
         </div>
-        <h4 class="ui horizontal divider header" v-if="projects.find(_ => _.managerID === userId)">
+        <h4 class="ui horizontal divider header" v-if="projects.find(_ => _.managerID === userInfo.id)">
             <i class="briefcase icon"></i> 我管理的
         </h4>
         <div class="ui link cards">
-            <div class="card" @click="detail(project.id)" v-for="project in projects.filter(_ => _.managerID === userId)" :key="project.id">
+            <div class="card" @click="detail(project.id)" v-for="project in projects.filter(_ => _.managerID === userInfo.id)" :key="project.id">
                 <div class="content">
                     <div class="header">{{project.name}}</div>
                     <div class="meta">
@@ -26,16 +26,16 @@
                 </div>
                 <div class="extra content">
                     <span class="right floated">{{project.completed}}% 完成度</span>
-                    <span><i class="user icon"></i> {{project.participants}} 参与者</span>
+                    <!-- <span><i class="user icon"></i> {{project.participants}} 参与者</span> -->
                 </div>
             </div>
         </div>
     
-        <h4 class="ui horizontal divider header" v-if="projects.find(_ => _.managerID != userId)">
+        <h4 class="ui horizontal divider header" v-if="projects.find(_ => _.managerID != userInfo.id)">
             <i class="users icon"></i> 我参与的
         </h4>
         <div class="ui link cards">
-            <div class="card" @click="detail(project.id)" v-for="project in projects.filter(_ => _.managerID != userId)" :key="project.id">
+            <div class="card" @click="detail(project.id)" v-for="project in projects.filter(_ => _.managerID != userInfo.id)" :key="project.id">
                 <div class="content">
                     <div class="header">{{project.name}}</div>
                     <div class="meta">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="extra content">
                     <span class="right floated"> {{project.completed}}% 完成度 </span>
-                    <span><i class="user icon"></i> {{project.participants}} 参与者 </span>
+                    <!-- <span><i class="user icon"></i> {{project.participants}} 参与者 </span> -->
                 </div>
             </div>
         </div>
@@ -132,20 +132,20 @@
         data() {
             return {
                 projects: [],
-                userId: 0,
+                userInfo: {},
                 project: {},
                 isSaving: false
             }
         },
         created() {
-            if (!window.localStorage.getItem('token') || !window.localStorage.getItem('userId')) {
+            if (!window.localStorage.getItem('token') || !window.localStorage.getItem('userInfo')) {
                 window.localStorage.setItem('toLogin', '/projects')
                 this.$router.push({
                     path: '/login',
                     replace: true
                 })
             } else {
-                this.userId = parseInt(window.localStorage.getItem('userId'))
+                this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
                 this.refreshProjects()
             }
         },
@@ -163,7 +163,7 @@
                             staffId: sId
                         })
                     })
-                if (!this.project.name) {
+                if (!this.project.name || !this.project.name.trim()) {
                     window.alert('请填写名称');
                     return false;
                 }
@@ -194,8 +194,11 @@
                                 replace: true
                             })
                         } else {
+                            if(data.successful){
+                                this.refreshProjects()
+                                this.project = {}
+                            }
                             window.alert(data.information)
-                            this.refreshProjects()
                         }
                     }
                 )

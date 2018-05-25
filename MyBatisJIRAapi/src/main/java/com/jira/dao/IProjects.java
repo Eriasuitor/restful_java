@@ -1,6 +1,7 @@
 package com.jira.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jira.bean.Project;
 import com.jira.entity.ProjectList;
@@ -14,7 +15,7 @@ public interface IProjects {
 
 	public List<Project> queryProjects(List<Integer> ids);
 
-	public List<Project> searchProjects(String pName);
+	public List<Project> searchProjects(Map<String, Object> map);
 
 	public int newProject(Project project);
 

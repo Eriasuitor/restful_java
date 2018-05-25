@@ -39,7 +39,7 @@ public class ProjectsResources {
 						.entity(new ProjectsService().queryProjectsBySatffId(staffid)).build();
 			}
 			return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-					.entity(new ProjectsService().searchProject(pName)).build();
+					.entity(new ProjectsService().searchProject(pName, staffid)).build();
 		} catch (Exception e) {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
@@ -74,7 +74,6 @@ public class ProjectsResources {
 				resp.setResponseCode(401);
 				throw new Exception("无效的Token");
 			}
-			new ProjectsService().newProject(project, staffid);
 			resp.setInformation("项目创建成功");
 		} catch (Exception e) {
 			resp.setInformation(e.getMessage());
@@ -99,7 +98,12 @@ public class ProjectsResources {
 	public Response modifyProject(@QueryParam("token") String token, Project project) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			new ProjectsService().modifyProject(project);
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setObject(new ProjectsService().modifyProject(project, staffid));
 			resp.setInformation("修改成功");
 		} catch (Exception e) {
 			// TODO: handle exception

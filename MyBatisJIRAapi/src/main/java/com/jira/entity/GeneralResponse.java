@@ -11,6 +11,7 @@ public class GeneralResponse {
 	private String Information;
 	private int effectRows;
 	private List<?> results;
+	private Object object;
 
 	public GeneralResponse() {
 
@@ -58,6 +59,14 @@ public class GeneralResponse {
 
 	public void setResults(List<?> results) {
 		this.results = results;
+	}
+
+	public Object getObject() {
+		return object;
+	}
+
+	public void setObject(Object object) {
+		this.object = object;
 	}
 
 }

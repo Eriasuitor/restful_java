@@ -82,15 +82,15 @@
 		id = #{id:INTEGER}
   </select>
   
-  <select id="searchProjects" parameterType="String" resultMap="ProjectResult">
+  <select id="searchProjects" parameterType="java.util.Map" resultMap="ProjectResult">
 	SELECT `ID`,`Name`,`Description`,`Status`
 	FROM
 		projects 
-	<where>
-	<if test="_parameter!=null and _parameter!='' ">
-		name like CONCAT('%', #{_parameter:VARCHAR}, '%')
+	where
+		id IN ( SELECT ProjectID FROM Participants WHERE StaffID = #{userId:INTEGER} )
+	<if test="pName!=null and pName!='' ">
+		AND name like CONCAT('%', #{pName:VARCHAR}, '%')
 	</if>
-	</where>
   </select>
   
   <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">

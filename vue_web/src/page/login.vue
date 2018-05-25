@@ -45,7 +45,8 @@
               window.alert(data.information)
             } else {
               window.localStorage.setItem('token', data.information)
-              window.localStorage.setItem('userId', parseInt(this.loginInfo.id))
+              window.localStorage.setItem('userInfo', JSON.stringify(data.object))
+              this.$emit('refreshUserInfo')
               let toAddress = window.localStorage.getItem('toLogin') ?
                 window.localStorage.getItem('toLogin') : '/projects'
                 console.log(toAddress)

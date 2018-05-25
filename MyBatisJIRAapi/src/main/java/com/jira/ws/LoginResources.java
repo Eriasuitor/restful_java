@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import com.jira.entity.GeneralResponse;
 import com.jira.entity.LoginInfo;
 import com.jira.services.LoginService;
+import com.jira.services.StaffService;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Consumes({ "application/json" })
@@ -32,6 +33,8 @@ public class LoginResources {
 				resp.setResponseCode(401);
 				resp.setSuccessful(false);
 				resp.setInformation("用户名或密码错误");
+			} else {
+				resp.setObject(new StaffService().queryStaffInf(loginInfo.getId()));
 			}
 		} catch (Exception e) {
 			resp.setSuccessful(false);

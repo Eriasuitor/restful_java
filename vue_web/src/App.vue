@@ -8,11 +8,11 @@
       <a :class="['item', {'active': pageName === 'Bugs'}]" @click="routeTo('/statistics/bugs')">Bugs</a>
       <a :class="['item', {'active': pageName === 'History'}]" @click="routeTo('/history')">历史 </a>
       <div class="right menu">
-        <a class="ui item image label"><img src="http://imgsrc.baidu.com/imgad/pic/item/5882b2b7d0a20cf46234df507c094b36adaf999c.jpg"> Joe </a>
-        <a class="ui item">登出</a>
+        <a class="ui item image label"><img :src="userInfo.image">{{userInfo.name}} </a>
+        <a class="ui item" @click="logout()">登出</a>
       </div>
     </div>
-    <router-view/>
+    <router-view v-on:refreshUserInfo="refreshUserInfo"/>
   </div>
 </template>
 
@@ -28,12 +28,29 @@
         return this.$route.name
       }
     },
+    data() {
+      return {
+        userInfo: {}
+      }
+    },
     methods: {
       routeTo: function(path) {
         this.$router.push({
           path,
           replace: true
         })
+      },
+      logout: function(){
+        window.localStorage.clear('token')
+        window.localStorage.clear('userInfo')
+        window.localStorage.setItem('toLogin', this.$route.path)
+        this.$router.push({
+          path: "/login",
+          replace: true
+        })
+      },
+      refreshUserInfo: function(){
+        this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
       }
     }
   }

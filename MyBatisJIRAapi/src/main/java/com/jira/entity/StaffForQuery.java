@@ -9,6 +9,7 @@ public class StaffForQuery {
 	private int id;
 	private String name;
 	private int value;
+	private String image;
 
 	public StaffForQuery() {
 
@@ -18,6 +19,7 @@ public class StaffForQuery {
 		this.id = s.getId();
 		this.name = s.getName();
 		this.value = s.getId();
+		this.image = s.getImage();
 	}
 
 	public int getId() {
@@ -43,4 +45,13 @@ public class StaffForQuery {
 	public void setValue(int value) {
 		this.value = value;
 	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }

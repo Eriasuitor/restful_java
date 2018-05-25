@@ -7,10 +7,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Project {
+	public enum Status {
+		Created, Proccessing, Closed
+	}
+
 	private int id;
 	private String name;
 	private String description;
-	private String status;
+	private Status status;
 	private Date startDate;
 	private Date endDate;
 	private String url;
@@ -51,11 +55,11 @@ public class Project {
 		this.description = description;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

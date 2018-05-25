@@ -1,7 +1,9 @@
 package com.jira.dao;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -52,7 +54,7 @@ public class ProjectsDao {
 		return sqlSession.getMapper(IProjects.class).queryProjects(ids);
 	}
 
-	public List<Project> searchProjects(String pName) {
+	public List<Project> searchProjects(String pName, int userId) {
 		System.out.println(pName);
 		SqlSession sqlSession = null;
 		try {
@@ -60,7 +62,10 @@ public class ProjectsDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return sqlSession.getMapper(IProjects.class).searchProjects(pName);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pName", pName);
+		map.put("userId", userId);
+		return sqlSession.getMapper(IProjects.class).searchProjects(map);
 	}
 
 	public int create(Project project) {

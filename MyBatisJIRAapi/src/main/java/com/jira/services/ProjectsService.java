@@ -32,16 +32,17 @@ public class ProjectsService {
 		return project;
 	}
 
-	public ProjectList searchProject(String pName) {
+	public ProjectList searchProject(String pName, int userId) {
 		ProjectList projectList = new ProjectList();
-		projectList.setProjectNames(new ProjectsDao().searchProjects(pName));
+		projectList.setProjectNames(new ProjectsDao().searchProjects(pName, userId));
 		return projectList;
 	}
 
 	public int newProject(Project project, int userId) throws Exception {
 		// private Staff staff;
-		if (project.getName() == null || project.getManagerID() == 0 || project.getStartDate() == null
-				|| project.getEndDate() == null || project.getEndDate().before(project.getStartDate()))
+		if (project.getName() == null || project.getName().trim() == "" || project.getManagerID() == 0
+				|| project.getStartDate() == null || project.getEndDate() == null
+				|| project.getEndDate().before(project.getStartDate()))
 			throw new Exception("Invalidate Post");
 		project.setInsertUser(userId);
 		project.setLastEditUser(userId);
@@ -55,8 +56,20 @@ public class ProjectsService {
 		return project.getId();
 	}
 
-	public void modifyProject(Project project) {
-		new ProjectsDao().modifyProject(project);
+	public Project modifyProject(Project project, int userId) throws Exception {
+		if (project.getName() == null || project.getName().trim() == "" || project.getStartDate() == null
+				|| project.getEndDate() == null || project.getEndDate().before(project.getStartDate())) {
+			throw new Exception("Invalidate Post");
+		}
+		List<Staff> staffList = new StaffService().queryStaffInfsByProjectID(project.getId());
+		for (Staff staff : staffList) {
+			if (staff.getId() == userId) {
+				project.setLastEditUser(userId);
+				new ProjectsDao().modifyProject(project);
+				return new ProjectsService().queryProjectById(project.getId());
+			}
+		}
+		throw new Exception("你不是此项目的参与人之一，无权更改项目信息。");
 	}
 
 	public Project modifyManagerID(Project project) {
