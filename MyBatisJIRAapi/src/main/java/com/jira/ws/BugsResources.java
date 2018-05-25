@@ -32,13 +32,13 @@ public class BugsResources {
 	@POST
 	public Response addBug(@QueryParam("token") String token, Bug bug) {
 		GeneralResponse resp = new GeneralResponse();
-		try {
-			resp.setEffectRows(new BugsService().addBug(bug));
-			resp.setInformation("提交成功");
-		} catch (Exception e) {
-			resp.setSuccessful(false);
-			resp.setInformation(e.getMessage());
-		}
+		// try {
+		resp.setEffectRows(new BugsService().addBug(bug));
+		resp.setInformation("提交成功");
+		// } catch (Exception e) {
+		// resp.setSuccessful(false);
+		// resp.setInformation(e.getMessage());
+		// }
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
@@ -90,6 +90,6 @@ public class BugsResources {
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
-				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").build();
+				.header("Access-Control-Allow-Methods", "*").build();
 	}
 }

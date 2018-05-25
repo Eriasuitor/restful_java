@@ -55,6 +55,14 @@
 	ORDER BY `StartDate`
   </select>
   
+  <select id="queryProjectByPhaseId" parameterType="int" resultMap="ProjectResult">
+	SELECT `ID`,`Name`,`Description`,`Status`,`StartDate`,`EndDate`, `Completed`, `Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
+	FROM
+		projects 
+	WHERE
+		id = (SELECT `ProjectID` from phases where id = #{id: INTEGER})
+  </select>
+  
   <select id="queryProjects" parameterType="java.util.List" resultMap="ProjectResult">
 	SELECT `ID`,`Name`,`Description`,`Status`,`StartDate`, `completed`,`EndDate`,`Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
 	FROM

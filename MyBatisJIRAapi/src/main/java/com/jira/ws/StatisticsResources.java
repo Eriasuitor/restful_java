@@ -2,6 +2,7 @@ package com.jira.ws;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -42,5 +43,14 @@ public class StatisticsResources {
 		// resp.setInformation(e.getMessage());
 		// }
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
+	}
+
+	@OPTIONS
+	@Path("bugs")
+	public Response postOPtion() {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods", "*").build();
 	}
 }

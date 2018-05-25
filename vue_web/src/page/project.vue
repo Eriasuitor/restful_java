@@ -58,7 +58,7 @@
                         <div class="label">费用产生</div>
                     </div>
                     <div class="statistic">
-                        <div class="value">#</div>
+                        <div class="value">{{project.staffList? project.staffList.length: 0}}</div>
                         <div class="label">参与人数</div>
                     </div>
                 </div>

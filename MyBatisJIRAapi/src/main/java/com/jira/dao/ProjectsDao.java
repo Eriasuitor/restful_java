@@ -22,6 +22,16 @@ public class ProjectsDao {
 		return sqlSession.getMapper(IProjects.class).queryProjectsByStaffId(staffId);
 	}
 
+	public Project queryProjectByPhaseId(int phaseId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IProjects.class).queryProjectByPhaseId(phaseId);
+	}
+
 	public Project queryById(int id) {
 		SqlSession sqlSession = null;
 		try {
@@ -43,6 +53,7 @@ public class ProjectsDao {
 	}
 
 	public List<Project> searchProjects(String pName) {
+		System.out.println(pName);
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = DBJIRAAccess.getSqlSession();

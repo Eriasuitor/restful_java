@@ -1,6 +1,7 @@
 package com.jira.dao;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +23,8 @@ public class LogsDao {
 	}
 
 	public List<Log> getLastLog(List<Integer> subIds) {
+		if (subIds.size() == 0)
+			return new ArrayList<Log>();
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = DBJIRAAccess.getSqlSession();

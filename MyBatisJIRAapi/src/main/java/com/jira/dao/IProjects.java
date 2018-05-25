@@ -8,6 +8,8 @@ import com.jira.entity.ProjectList;
 public interface IProjects {
 	public ProjectList queryProjectsByStaffId(int id);
 
+	public Project queryProjectByPhaseId(int phaseId);
+
 	public Project queryProjectById(int id);
 
 	public List<Project> queryProjects(List<Integer> ids);

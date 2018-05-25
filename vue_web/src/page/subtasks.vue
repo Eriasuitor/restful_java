@@ -18,7 +18,7 @@
               </div>
               <div class="note">{{_subtask.completed}}% 已完成</div>
               <!-- <div class="note"># 個 Bug 尚待解決，共 # 個已知 Bug</div> -->
-              <div class="note">来自项目：超级无敌建设
+              <div class="note">来自项目：{{_subtask.project.name}}
               </div>
             </div>
             <div class="description">{{_subtask.description}}</div>
@@ -148,7 +148,7 @@
     data() {
       return {
         projects: [],
-        userId: 6,
+        userId: 2,
         project: {},
         isSaving: false,
         log: {},

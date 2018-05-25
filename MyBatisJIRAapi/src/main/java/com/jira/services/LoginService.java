@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import com.jira.bean.Staff;
 import com.jira.entity.LoginInfo;
 
 public class LoginService {
@@ -19,8 +20,8 @@ public class LoginService {
 	}
 
 	public static String login(LoginInfo loginInfo) {
-		String passwd = new StaffService().queryStaffInf(loginInfo.getId()).getPassword();
-		if (passwd.equals(loginInfo.getPassword())) {
+		Staff staff = new StaffService().queryStaffInf(loginInfo.getId());
+		if (staff != null && staff.getPassword().equals(loginInfo.getPassword())) {
 			UUID uuid = UUID.randomUUID();
 			tokens.put(uuid.toString() + loginInfo.getId(), loginInfo);
 			return uuid.toString() + loginInfo.getId();

@@ -28,7 +28,7 @@
     <result column="Name" jdbcType="VARCHAR" property="name"/>
     <result column="SubtaskID" jdbcType="INTEGER" property="subtaskID"/>
     <result column="startDate" jdbcType="TIMESTAMP" property="startDate"/>
-    <result column="endDate" jdbcType="TIMESTAMP" property="endDate"/>
+    <result column="EndDate" jdbcType="TIMESTAMP" property="endDate"/>
     <result column="completed" jdbcType="INTEGER" property="completed"/>
     <result column="assignedID" jdbcType="INTEGER" property="assignedID"/>
     <result column="timeCost" jdbcType="INTEGER" property="timeCost"/>
@@ -57,7 +57,7 @@
 	    `InsertUser`,
 	    `LastEditUser`,
 	    `LastEditDate`,max(insertDate) as InsertDate from logs
-	where `subtaskID` in
+	where `subtaskID` in 
 	<foreach collection="list" item="item" separator="," open="(" close=")">
 		#{item}
 	</foreach>

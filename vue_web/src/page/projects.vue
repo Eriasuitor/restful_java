@@ -153,7 +153,9 @@
             newProject: function() {
                 this.project.managerID = $('.dropdown.manager').dropdown('get value')
                 this.project.participantsList = []
-                $('.dropdown.participants')
+                if ($('.dropdown.participants')
+                    .dropdown('get value') != '')
+                    $('.dropdown.participants')
                     .dropdown('get value')
                     .split(',')
                     .forEach(sId => {
@@ -244,7 +246,7 @@
                             })
                             return resp
                         },
-                        url: this.$apiUrl + '/projects?q={query}'
+                        url: this.$apiUrl + '/projects?q={query}&token=' + window.localStorage.getItem('token')
                     },
                     fields: {
                         results: 'projectNames',

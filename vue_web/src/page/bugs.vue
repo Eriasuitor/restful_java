@@ -4,14 +4,14 @@
     <div class="ui segment">
       <a class="ui blue ribbon label"> 尚未解决 </a>
       <button class="ui labeled icon button right floated" @click="submitBugEvent">
-         <i class="plus icon"></i>提交新 Bug
-    </button>
+           <i class="plus icon"></i>提交新 Bug
+      </button>
       <div class="ui clearing divider"></div>
       <div class="ui cards">
         <div class="card" v-for="_bug in bugs" :key="_bug.id" v-if="_bug.status != 'closed'">
           <!-- <span class="ui right corner label">
-              <i class="warning red icon"></i>
-            </span> -->
+                <i class="warning red icon"></i>
+              </span> -->
           <div class="content">
             <div class="header">{{_bug.name}}
               <div class="note" v-if="_bug.project != null">来自项目：{{_bug.project.name}}
@@ -46,11 +46,11 @@
     <div class="ui segment">
       <a class="ui green ribbon label"> 现已解决 </a>
       <div class="ui clearing divider"></div>
-     <div class="ui cards">
+      <div class="ui cards">
         <div class="card" v-for="_bug in bugs" :key="_bug.id" v-if="_bug.status == 'closed'">
           <!-- <span class="ui right corner label">
-              <i class="warning red icon"></i>
-            </span> -->
+                <i class="warning red icon"></i>
+              </span> -->
           <div class="content">
             <div class="header">{{_bug.name}}
               <div class="note" v-if="_bug.project != null">来自项目：{{_bug.project.name}}
@@ -231,7 +231,7 @@
         subtasks: [],
         bug: {},
         projects: [],
-        userId: 8,
+        userId: 2,
         project: {},
         isSaving: false,
         log: {},
@@ -256,7 +256,7 @@
           }
         )
       },
-      resolveEvent: function(){
+      resolveEvent: function() {
         $('.resolve')
           .modal({
             centered: true,
@@ -279,13 +279,19 @@
           .modal('show')
       },
       submitBug: function() {
-        this.bug.ProjectID = $('.projectDropdown').dropdown('get value')
-        this.bug.SubtaskID = $('.subtaskDropdown').dropdown('get value')
-        this.bug.Status = 'Opened'
-        this.bug.Origin = $('.origin').dropdown('get value')
-        this.bug.Source = $('.source').dropdown('get value')
-        this.bug.Severity = $('.subtaskDropdown').dropdown('get value')
-        this.bug.Priority
+        this.bug.projectID = $('.projectDropdown').dropdown('get value')
+        this.bug.subtaskID = $('.subtaskDropdown').dropdown('get value')
+        this.bug.status = 'Opened'
+        this.bug.origin = $('.origin').dropdown('get value')
+        this.bug.source = $('.source').dropdown('get value')
+        this.bug.severity = $('.severity').dropdown('get value')
+        this.bug.priority = $('.priority').dropdown('get value')
+        this.bug.assignedID = 2
+        this.$api.post(this.$apiUrl + '/projects/0/bugs',
+          this.bug,
+          data => {
+            console.log(data.information)
+          })
       },
       subtaskDropdown: function() {
         $('.subtaskDropdown').dropdown({
@@ -328,7 +334,7 @@
             })
             return resp
           },
-          url: this.$apiUrl + '/projects?q={query}'
+          url: this.$apiUrl + '/projects?q={query}&token=' + window.localStorage.getItem('token')
         },
         maxSelections: 1
       })

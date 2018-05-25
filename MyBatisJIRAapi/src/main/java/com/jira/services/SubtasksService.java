@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jira.bean.Log;
 import com.jira.bean.Subtask;
+import com.jira.dao.ProjectsDao;
 import com.jira.dao.SubtasksDao;
 import com.jira.entity.StatisticsSubtask;
 import com.jira.entity.SubtaskWithStaff;
@@ -38,7 +39,8 @@ public class SubtasksService {
 					break;
 				}
 			}
-			ret.add(new StatisticsSubtask(subtask, _log));
+			ret.add(new StatisticsSubtask(subtask, _log,
+					new ProjectsDao().queryProjectByPhaseId(subtask.getPhaseID())));
 		}
 		return ret;
 	}
