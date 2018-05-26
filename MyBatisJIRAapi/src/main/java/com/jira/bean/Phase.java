@@ -17,14 +17,14 @@ public class Phase {
 	private Date endDate;
 	private int managerID;
 	private List<Subtask> subtaskList;
-	private String insertUser;
+	private int insertUser;
 	private Date insertDate;
-	private String lastEditUser;
+	private int lastEditUser;
 	private Date lastEditDate;
 
 	public int getId() {
 		return id;
-	};
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -102,11 +102,11 @@ public class Phase {
 		this.subtaskList = subtaskList;
 	}
 
-	public String getInsertUser() {
+	public int getInsertUser() {
 		return insertUser;
 	}
 
-	public void setInsertUser(String insertUser) {
+	public void setInsertUser(int insertUser) {
 		this.insertUser = insertUser;
 	}
 
@@ -118,11 +118,11 @@ public class Phase {
 		this.insertDate = insertDate;
 	}
 
-	public String getLastEditUser() {
+	public int getLastEditUser() {
 		return lastEditUser;
 	}
 
-	public void setLastEditUser(String lastEditUser) {
+	public void setLastEditUser(int lastEditUser) {
 		this.lastEditUser = lastEditUser;
 	}
 

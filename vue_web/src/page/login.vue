@@ -14,8 +14,8 @@
           </div>
           <div class="field">
             <a>
-              公司保密协议
-            </a>
+                  公司保密协议
+                </a>
           </div>
           <div class="ui button float right floated" @click="login()">登录</div>
         </form>
@@ -35,12 +35,12 @@
     },
     created() {},
     methods: {
+  
       login: function() {
         this.$api.post(
           this.$apiUrl + '/login?',
           this.loginInfo,
           data => {
-            console.log(data)
             if (data.responseCode === 401) {
               window.alert(data.information)
             } else {
@@ -49,7 +49,7 @@
               this.$emit('refreshUserInfo')
               let toAddress = window.localStorage.getItem('toLogin') ?
                 window.localStorage.getItem('toLogin') : '/projects'
-                console.log(toAddress)
+              toAddress = toAddress === "/login" ? "/projects" : toAddress
               this.$router.push({
                 path: toAddress,
                 replace: true

@@ -41,11 +41,15 @@
   <select id="queryPhases" parameterType="int" resultMap="PhaseResult">
   	SELECT * FROM Phases WHERE ProjectID = #{id:INTEGER}
   </select>
+  
+   <select id="queryPhasesById" parameterType="int" resultMap="PhaseResult">
+  	SELECT * FROM Phases WHERE ID = #{id:INTEGER}
+  </select>  
 
   <insert id="addPhase" parameterType="com.jira.bean.Phase">
-  	INSERT INTO Phases ( NAME, ProjectID, PhaseNum, STATUS, StartDate, EndDate, ManagerID, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO Phases ( NAME, ProjectID, StartDate, EndDate, ManagerID, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		( #{name}, #{projectID}, #{phaseNum}, #{status}, #{startDate}, #{endDate}, #{managerID}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
+		( #{name}, #{projectID}, #{startDate}, #{endDate}, #{managerID}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
   </insert>
 
 </mapper>

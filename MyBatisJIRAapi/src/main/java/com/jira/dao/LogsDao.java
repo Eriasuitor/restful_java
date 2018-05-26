@@ -46,6 +46,18 @@ public class LogsDao {
 		return effectRows;
 	}
 
+	public int addLogWithAssigned(Log log) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int effectRows = sqlSession.getMapper(ILogs.class).addLogWithAssigned(log);
+		sqlSession.commit();
+		return effectRows;
+	}
+
 	public int deleteLog(int id) {
 		SqlSession sqlSession = null;
 		try {

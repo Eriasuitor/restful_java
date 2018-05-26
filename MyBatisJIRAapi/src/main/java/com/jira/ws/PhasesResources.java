@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import com.jira.bean.Phase;
 import com.jira.entity.GeneralResponse;
 import com.jira.entity.PhaseList;
+import com.jira.services.LoginService;
 import com.jira.services.PhasesService;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -36,11 +37,15 @@ public class PhasesResources {
 	}
 
 	@POST
-	public Response addPhase(@QueryParam("token") String token, Phase phase, @QueryParam("staffid") int userId,
-			@PathParam("projectid") int projectId) {
+	public Response addPhase(@QueryParam("token") String token, Phase phase, @PathParam("projectid") int projectId) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			new PhasesService().addPhase(phase, userId, projectId);
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			new PhasesService().addPhase(phase, staffid, projectId);
 			resp.setInformation("创建成功");
 
 		} catch (Exception e) {

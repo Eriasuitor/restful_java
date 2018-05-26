@@ -1,16 +1,14 @@
 <template>
   <div2>
   
-    <div class="ui segment">
+    <div class="ui segment" v-show="subtasks.find(_ => _.completed < 100)">
       <a class="ui blue ribbon label"> 尚未完成 </a>
-      <h3 class="ui dividing header">年代建设
-        <div class="sub header">没有描述</div>
-      </h3>
+      <div class="ui clearing divider"></div>
       <div class="ui cards">
-        <div class="card" v-for="_subtask in subtasks" :key="_subtask.id">
+        <div class="card" v-for="_subtask in subtasks.filter(_ => _.completed < 100)" :key="_subtask.id">
           <span class="ui right corner label" v-if="_subtask.endDate - dateNow < 24 * 3600000">
-          <i class="warning red icon"></i>
-          </span>
+                          <i class="warning red icon"></i>
+                          </span>
           <div class="content">
             <div class="header">{{_subtask.name}}
               <div class="note">
@@ -27,35 +25,49 @@
                 <div class="label">
                   <img :src="_subtask.log.staff.image">
                 </div>
-                <div class="content" >
+                <div class="content">
                   <div class="summary">{{_subtask.log.staff.name}}</div>
                   <div class="extra text">{{_subtask.log.note}}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="ui bottom attached button" @click='logEvent(_subtask.id)'><i class="add icon"></i> Log </div>
+          <div class="ui bottom attached button" @click='logEvent(_subtask)'><i class="add icon"></i> Log </div>
         </div>
       </div>
     </div>
-  
-    <div class="ui segment">
+    <div class="ui segment" v-show="subtasks.find(_ => _.completed === 100)">
       <a class="ui green ribbon label"> 现已完成 </a>
       <div class="ui clearing divider"></div>
       <div class="ui cards">
-        <div class="card">
+        <div class="card" v-for="_subtask in subtasks.filter(_ => _.completed === 100)" :key="_subtask.id">
+          <span class="ui right corner label" v-if="_subtask.endDate - dateNow < 24 * 3600000">
+                          <i class="warning red icon"></i>
+                          </span>
           <div class="content">
-            <div class="header">Veronika Ossi</div>
-            <div class="description">Veronika Ossi是一名居住在纽约的舞美师，她喜爱小猫、音乐和派对。 </div>
+            <div class="header">{{_subtask.name}}
+              <div class="note">
+                应于 {{$utils.formatDate(_subtask.endDate)}} 前完成
+              </div>
+              <div class="note">{{_subtask.completed}}% 已完成</div>
+              <!-- <div class="note"># 個 Bug 尚待解決，共 # 個已知 Bug</div> -->
+              <div class="note">来自项目：{{_subtask.project.name}}
+              </div>
+            </div>
+            <div class="description">{{_subtask.description}}</div>
+            <div class="ui feed" v-if="_subtask.log != null">
+              <div class="event">
+                <div class="label">
+                  <img :src="_subtask.log.staff.image">
+                </div>
+                <div class="content">
+                  <div class="summary">{{_subtask.log.staff.name}}</div>
+                  <div class="extra text">{{_subtask.log.note}}</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ui bottom attached button"><i class="add icon"></i> Add Friend </div>
-        </div>
-        <div class="card">
-          <div class="content">
-            <div class="header">Jenny Hess</div>
-            <div class="description">Jenny是一名在该新学校学习媒体管理的在校生。 </div>
-          </div>
-          <div class="ui bottom attached button" @click='logEvent()'><i class="add icon"></i> Add Friend </div>
+          <div class="ui bottom attached button disabled"><i class="add icon"></i> Log </div>
         </div>
       </div>
     </div>
@@ -70,53 +82,53 @@
           <div class="fields">
             <div class="eight wide field required">
               <label>
-                                  开始时间
-                              </label>
+                                                                    开始时间
+                                                                </label>
               <input type="date" v-model="log.startDate">
             </div>
             <div class="eight wide field required">
               <label>
-                                  结束时间
-                              </label>
+                                                                    结束时间
+                                                                </label>
               <input type="date" v-model="log.endDate">
             </div>
-          </div>
-          <div class="fields">
-            <div class="four wide field">
+            <div class="eight wide field required">
               <label>
-                                  用时
-                              </label>
+                                                    用时
+                                                </label>
               <div class="ui right labeled input">
                 <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.timeCost">
                 <div class="ui basic label">小时 </div>
               </div>
             </div>
-            <div class="four wide field">
+          </div>
+          <div class="fields">
+            <div class="eight wide field required">
               <label>
-                                  花费
-                              </label>
-              <div class="ui right labeled input">
-                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.economicCost">
-                <div class="ui basic label">元 </div>
-              </div>
-            </div>
-            <div class="four wide field">
-              <label>
-                                  完成度
-                              </label>
+                                                                    完成度
+                                                                </label>
               <div class="ui right labeled input">
                 <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.completed">
                 <div class="ui basic label">% </div>
               </div>
             </div>
-            <div class="four wide field">
+            <div class="eight wide field">
               <label>
-                                  分配于
-                              </label>
+                                                                    分配于
+                                                                </label>
               <div class="ui fluid multiple search selection dropdown log_assign staffDropdown">
                 <input type="hidden" name="receipt">
                 <i class="dropdown icon"></i>
                 <div class="default text"></div>
+              </div>
+            </div>
+            <div class="eight wide field">
+              <label>
+                                                                    花费
+                                                                </label>
+              <div class="ui right labeled input">
+                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="log.economicCost">
+                <div class="ui basic label">元 </div>
               </div>
             </div>
           </div>
@@ -130,7 +142,7 @@
         <div class="ui red deny button">
           取消
         </div>
-        <div class="ui positive right button" @click="postLog">
+        <div class="ui positive right button">
           Log
         </div>
       </div>
@@ -154,53 +166,116 @@
         log: {},
         subtasks: [],
         dateNow: new Date().getTime(),
-        logBelong: 0
+        logBelong: 0,
+        userInfo: {},
+        token: "",
+        subtask: 0
       }
     },
     created() {
-      this.getSubtasks()
+      window.localStorage.setItem('toLogin', this.$route.path)
+      if (!window.localStorage.getItem('token') || !window.localStorage.getItem('userInfo')) {
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('userInfo')
+        this.$router.push({
+          path: '/login',
+          replace: true
+        })
+      } else {
+        this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+        this.token = window.localStorage.getItem('token')
+        this.getSubtasks()
+      }
     },
     methods: {
       getSubtasks() {
         this.$api.get(
-          this.$apiUrl + '/statistics/subtasks?uId=' + this.userId,
+          this.$apiUrl + '/statistics/subtasks?token=' + this.token,
           null,
           data => {
-            if (data.successful) {
-              this.subtasks = data.results
+            if (data.responseCode === 401) {
+              window.localStorage.removeItem('token')
+              window.localStorage.removeItem('userInfo')
+              this.$router.push({
+                path: '/login',
+                replace: true
+              })
             } else {
-              window.alert(data.information)
+              if (data.successful) {
+                this.subtasks = data.results
+              } else {
+                window.alert(data.information)
+              }
             }
           }
         )
       },
-      logEvent: function(_subtaskID) {
-        this.log.subtaskID = _subtaskID
+      logEvent: function(_subtask) {
+        this.log.subtaskID = _subtask.id
+        this.subtask = _subtask
         $('.newLog')
           .modal({
             centered: true,
             blurring: false,
             inverted: false,
             closable: false,
-            context: 'div2'
+            context: 'div2',
+            onApprove: () => {
+              return this.postLog()
+            }
           })
           .modal('show')
       },
-      postLog: function () {
-      this.log.assignedID = $('.dropdown.log_assign').dropdown('get value')
-      this.log.insertUser = 1
-      this.log.lastEditUser = 1
-      this.$api.post(
-        this.$apiUrl + '/projects/' + 0 + '/logs',
-        this.log,
-        data => {
-          if (data.successful) {
-            this.getSubtasks()
-          }
-          window.alert(data.information)
+      postLog: function() {
+        this.log.subtaskID = this.subtask.id
+        this.log.assignedID = $('.dropdown.log_assign').dropdown('get value')
+        if (!this.log.startDate) {
+          window.alert('请填写开始时间');
+          return false;
         }
-      )
-    },
+  
+        if (!this.log.endDate) {
+          window.alert('请填写结束时间');
+          return false;
+        }
+        if (this.log.startDate > this.log.endDate) {
+          window.alert('结束时间不得早于开始时间');
+          return false;
+        }
+        if (!this.log.timeCost) {
+          window.alert('请填写耗时')
+          return false
+        }
+        if (!this.log.completed) {
+          window.alert('请填写完成度')
+          return false
+        }
+  
+        if (parseInt(this.log.completed) + this.subtask.completed > 100) {
+          window.alert(`此次Log完成度最大值为 ${100 - this.subtask.completed}%`)
+          return false
+        }
+        this.$api.post(
+          this.$apiUrl + '/projects/' + 0 + '/logs?token=' + this.token,
+          this.log,
+          data => {
+            if (data.responseCode === 401) {
+              window.localStorage.removeItem('token')
+              window.localStorage.removeItem('userInfo')
+              this.$router.push({
+                path: '/login',
+                replace: true
+              })
+            } else {
+              if (data.successful) {
+                this.subtask.completed += parseInt(this.log.completed)
+              }
+              window.alert(data.information)
+            }
+          }
+        )
+        return true
+      },
       newProject: function() {
         //   this.isSaving = true
         this.project.managerID = $('.dropdown.manager').dropdown('get value')

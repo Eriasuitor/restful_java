@@ -57,7 +57,7 @@
   </select>
   
   <select id="querySubtasksByUId" parameterType="int" resultMap="SubtaskResult">
-	SELECT * FROM Subtasks WHERE AssignedID = #{id:INTEGER} AND Status = 'processing';
+	SELECT * FROM Subtasks WHERE AssignedID = #{id:INTEGER} AND Status = 'Processing' ORDER BY EndDate;
   </select>
   
   <select id="querySubtaskBySubId" parameterType="int" resultMap="SubtaskResult">
@@ -65,9 +65,9 @@
   </select>
   
   <insert id="addSubtask" parameterType="com.jira.bean.Subtask">
-  	INSERT INTO subtasks ( NAME, Description, PhaseID, STATUS, ManagerID, AssignedID, StartDate, EndDate, RequiredTime, TimeCost, Completed, InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO subtasks ( NAME, Description, PhaseID, ManagerID, AssignedID, StartDate, EndDate, RequiredTime, TimeCost, Completed, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		( #{name}, #{description}, #{phaseID}, #{status}, #{managerID}, #{assignedID}, #{startDate}, #{endDate}, #{requiredTime}, #{timeCost}, #{completed}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
+		( #{name}, #{description}, #{phaseID}, #{managerID}, #{assignedID}, #{startDate}, #{endDate}, #{requiredTime}, #{timeCost}, #{completed}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
   </insert>
   
 </mapper>

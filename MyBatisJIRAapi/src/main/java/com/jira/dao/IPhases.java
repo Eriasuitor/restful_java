@@ -8,4 +8,6 @@ public interface IPhases {
 	public int addPhase(Phase phase);
 
 	public List<Phase> queryPhases(int projectId);
+
+	public Phase queryPhasesById(int phaseId);
 }

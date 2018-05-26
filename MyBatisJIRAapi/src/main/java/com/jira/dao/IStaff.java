@@ -11,5 +11,9 @@ public interface IStaff {
 
 	public List<Staff> queryStaffInfsByProjectID(int pId);
 
+	public List<Staff> queryStaffInfsByPhaseId(int phaId);
+
+	public List<Staff> queryStaffInfsBySubId(int subId);
+
 	public List<Staff> searchStaff(String name);
 }

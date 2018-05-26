@@ -52,11 +52,12 @@ public class ProjectsResources {
 	public Response queryProjectsById(@QueryParam("token") String token, @PathParam("id") int pId) {
 		ProjectResponse projectResp = new ProjectResponse();
 		try {
-			// if (LoginService.getUserId(token) == 0) {
-			// projectResp.setResponseCode(401);
-			// throw new Exception("无效的Token");
-			// }
-			projectResp.setProject(new ProjectsService().queryProjectById(pId));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				projectResp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			projectResp.setProject(new ProjectsService().queryProjectById(pId, staffid));
 		} catch (Exception e) {
 			projectResp.setSuccessful(false);
 			projectResp.setInformation(e.getMessage());
@@ -74,6 +75,7 @@ public class ProjectsResources {
 				resp.setResponseCode(401);
 				throw new Exception("无效的Token");
 			}
+			new ProjectsService().newProject(project, staffid);
 			resp.setInformation("项目创建成功");
 		} catch (Exception e) {
 			resp.setInformation(e.getMessage());
@@ -121,7 +123,12 @@ public class ProjectsResources {
 	public Response modifyManagerID(@QueryParam("token") String token, Project project) {
 		ProjectResponse resp = new ProjectResponse();
 		try {
-			resp.setProject(new ProjectsService().modifyManagerID(project));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setProject(new ProjectsService().modifyManagerID(project, staffid));
 			resp.setInformation("修改成功");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -157,7 +164,12 @@ public class ProjectsResources {
 	public Response modifyProject(@QueryParam("token") String token, @PathParam("id") int id) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setEffectRows(new ProjectsService().deleteProject(id));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setEffectRows(new ProjectsService().deleteProject(id, staffid));
 			resp.setInformation("删除成功");
 		} catch (Exception e) {
 			// TODO: handle exception

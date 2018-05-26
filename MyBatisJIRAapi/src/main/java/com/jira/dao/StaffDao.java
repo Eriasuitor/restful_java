@@ -33,6 +33,26 @@ public class StaffDao {
 		return sqlSession.getMapper(IStaff.class).queryStaffInfs(idList);
 	}
 
+	public List<Staff> queryStaffInfsByPhaseId(int phaId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IStaff.class).queryStaffInfsByPhaseId(phaId);
+	}
+
+	public List<Staff> queryStaffInfsBySubId(int subId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IStaff.class).queryStaffInfsBySubId(subId);
+	}
+
 	public List<Staff> queryStaffInfsByProjectID(int pId) {
 		SqlSession sqlSession = null;
 		try {
@@ -40,8 +60,7 @@ public class StaffDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return sqlSession.getMapper(IStaff.class)
-				.queryStaffInfsByProjectID(pId);
+		return sqlSession.getMapper(IStaff.class).queryStaffInfsByProjectID(pId);
 	}
 
 	public List<Staff> searchStaff(String name) {

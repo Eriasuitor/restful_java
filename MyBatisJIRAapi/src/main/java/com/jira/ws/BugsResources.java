@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Response;
 import com.jira.bean.Bug;
 import com.jira.entity.GeneralResponse;
 import com.jira.services.BugsService;
+import com.jira.services.LoginService;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Consumes({ "application/json" })
@@ -49,7 +51,12 @@ public class BugsResources {
 	public Response getBugsBySubId(@QueryParam("token") String token, @QueryParam("subId") int subId) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setResults(new BugsService().getBugsBySubId(subId));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setResults(new BugsService().getBugsBySubId(subId, staffid));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
@@ -57,6 +64,23 @@ public class BugsResources {
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 
+	@PUT
+	@Path("{id}")
+	public Response modifyStatus(@QueryParam("token") String token, @QueryParam("status") Bug.Status status) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
+	}
 	// @DELETE
 	// @Path("{id}")
 	// public Response deleteLog(@PathParam("id") int id) {

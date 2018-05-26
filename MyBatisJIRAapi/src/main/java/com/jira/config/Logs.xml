@@ -62,14 +62,24 @@
 		#{item}
 	</foreach>
   </select>
-
-  <insert id="addLog" parameterType="com.jira.bean.Log">
+  <insert id="addLogWithAssigned" parameterType="com.jira.bean.Log">
   START TRANSACTION;
   	INSERT LOGS (SubtaskID, StartDate, EndDate, Completed, AssignedID, TimeCost, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
 		(#{subtaskID}, #{startDate}, #{endDate}, #{completed}, #{assignedID}, #{timeCost}, #{economicCost}, #{note}, #{insertUser}, NOW(), #{lastEditUser}, NOW());
 	UPDATE Subtasks SET AssignedID = #{assignedID}, TimeCost = TimeCost + #{timeCost}, Completed = Completed + #{completed};
-	UPDATE Projects SET TimeCost = TimeCost + #{timeCost}, EconomicCost = EconomicCost + #{economicCost};
+	UPDATE Projects SET TimeCost = TimeCost + #{timeCost}, EconomicCost = EconomicCost + #{economicCost}, Completed = Completed + #{completed};
+	COMMIT;
+  </insert>
+
+  <insert id="addLog" parameterType="com.jira.bean.Log">
+  START TRANSACTION;
+  	INSERT LOGS (SubtaskID, StartDate, EndDate, Completed, TimeCost, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
+	VALUES
+		(#{subtaskID}, #{startDate}, #{endDate}, #{completed}, #{timeCost}, #{economicCost}, #{note}, #{insertUser}, NOW(), #{lastEditUser}, NOW());
+	
+	UPDATE Subtasks SET TimeCost = TimeCost + #{timeCost}, Completed = Completed + #{completed};
+	UPDATE Projects SET TimeCost = TimeCost + #{timeCost}, EconomicCost = EconomicCost + #{economicCost}, Completed = Completed + #{completed};
 	COMMIT;
   </insert>
 	<delete id="deleteLog" parameterType="int">

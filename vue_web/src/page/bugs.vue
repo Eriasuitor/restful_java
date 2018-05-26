@@ -2,16 +2,16 @@
   <div2>
   
     <div class="ui segment">
-      <a class="ui blue ribbon label"> 尚未解决 </a>
+      <a class="ui blue ribbon label"> 分配于我 </a>
       <button class="ui labeled icon button right floated" @click="submitBugEvent">
-           <i class="plus icon"></i>提交新 Bug
-      </button>
+               <i class="plus icon"></i>提交新 Bug
+          </button>
       <div class="ui clearing divider"></div>
       <div class="ui cards">
         <div class="card" v-for="_bug in bugs" :key="_bug.id" v-if="_bug.status != 'closed'">
           <!-- <span class="ui right corner label">
-                <i class="warning red icon"></i>
-              </span> -->
+                    <i class="warning red icon"></i>
+                  </span> -->
           <div class="content">
             <div class="header">{{_bug.name}}
               <div class="note" v-if="_bug.project != null">来自项目：{{_bug.project.name}}
@@ -37,7 +37,12 @@
           <div class="ui bottom attached buttons">
             <div class="ui button" v-if="_bug.assignedId === userId"><i class="add icon"></i> Close </div>
             <div class="ui button" v-else-if="_bug.status === 'created'"><i class="add icon"></i>打开</div>
-            <div class="ui button disabled" v-else><i class="doctor icon"></i>修复中</div>
+            <!-- <div class="ui button disabled" v-else><i class="doctor icon"></i>修复中</div> -->
+            <div class="ui animated fade button " tabindex="0">
+              <div class="visible content"><i class="hand peace icon"></i>{{_bug.status}}</div>
+              <div class="hidden content">打开</div>
+              <!-- <i class="doctor icon"></i> -->
+            </div>
             <div class="ui button green" @click="resolveEvent"><i class="child icon"></i>解决</div>
           </div>
         </div>
@@ -49,8 +54,8 @@
       <div class="ui cards">
         <div class="card" v-for="_bug in bugs" :key="_bug.id" v-if="_bug.status == 'closed'">
           <!-- <span class="ui right corner label">
-                <i class="warning red icon"></i>
-              </span> -->
+                    <i class="warning red icon"></i>
+                  </span> -->
           <div class="content">
             <div class="header">{{_bug.name}}
               <div class="note" v-if="_bug.project != null">来自项目：{{_bug.project.name}}
@@ -236,22 +241,47 @@
         isSaving: false,
         log: {},
         bugs: [],
-        resolve: {}
+        resolve: {},
+        userInfo: {},
+        token: ""
       }
     },
     created() {
-      this.getBugs()
+      window.localStorage.setItem('toLogin', this.$route.path)
+      console.log(window.localStorage.getItem('token'))
+      console.log(window.localStorage.getItem('userInfo'))
+      if (!window.localStorage.getItem('token') || !window.localStorage.getItem('userInfo')) {
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('userInfo')
+        this.$router.push({
+          path: '/login',
+          replace: true
+        })
+      } else {
+        this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+        this.token = window.localStorage.getItem('token')
+        this.getBugs()
+      }
     },
     methods: {
       getBugs() {
         this.$api.get(
-          this.$apiUrl + '/statistics/bugs?uId=' + this.userId,
+          this.$apiUrl + '/statistics/bugs?token=' + this.token,
           null,
           data => {
-            if (data.successful) {
-              this.bugs = data.results
+            if (data.responseCode === 401) {
+              window.localStorage.removeItem('token')
+              window.localStorage.removeItem('userInfo')
+              this.$router.push({
+                path: '/login',
+                replace: true
+              })
             } else {
-              window.alert(data.information)
+              if (data.successful) {
+                this.bugs = data.results
+              } else {
+                window.alert(data.information)
+              }
             }
           }
         )

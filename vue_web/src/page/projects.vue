@@ -139,6 +139,8 @@
         },
         created() {
             if (!window.localStorage.getItem('token') || !window.localStorage.getItem('userInfo')) {
+                window.localStorage.removeItem('token')
+                window.localStorage.removeItem('userInfo')
                 window.localStorage.setItem('toLogin', '/projects')
                 this.$router.push({
                     path: '/login',
@@ -189,12 +191,14 @@
                     data => {
                         if (data.responseCode === 401) {
                             window.localStorage.setItem('toLogin', '/projects')
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
                             this.$router.push({
                                 path: '/login',
                                 replace: true
                             })
                         } else {
-                            if(data.successful){
+                            if (data.successful) {
                                 this.refreshProjects()
                                 this.project = {}
                             }
@@ -211,6 +215,8 @@
                     data => {
                         if (data.responseCode === 401) {
                             window.localStorage.setItem('toLogin', '/projects')
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
                             this.$router.push({
                                 path: '/login',
                                 replace: true

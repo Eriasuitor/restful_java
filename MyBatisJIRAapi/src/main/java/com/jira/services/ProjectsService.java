@@ -17,17 +17,24 @@ public class ProjectsService {
 		return new ProjectsDao().queryByStaffId(staffId);
 	}
 
-	public Project queryProjectById(int id) {
-
+	public Project queryProjectById(int id, int staffId) throws Exception {
+		Project project = new ProjectsDao().queryById(id);
+		if (project == null) {
+			throw new Exception("此项目不存在");
+		}
 		List<Participant> participantList = new ParticipantsService().queryParticipants(id);
 		Set<Integer> idSet = new HashSet<Integer>();
 		for (Participant participant : participantList) {
 			idSet.add(participant.getStaffId());
 		}
 		List<Staff> staffList = new StaffService().queryStaffInf(idSet);
-
-		Project project = new ProjectsDao().queryById(id);
-		project.setStaff(new StaffService().queryStaffInf(project.getManagerID()));
+		for (Staff staff : staffList) {
+			if (staff.getId() == project.getManagerID()) {
+				project.setStaff(staff);
+				staffList.remove(staff);
+				break;
+			}
+		}
 		project.setStaffList(staffList);
 		return project;
 	}
@@ -40,7 +47,7 @@ public class ProjectsService {
 
 	public int newProject(Project project, int userId) throws Exception {
 		// private Staff staff;
-		if (project.getName() == null || project.getName().trim() == "" || project.getManagerID() == 0
+		if (project.getName() == null || project.getName().trim() == "" || project.getManagerID() < 1
 				|| project.getStartDate() == null || project.getEndDate() == null
 				|| project.getEndDate().before(project.getStartDate()))
 			throw new Exception("Invalidate Post");
@@ -48,9 +55,9 @@ public class ProjectsService {
 		project.setLastEditUser(userId);
 		new ProjectsDao().create(project);
 		List<Participant> participantList = new ArrayList<Participant>();
-		participantList.add(new Participant(project.getId(), project.getManagerID(), "Manager"));
+		participantList.add(new Participant(project.getId(), project.getManagerID(), Participant.Role.Manager));
 		for (Participant participant : project.getParticipantsList()) {
-			participantList.add(new Participant(project.getId(), participant.getStaffId(), "Developer"));
+			participantList.add(new Participant(project.getId(), participant.getStaffId(), Participant.Role.Developer));
 		}
 		new ParticipantsDao().addParticipants(participantList, userId);
 		return project.getId();
@@ -66,19 +73,35 @@ public class ProjectsService {
 			if (staff.getId() == userId) {
 				project.setLastEditUser(userId);
 				new ProjectsDao().modifyProject(project);
-				return new ProjectsService().queryProjectById(project.getId());
+				return new ProjectsService().queryProjectById(project.getId(), userId);
 			}
 		}
 		throw new Exception("你不是此项目的参与人之一，无权更改项目信息。");
 	}
 
-	public Project modifyManagerID(Project project) {
+	public Project modifyManagerID(Project project, int userId) throws Exception {
+		if (project.getId() == 0 || project.getManagerID() == 0) {
+			throw new Exception("Invalid Request");
+		}
+		Project _project = new ProjectsDao().queryById(project.getId());
+		if (_project == null) {
+			throw new Exception("此项目已不存在");
+		}
+		if (_project.getManagerID() != userId) {
+			throw new Exception("你不是此项目负责人，无法更换负责人。");
+		}
+		if (_project.getManagerID() == project.getManagerID()) {
+			throw new Exception("该用户已是此项目负责人。");
+		}
+		project.setLastEditUser(userId);
 		new ProjectsDao().modifyManagerID(project);
-		project.setStaff(new StaffService().queryStaffInf(project.getManagerID()));
-		return project;
+		return new ProjectsService().queryProjectById(project.getId(), userId);
 	}
 
-	public int deleteProject(int id) {
-		return new ProjectsDao().deleteProject(id);
+	public int deleteProject(int id, int userId) throws Exception {
+		if (new ProjectsDao().queryById(id).getManagerID() == userId) {
+			return new ProjectsDao().deleteProject(id);
+		}
+		throw new Exception("Invalid Request");
 	}
 }

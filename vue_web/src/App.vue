@@ -12,7 +12,7 @@
         <a class="ui item" @click="logout()">登出</a>
       </div>
     </div>
-    <router-view v-on:refreshUserInfo="refreshUserInfo"/>
+    <router-view v-on:refreshUserInfo="refreshUserInfo" />
   </div>
 </template>
 
@@ -33,6 +33,9 @@
         userInfo: {}
       }
     },
+    created() {
+      this.refreshUserInfo()
+    },
     methods: {
       routeTo: function(path) {
         this.$router.push({
@@ -40,17 +43,18 @@
           replace: true
         })
       },
-      logout: function(){
-        window.localStorage.clear('token')
-        window.localStorage.clear('userInfo')
+      logout: function() {
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('userInfo')
         window.localStorage.setItem('toLogin', this.$route.path)
+        console.log(window.localStorage.getItem('toLogin'))
         this.$router.push({
           path: "/login",
           replace: true
         })
       },
-      refreshUserInfo: function(){
-        this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+      refreshUserInfo: function() {
+        this.userInfo = JSON.parse(window.localStorage.getItem('userInfo')) ? JSON.parse(window.localStorage.getItem('userInfo')) : {}
       }
     }
   }

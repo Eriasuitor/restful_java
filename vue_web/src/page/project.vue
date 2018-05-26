@@ -8,8 +8,9 @@
             <div class="active section">{{project.name}}</div>
         </div>
         <div class="ui image icon right floated">
-            <i class="circular edit outline link icon" @click="editProjectEvent()"></i>
-            <i class="circular delete link icon" @click="deleteProject()"></i>
+            <i :title="project.status === 'Created'?'开始项目开发进程': '结束项目'" v-if="userInfo.id === project.managerID" :class="['circular','power','link','icon',{'red': project.status === 'Processing'}]" @click="changeStatus()"></i>
+            <i title="删除项目" v-if="userInfo.id === project.managerID" class="circular delete link icon" @click="deleteProject()"></i>
+            <i title="编辑项目" class="circular edit outline link icon" @click="editProjectEvent()"></i>
         </div>
         <h3 class="ui dividing header">{{project.name}}
             <div class="sub header">{{project.description}}</div>
@@ -21,7 +22,7 @@
                 <div class="ui blue image label"><img :src="project.staff.image"> {{project.staff.name}}
                     <div class="detail">负责人</div>
                 </div>
-                <i class="small circular edit outline link icon editManager popupTriger"></i>
+                <i v-show="userInfo.id === project.managerID" class="small circular edit outline link icon editManager popupTriger"></i>
                 <div class="ui flowing popup top left transition hidden">
                     <div class="ui divided center aligned grid">
                         <div class="column">
@@ -39,7 +40,10 @@
                 </div>
             </div>
     
-            <p>日期：{{formatDate(project.startDate)}} 至 {{formatDate(project.endDate)}} 代码库：{{project.url}}</p>
+            <p>日期：{{formatDate(project.startDate)}} 至 {{formatDate(project.endDate)}} 
+                <span v-if="project.ur">代码库：<a :href="project.url">{{project.url}}</a></span>
+                状态：{{project.status}}
+            </p>
     
             <div class="ui">
                 <div class="ui statistics">
@@ -58,14 +62,14 @@
                         <div class="label">费用产生</div>
                     </div>
                     <div class="statistic">
-                        <div class="value">{{project.staffList? project.staffList.length: 0}}</div>
+                        <div class="value">{{project.staffList.length === 0? 0: project.staffList.length + 1}}</div>
                         <div class="label">参与人数</div>
                     </div>
                 </div>
-                <div class="ui image label" v-for="staff in project.staffList" v-if="staff.id != project.managerID" :key="'staff' + staff.id" @click="removeParticipant(staff.id)"><img :src="staff.image"> {{staff.name}}
-                    <i class="delete icon"></i>
+                <div class="ui image label" v-for="staff in project.staffList" :key="'staff' + staff.id"><img :src="staff.image"> {{staff.name}}
+                    <i v-show="userInfo.id === project.managerID" class="delete icon" @click="removeParticipant(staff.id,staff.name)"></i>
                 </div>
-                <i class="small circular add user link icon addParticipant popupTriger"></i>
+                <i v-show="userInfo.id === project.managerID" class="small circular add user link icon addParticipant popupTriger"></i>
                 <div class="ui flowing popup top left transition hidden">
                     <div class="ui divided center aligned grid">
                         <div class="column">
@@ -96,31 +100,31 @@
                 </thead>
                 <tbody>
                     <template v-for="phase in phases">
-                                    <tr :key="'pha' + phase.id">
-                                        <td :rowspan="phase.subtaskList.length + 2">{{phase.name}}
-                                            <i class="small circular edit outline link icon"></i>
-                                        </td>
-                                    </tr>
-                                    <tr v-for="subtask in phase.subtaskList" :key="'sub' + subtask.id">
-                                        <td>
-                                            <a class="link" @click="routeTo(project.id + '/subtasks/' + subtask.id)">{{subtask.name}}</a>
-                                        </td>
-                                        <td>
-                                            <div class="ui progress" :id="'pro' + subtask.id">
-                                                <div class="bar">
-                                                    <div class="progress"></div>
+                                        <tr :key="'pha' + phase.id">
+                                            <td :rowspan="phase.subtaskList.length + 2">{{phase.name}}
+                                                <i class="small circular edit outline link icon"></i>
+                                            </td>
+                                        </tr>
+                                        <tr v-for="subtask in phase.subtaskList" :key="'sub' + subtask.id">
+                                            <td>
+                                                <a class="link" @click="routeTo(project.id + '/subtasks/' + subtask.id)">{{subtask.name}}</a>
+                                            </td>
+                                            <td>
+                                                <div class="ui progress" :id="'pro' + subtask.id">
+                                                    <div class="bar">
+                                                        <div class="progress"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a v-for="(item, index) in dateList" :key="subtask.id + index" :title="'开始于' + formatDate(subtask.startDate) + '，结束于' + formatDate(subtask.endDate)" :class="{ 'ui': true, 'circular': true, 'label': true,'green':subtask.completed === 100, 'red': item >= new Date(subtask.startDate) && (item <= new Date(subtask.endDate) && setRed(subtask.id) || redMap[subtask.id] == undefined && setRed(subtask.id))}">{{item.getMonth() + '.' + item.getDate()}}</a>
-                                        </td>
-                                    </tr>
-                                    <tr :key="'subAdd' + phase.id">
-                                        <td>
-                                            <i class="small circular plus link icon" @click="newSubtaskEvent(phase.id, phase.name)"></i>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                <a v-for="(item, index) in dateList" :key="subtask.id + index" :title="'开始于' + formatDate(subtask.startDate) + '，结束于' + formatDate(subtask.endDate)" :class="{ 'ui': true, 'circular': true, 'label': true,'green':subtask.completed === 100, 'red': item >= new Date(subtask.startDate) && (item <= new Date(subtask.endDate) && setRed(subtask.id) || redMap[subtask.id] == undefined && setRed(subtask.id))}">{{item.getMonth() + '.' + item.getDate()}}</a>
+                                            </td>
+                                        </tr>
+                                        <tr :key="'subAdd' + phase.id">
+                                            <td>
+                                                <i class="small circular plus link icon" @click="newSubtaskEvent(phase.id, phase.name)"></i>
+                                            </td>
+                                        </tr>
 </template>
                 </tbody>
             </table>
@@ -132,7 +136,7 @@
             </div>
             <div class="content">
                 <form class="ui form">
-                    <div class="field">
+                    <div class="field required">
                         <label>阶段任务</label>
                         <input type="text" v-model="phase.name">
                     </div>
@@ -141,7 +145,7 @@
                         <textarea rows="6" maxlength="800" v-model="phase.description"></textarea>
                     </div>
 
-                    <div class="fields">
+                    <div class="fields required">
                         <div class="eight wide field">
                             <label>
                                 负责人
@@ -153,14 +157,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="fields">
+                    <div class="fields required">
                         <div class="eight wide field">
                             <label>
                                 开始时间
                             </label>
-                            <input type="date" v-model="phase.startDate">
+                            <input type="date"  v-model="phase.startDate">
                         </div>
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 结束时间
                             </label>
@@ -173,7 +177,7 @@
                 <div class="ui red deny button">
                     取消
                 </div>
-                <div class="ui positive right button" @click="newPhase">
+                <div class="ui positive right button">
                     新建
                 </div>
             </div>
@@ -185,7 +189,7 @@
             </div>
             <div class="content">
                 <form class="ui form">
-                    <div class="field">
+                    <div class="field required">
                         <label>任务</label>
                         <input type="text" v-model="subtask.name">
                     </div>
@@ -195,7 +199,7 @@
                     </div>
 
                     <div class="fields">
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 负责人
                             </label>
@@ -205,7 +209,7 @@
                                 <div class="default text"></div>
                             </div>
                         </div>
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 分配于
                             </label>
@@ -215,10 +219,7 @@
                                 <div class="default text"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="fields">
-
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 阶段
                             </label>
@@ -230,24 +231,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="eight wide field">
-                            <label>
-                                预计用时
-                            </label>
-                            <div class="ui right labeled input">
-                                <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="subtask.requiredTime">
-                                <div class="ui basic label">小时 </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="fields">
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 开始时间
                             </label>
-                            <input type="date" v-model="subtask.startDate">
+                            <input type="date" :min="startDate" v-model="subtask.startDate">
                         </div>
-                        <div class="eight wide field">
+                        <div class="eight wide field required">
                             <label>
                                 结束时间
                             </label>
@@ -260,7 +252,7 @@
                 <div class="ui red deny button">
                     取消
                 </div>
-                <div class="ui positive right button" @click="addSubtask">
+                <div class="ui positive right button">
                     新增
                 </div>
             </div>
@@ -320,13 +312,11 @@
 </template>
 
 <script>
-    import ProjectModal from '../components/ProjectModal'
     export default {
-        components: {
-            ProjectModal
-        },
+        components: {},
         data() {
             return {
+                staffExcept: [],
                 sq: null,
                 iterval: 5,
                 userId: 2,
@@ -340,14 +330,15 @@
                 sub_phaseId: 0,
                 phaseName: 0,
                 project: {
-                    name: '载入标题中...',
-                    description: '载入描述信息中...',
+                    name: '载入中...',
+                    description: '载入中...',
                     staff: {},
                     startDate: 0,
                     endDate: 0,
                     completed: 0,
                     timeCost: 0,
-                    economicCOst: 0
+                    economicCost: 0,
+                    staffList: []
                 },
                 dateNum: 0,
                 dateList: [],
@@ -361,6 +352,8 @@
         created() {
             if (!window.localStorage.getItem('token') || !window.localStorage.getItem('userInfo')) {
                 window.localStorage.setItem('toLogin', this.$route.path)
+                window.localStorage.removeItem('token')
+                window.localStorage.removeItem('userInfo')
                 this.$router.push({
                     path: '/login',
                     replace: true
@@ -371,11 +364,25 @@
                 this.refreshPhases()
                 if (this.project.id === undefined) {
                     this.$api.get(
-                        this.$apiUrl + '/projects/' + this.$route.params.id,
+                        this.$apiUrl + '/projects/' + this.$route.params.id + "?token=" + this.token,
                         null,
                         data => {
-                            this.project = data.project
-                            this.getDateList()
+                            if (data.responseCode === 401) {
+                                window.localStorage.setItem('toLogin', this.$route.path)
+                                window.localStorage.removeItem('token')
+                                window.localStorage.removeItem('userInfo')
+                                this.$router.push({
+                                    path: '/login',
+                                    replace: true
+                                })
+                            } else {
+                                if (data.successful) {
+                                    this.project = data.project
+                                    this.getDateList()
+                                } else {
+                                    window.alert(data.information)
+                                }
+                            }
                         }
                     )
                 } else {
@@ -412,60 +419,89 @@
         },
         methods: {
             deleteProject: function() {
-                this.$api.delete(
-                    this.$apiUrl +
-                    '/projects/' +
-                    this.project.id,
-                    null,
-                    data => {
-                        window.alert(data.information)
-                        if (data.successful) {
-                            this.$router.push('/projects')
-                        }
-                    })
-            },
-            removeParticipant: function(staffId) {
-                console.log(
-                    this.$apiUrl +
-                    '/projects/' +
-                    this.$route.params.id +
-                    '/participants?sId=' +
-                    staffId
-                )
-                this.$api.delete(
-                    this.$apiUrl +
-                    '/projects/' +
-                    this.$route.params.id +
-                    '/participants?sId=' +
-                    staffId,
-                    null,
-                    data => {
-                        window.alert(data.information)
-                        if (data.successful) {
-                            for (var i = 0; i < this.project.staffList.length; i++) {
-                                if (this.project.staffList[i].id === staffId) {
-                                    this.project.staffList.splice(i, 1)
+                if (window.confirm('你确定要删除此项目吗？')) {
+                    this.$api.delete(
+                        this.$apiUrl +
+                        '/projects/' +
+                        this.project.id + "?token=" + this.token,
+                        null,
+                        data => {
+                            if (data.responseCode === 401) {
+                                window.localStorage.setItem('toLogin', this.$route.path)
+                                window.localStorage.removeItem('token')
+                                window.localStorage.removeItem('userInfo')
+                                this.$router.push({
+                                    path: '/login',
+                                    replace: true
+                                })
+                            } else {
+                                if (data.successful) {
+                                    this.$router.push('/projects')
+                                } else {
+                                    window.alert(data.information)
                                 }
+                                window.alert(data.information)
                             }
+                        })
+                }
+    
+            },
+            removeParticipant: function(staffId, name) {
+                if (window.confirm(`你确定要从参与者中移除 ${name} 吗？`)) {
+                    this.$api.delete(
+                        this.$apiUrl +
+                        '/projects/' +
+                        this.$route.params.id +
+                        '/participants?sId=' +
+                        staffId + "&token=" + this.token,
+                        null,
+                        data => {
+                            if (data.responseCode === 401) {
+                                window.localStorage.setItem('toLogin', this.$route.path)
+                                window.localStorage.removeItem('token')
+                                window.localStorage.removeItem('userInfo')
+                                this.$router.push({
+                                    path: '/login',
+                                    replace: true
+                                })
+                            } else {
+                                if (data.successful) {
+                                    this.project = data.object
+                                }
+                                window.alert(data.information)
+                            }
+    
                         }
-                    }
-                )
+                    )
+                }
             },
             modifyManager: function() {
                 var projectToPut = {}
                 projectToPut.managerID = $('.dropdown.edit_manger').dropdown(
                     'get value')
                 projectToPut.id = this.project.id
-                projectToPut.lastEditUser = 'VUE'
+                if (!projectToPut.managerID) {
+                    window.alert('请指定新的负责人')
+                    return false
+                }
                 this.$api.put(
-                    this.$apiUrl + '/projects/' + this.project.id + '/manager',
+                    this.$apiUrl + '/projects/' + this.project.id + '/manager?token=' + this.token,
                     projectToPut,
                     data => {
-                        if (data.successful) {
-                            this.project.managerID = data.project.managerID
-                            this.project.staff = data.project.staff
+                        if (data.responseCode === 401) {
+                            window.localStorage.setItem('toLogin', this.$route.path)
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
+                            this.$router.push({
+                                path: '/login',
+                                replace: true
+                            })
+                        } else {
+                            if (data.successful) {
+                                this.project = data.project
+                            }
+                            window.alert(data.information)
                         }
-                        window.alert(data.information)
                     }
                 )
             },
@@ -474,17 +510,28 @@
                 participant.projectId = this.project.id
                 participant.staffId = $('.dropdown.add_participant').dropdown(
                     'get value')
-                participant.role = 'Developer'
-                participant.insertUser = 1
-                participant.lastEditUser = 1
+                if (!participant.staffId) {
+                    window.alert('请选择需要添加的参与者')
+                    return false
+                }
                 this.$api.post(
-                    this.$apiUrl + '/projects/' + this.project.id + '/participants',
+                    this.$apiUrl + '/projects/' + this.project.id + '/participants?token=' + this.token,
                     participant,
                     data => {
-                        if (data.successful) {
-                            this.project.staffList = data.results
+                        if (data.responseCode === 401) {
+                            window.localStorage.setItem('toLogin', this.$route.path)
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
+                            this.$router.push({
+                                path: '/login',
+                                replace: true
+                            })
+                        } else {
+                            if (data.successful) {
+                                this.project = data.object
+                            }
+                            window.alert(data.information)
                         }
-                        window.alert(data.information)
                     }
                 )
             },
@@ -513,7 +560,8 @@
                     data => {
                         if (data.responseCode === 401) {
                             window.localStorage.setItem('toLogin', this.$route.path)
-                            console.log(this.$route.path)
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
                             this.$router.push({
                                 path: '/login',
                                 replace: true
@@ -521,7 +569,6 @@
                         } else {
                             if (data.successful) {
                                 this.project = data.object
-                                console.log(data.object)
                                 this.projectToPut = {}
                             }
                             window.alert(data.information)
@@ -589,14 +636,28 @@
                     '/projects/' +
                     this.$route.params.id +
                     '/phases?staffid=' +
-                    this.userId,
+                    this.userId + '&token=' + this.token,
                     null,
                     data => {
-                        this.phases = data.phaseList
-                        if (this.phases != null) {
-                            setTimeout(() => {
-                                this.refreshProgressBar()
-                            }, 20)
+                        if (data.responseCode === 401) {
+                            window.localStorage.setItem('toLogin', this.$route.path)
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
+                            this.$router.push({
+                                path: '/login',
+                                replace: true
+                            })
+                        } else {
+                            if (data.successful) {
+                                this.phases = data.phaseList
+                                if (this.phases != null) {
+                                    setTimeout(() => {
+                                        this.refreshProgressBar()
+                                    }, 20)
+                                }
+                            } else {
+                                window.alert(data.information)
+                            }
                         }
                     }
                 )
@@ -623,18 +684,55 @@
             },
             newPhase: function() {
                 this.phase.managerID = $('.dropdown.phase_manger').dropdown('get value')
+                if (!this.phase.name) {
+                    window.alert('请填写阶段名称')
+                    return false
+                }
+                if (!this.phase.managerID) {
+                    window.alert('请选择负责人')
+                    return false
+                }
+                if (!this.phase.startDate) {
+                    window.alert('请填写开始时间');
+                    return false;
+                }
+                if (new Date(this.phase.startDate) < new Date(this.project.startDate)) {
+                    window.alert(`阶段任务开始时间不得早于项目开始时间，项目开始时间为: ${this.$utils.formatDate(this.project.startDate)}`);
+                    return false;
+                }
+                if (!this.phase.endDate) {
+                    window.alert('请填写项目结束时间');
+                    return false;
+                }
+                if (new Date(this.phase.endDate) > new Date(this.project.endDate)) {
+                    window.alert(`阶段任务结束不得晚于项目结束时间,项目结束时间为: ${this.$utils.formatDate(this.project.endDate)}`);
+                    return false;
+                }
+                if (this.phase.startDate > this.phase.endDate) {
+                    window.alert('结束时间不得早于开始时间');
+                    return false;
+                }
                 this.$api.post(
                     this.$apiUrl +
                     '/projects/' +
                     this.$route.params.id +
-                    '/phases?staffid=' +
-                    this.userId,
+                    '/phases?token=' + this.token,
                     this.phase,
                     data => {
-                        if (data.successful) {
-                            this.refreshPhases()
+                        if (data.responseCode === 401) {
+                            window.localStorage.setItem('toLogin', this.$route.path)
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
+                            this.$router.push({
+                                path: '/login',
+                                replace: true
+                            })
+                        } else {
+                            if (data.successful) {
+                                this.refreshPhases()
+                            }
+                            window.alert(data.information)
                         }
-                        window.alert(data.information)
                     }
                 )
             },
@@ -647,23 +745,65 @@
                 )
                 this.subtask.phaseID = $('.dropdown.subtask_phase').dropdown('get value')
                 if (this.subtask.phaseID === '') this.subtask.phaseID = this.sub_phaseId
-                this.subtask.insertUser = 'VUE'
-                this.subtask.lastEditUser = 'VUE'
-                this.subtask.status = 'Processing'
+    
+                if (!this.subtask.name) {
+                    window.alert('请填写阶段名称')
+                    return false
+                }
+                if (!this.subtask.managerID) {
+                    window.alert('请选择负责人')
+                    return false
+                }
+                if (!this.subtask.assignedID) {
+                    window.alert('请选择分配于谁')
+                    return false
+                }
+                if (!this.subtask.startDate) {
+                    window.alert('请填写开始时间');
+                    return false;
+                }
+                let _phase = this.phases.find(_ => _.id = this.subtask.phaseID)
+                if (new Date(_phase.startDate) > new Date(this.subtask.startDate)) {
+                    window.alert('子任务的开始时间不得早于所属阶段任务的开始时间，当前所属阶段任务的开始时间为：' + this.$utils.formatDate(_phase.startDate));
+                    return false;
+                }
+                if (!this.subtask.endDate) {
+                    window.alert('请填写项目结束时间');
+                    return false;
+                }
+                if (new Date(_phase.endDate) < new Date(this.subtask.endDate)) {
+                    window.alert('子任务的结束时间不得晚于所属阶段任务的结束时间，当前所属阶段任务的结束时间为：' + this.$utils.formatDate(_phase.endDate));
+                    return false;
+                }
+                if (this.subtask.startDate > this.subtask.endDate) {
+                    window.alert('结束时间不得早于开始时间');
+                    return false;
+                }
+    
                 this.$api.post(
                     this.$apiUrl +
                     '/projects/' +
                     this.$route.params.id +
-                    '/subtasks?staffid=' +
-                    this.userId,
+                    '/subtasks?token=' + this.token,
                     this.subtask,
                     data => {
-                        if (data.successful) {
-                            this.refreshPhases()
+                        if (data.responseCode === 401) {
+                            window.localStorage.setItem('toLogin', this.$route.path)
+                            window.localStorage.removeItem('token')
+                            window.localStorage.removeItem('userInfo')
+                            this.$router.push({
+                                path: '/login',
+                                replace: true
+                            })
+                        } else {
+                            if (data.successful) {
+                                this.refreshPhases()
+                            }
+                            window.alert(data.information)
                         }
-                        window.alert(data.information)
                     }
                 )
+                return true
             },
             newPhaseEvent: function() {
                 $('.phase')
@@ -672,7 +812,10 @@
                         blurring: false,
                         inverted: false,
                         closable: false,
-                        context: 'div2'
+                        context: 'div2',
+                        onApprove: () => {
+                            return this.newPhase()
+                        }
                     })
                     .modal('show')
             },
@@ -685,7 +828,10 @@
                         blurring: false,
                         inverted: false,
                         closable: false,
-                        context: 'div2'
+                        context: 'div2',
+                        onApprove: () => {
+                            return this.addSubtask()
+                        }
                     })
                     .modal('show')
             },
@@ -729,7 +875,16 @@
             )
             $('.staffDropdown').dropdown({
                 apiSettings: {
-                    url: this.$apiUrl + '/staff?name={query}'
+                    url: this.$apiUrl + '/staff?name={query}&token=' + this.token,
+                    // onResponse: res => {
+                    //     for (let i = 0; i < res.results.length; i++) {
+                    //         if (this.staffExcept.find(_ => _ === res.results[i].id)) {
+                    //             res.results.splice(i, 1)
+                    //             i--
+                    //         }
+                    //     }
+                    //     return resp
+                    // },
                 },
                 maxSelections: 1
             })
@@ -751,9 +906,9 @@
 
 <style scoped>
     /* .scrollY {
-            overflow-x: scroll;
-            overflow-y: hidden;
-            } */
+                                                                                                    overflow-x: scroll;
+                                                                                                    overflow-y: hidden;
+                                                                                                    } */
     
     .link {
         color: rgba(0, 0, 0, 0.7);

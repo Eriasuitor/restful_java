@@ -42,6 +42,8 @@ public class SubtasksDao {
 	}
 
 	public List<Subtask> querySubtasks(List<Integer> phaseIDList) {
+		if (phaseIDList.size() == 0)
+			return null;
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = DBJIRAAccess.getSqlSession();

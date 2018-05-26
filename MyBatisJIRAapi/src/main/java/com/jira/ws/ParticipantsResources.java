@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import com.jira.bean.Participant;
 import com.jira.entity.GeneralResponse;
+import com.jira.services.LoginService;
 import com.jira.services.ParticipantsService;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -25,7 +26,12 @@ public class ParticipantsResources {
 	public Response addParticipant(@QueryParam("token") String token, Participant participant) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setResults(new ParticipantsService().addParticipant(participant));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setObject(new ParticipantsService().addParticipant(participant, staffid));
 			resp.setInformation("添加成功");
 		} catch (Exception e) {
 			resp.setSuccessful(false);
@@ -39,7 +45,12 @@ public class ParticipantsResources {
 			@QueryParam("sId") int sId) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			new ParticipantsService().deleteParticipant(pId, sId);
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setObject(new ParticipantsService().deleteParticipant(pId, sId, staffid));
 			resp.setInformation("删除成功");
 		} catch (Exception e) {
 			// TODO: handle exception

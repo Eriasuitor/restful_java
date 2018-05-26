@@ -3,6 +3,10 @@ package com.jira.bean;
 import java.util.Date;
 
 public class Bug {
+	public enum Status {
+		Created, Processing, Resolved, Closed
+	}
+
 	private int id;
 	private int projectID;
 	private Project project;
@@ -11,7 +15,7 @@ public class Bug {
 	private String name;
 	private String description;
 	private int importance;
-	private String status;
+	private Status status;
 	private String origin;
 	private String source;
 	private String severity;
@@ -97,11 +101,11 @@ public class Bug {
 		this.importance = importance;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

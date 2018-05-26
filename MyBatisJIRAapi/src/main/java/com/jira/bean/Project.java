@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Project {
 	public enum Status {
-		Created, Proccessing, Closed
+		Created, Processing, Closed
 	}
 
 	private int id;

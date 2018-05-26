@@ -6,11 +6,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Subtask {
+	public enum Status {
+		Created, Processing, Closed
+	}
+
 	private int id;
 	private String name;
 	private String description;
 	private int phaseID;
-	private String status;
+	private Status status;
 	private int managerID;
 	private int assignedID;
 	private Date startDate;
@@ -18,9 +22,9 @@ public class Subtask {
 	private int requiredTime;
 	private int timeCost;
 	private int completed;
-	private String insertUser;
+	private int insertUser;
 	private Date insertDate;
-	private String lastEditUser;
+	private int lastEditUser;
 	private Date lastEditDate;
 
 	public int getId() {
@@ -55,11 +59,11 @@ public class Subtask {
 		this.phaseID = phaseID;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
@@ -119,11 +123,11 @@ public class Subtask {
 		this.completed = completed;
 	}
 
-	public String getInsertUser() {
+	public int getInsertUser() {
 		return insertUser;
 	}
 
-	public void setInsertUser(String insertUser) {
+	public void setInsertUser(int insertUser) {
 		this.insertUser = insertUser;
 	}
 
@@ -135,11 +139,11 @@ public class Subtask {
 		this.insertDate = insertDate;
 	}
 
-	public String getLastEditUser() {
+	public int getLastEditUser() {
 		return lastEditUser;
 	}
 
-	public void setLastEditUser(String lastEditUser) {
+	public void setLastEditUser(int lastEditUser) {
 		this.lastEditUser = lastEditUser;
 	}
 

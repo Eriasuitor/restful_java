@@ -30,4 +30,14 @@ public class PhasesDao {
 		}
 		return sqlSession.getMapper(IPhases.class).queryPhases(projectId);
 	}
+
+	public Phase queryPhasesById(int phaseId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sqlSession.getMapper(IPhases.class).queryPhasesById(phaseId);
+	}
 }

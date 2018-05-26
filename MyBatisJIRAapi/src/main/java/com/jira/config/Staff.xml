@@ -49,6 +49,14 @@
     SELECT * FROM staff WHERE id IN (SELECT StaffID FROM Participants WHERE ProjectID = #{id:INTEGER})
   </select>
   
+  <select id="queryStaffInfsByPhaseId" parameterType="int" resultMap="StaffResult">
+    SELECT * FROM staff WHERE id IN (SELECT StaffID FROM Participants WHERE ProjectID = (SELECT ProjectID FROM Phases WHERE id = #{id:INTEGER}))
+  </select>
+  
+  <select id="queryStaffInfsBySubId" parameterType="int" resultMap="StaffResult">
+    SELECT * FROM staff WHERE id IN (SELECT StaffID FROM Participants WHERE ProjectID = (SELECT ProjectID FROM Phases WHERE id = (SELECT PhaseId FROM Subtasks WHERE id = #{id:INTEGER})))
+  </select>
+  
   <select id="searchStaff" parameterType="String" resultMap="StaffResult">
     select * from staff 
 	<where>

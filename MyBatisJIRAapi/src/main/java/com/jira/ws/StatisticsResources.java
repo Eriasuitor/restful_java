@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import com.jira.entity.GeneralResponse;
 import com.jira.services.BugsService;
+import com.jira.services.LoginService;
 import com.jira.services.SubtasksService;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -21,10 +22,15 @@ public class StatisticsResources {
 
 	@GET
 	@Path("subtasks")
-	public Response querySubtasksByStaffID(@QueryParam("token") String token, @QueryParam("uId") int uId) {
+	public Response querySubtasksByStaffID(@QueryParam("token") String token) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setResults(new SubtasksService().querySubtasksByUId(uId));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setResults(new SubtasksService().querySubtasksByUId(staffid));
 		} catch (Exception e) {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
@@ -34,14 +40,19 @@ public class StatisticsResources {
 
 	@GET
 	@Path("bugs")
-	public Response getBugsByUId(@QueryParam("token") String token, @QueryParam("uId") int uId) {
+	public Response getBugsByUId(@QueryParam("token") String token) {
 		GeneralResponse resp = new GeneralResponse();
-		// try {
-		resp.setResults(new BugsService().getBugsByUId(uId));
-		// } catch (Exception e) {
-		// resp.setSuccessful(false);
-		// resp.setInformation(e.getMessage());
-		// }
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setResults(new BugsService().getBugsByUId(staffid));
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 

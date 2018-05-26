@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 import com.jira.bean.Log;
 import com.jira.entity.GeneralResponse;
+import com.jira.services.LoginService;
 import com.jira.services.LogsService;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -24,15 +25,31 @@ public class LogsResources {
 
 	@GET
 	public Response getLogsBySubId(@QueryParam("token") String token, @QueryParam("subId") int subId) {
-		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-				.entity(new GeneralResponse(new LogsService().getLogsBySubId(subId))).build();
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setResults(new LogsService().getLogsBySubId(subId, staffid));
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 
 	@POST
 	public Response addLog(@QueryParam("token") String token, Log log) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setEffectRows(new LogsService().addLog(log));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setEffectRows(new LogsService().addLog(log, staffid));
 			resp.setInformation("Log 成功");
 		} catch (Exception e) {
 			resp.setSuccessful(false);

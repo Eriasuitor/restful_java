@@ -6,20 +6,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Participant {
+	public enum Role {
+		Developer, Manager
+	}
+
 	private int id;
 	private int projectId;
 	private int staffId;
-	private String role;
-	private String insertUser;
+	private Role role;
+	private int insertUser;
 	private Date insertDate;
-	private String lastEditUser;
+	private int lastEditUser;
 	private Date lastEditDate;
 
 	public Participant() {
 
 	}
 
-	public Participant(int projectId, int staffId, String role) {
+	public Participant(int projectId, int staffId, Role role) {
 		this.projectId = projectId;
 		this.staffId = staffId;
 		this.role = role;
@@ -49,20 +53,24 @@ public class Participant {
 		this.staffId = staffId;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
-	public String getInsertUser() {
+	public int getInsertUser() {
 		return insertUser;
 	}
 
-	public void setInsertUser(String insertUser) {
+	public void setInsertUser(int insertUser) {
 		this.insertUser = insertUser;
+	}
+
+	public void setLastEditUser(int lastEditUser) {
+		this.lastEditUser = lastEditUser;
 	}
 
 	public Date getInsertDate() {
@@ -73,12 +81,8 @@ public class Participant {
 		this.insertDate = insertDate;
 	}
 
-	public String getLastEditUser() {
+	public int getLastEditUser() {
 		return lastEditUser;
-	}
-
-	public void setLastEditUser(String lastEditUser) {
-		this.lastEditUser = lastEditUser;
 	}
 
 	public Date getLastEditDate() {

@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import com.jira.bean.Subtask;
 import com.jira.entity.GeneralResponse;
+import com.jira.services.LoginService;
 import com.jira.services.SubtasksService;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -23,21 +24,40 @@ public class SubtasksResources {
 	@GET
 	@Path("{id}")
 	public Response querySubtaskWithStaffById(@QueryParam("token") String token, @PathParam("id") int subId) {
-		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-				.entity(new SubtasksService().querySubtasksWithStaff(subId)).build();
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setObject(new SubtasksService().querySubtasksWithStaff(subId, staffid));
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
 	}
 
-	@GET
-	public Response querySubtaskByProjectId(@QueryParam("token") String token, @PathParam("projectid") int pId) {
-		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-				.entity(new SubtasksService().querySubtasksWithStaff(pId)).build();
-	}
+	// @GET
+	// public Response querySubtaskByProjectId(@QueryParam("token") String token,
+	// @PathParam("projectid") int pId) {
+	// return
+	// Response.status(Response.Status.OK).header("Access-Control-Allow-Origin",
+	// "*")
+	// .entity(new SubtasksService().querySubtasksWithStaff(pId)).build();
+	// }
 
 	@POST
 	public Response addSubtask(@QueryParam("token") String token, Subtask subtask) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
-			resp.setEffectRows(new SubtasksService().addSubtask(subtask));
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setEffectRows(new SubtasksService().addSubtask(subtask, staffid));
 			resp.setInformation("添加成功");
 		} catch (Exception e) {
 			resp.setSuccessful(false);
