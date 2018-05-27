@@ -31,7 +31,7 @@
                             <div class="text">{{log.note}} </div>
                             <div class="actions">
                                 <!-- <a class="reply">编辑</a> -->
-                                <a class="save" @click="deleteLog(log.id)">删除</a>
+                                <!-- <a class="save" @click="deleteLog(log.id)">删除</a> -->
                             </div>
                         </div>
                     </div>
@@ -310,7 +310,6 @@
             postLog: function() {
                 this.log.assignedID = $('.dropdown.log_assign').dropdown('get value')
                 this.log.subtaskID = this.$route.params.subId
-                console.log(this.log)
     
                 if (!this.log.startDate) {
                     window.alert('请填写开始时间');
@@ -353,6 +352,7 @@
 
                             if (data.successful) {
                                 this.refreshLogs()
+                                this.refreshSubtasks()
                             }
                             window.alert(data.information)
                         }
