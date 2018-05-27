@@ -40,6 +40,15 @@ public class PhasesService {
 
 	}
 
+	public void deletePhase(int phaId, int userId) throws Exception {
+		Phase pha = new PhasesDao().queryPhasesById(phaId);
+		Project proj = new ProjectsDao().queryProjectByPhaseId(phaId);
+		if (pha.getManagerID() != userId && proj.getManagerID() != userId) {
+			throw new Exception("你不是该项目或者该阶段的负责人，无法删除该阶段任务。");
+		}
+		new PhasesDao().deletePhase(phaId);
+	}
+
 	public List<Phase> queryPhase(int projectId) {
 		List<Phase> phaseList = new PhasesDao().queryPhases(projectId);
 		List<Integer> phaseIdList = new ArrayList<Integer>();

@@ -34,13 +34,18 @@ public class BugsResources {
 	@POST
 	public Response addBug(@QueryParam("token") String token, Bug bug) {
 		GeneralResponse resp = new GeneralResponse();
-		// try {
-		resp.setEffectRows(new BugsService().addBug(bug));
-		resp.setInformation("提交成功");
-		// } catch (Exception e) {
-		// resp.setSuccessful(false);
-		// resp.setInformation(e.getMessage());
-		// }
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setEffectRows(new BugsService().addBug(bug, staffid));
+			resp.setInformation("提交成功");
+		} catch (Exception e) {
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
@@ -66,7 +71,7 @@ public class BugsResources {
 
 	@PUT
 	@Path("{id}")
-	public Response modifyStatus(@QueryParam("token") String token, @QueryParam("status") Bug.Status status) {
+	public Response modifyStatus(@QueryParam("token") String token, Bug bug) {
 		GeneralResponse resp = new GeneralResponse();
 		try {
 			int staffid = LoginService.getUserId(token);
@@ -74,12 +79,16 @@ public class BugsResources {
 				resp.setResponseCode(401);
 				throw new Exception("无效的Token");
 			}
-
+			resp.setObject(new BugsService().modifyStatus(bug, staffid));
+			resp.setInformation("更改状态成功。");
 		} catch (Exception e) {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
 		}
-		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(resp).build();
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").entity(resp).build();
 	}
 	// @DELETE
 	// @Path("{id}")

@@ -22,7 +22,6 @@ import com.sun.jersey.spi.resource.Singleton;
 @Path("login")
 @Singleton
 public class LoginResources {
-
 	@POST
 	public Response login(LoginInfo loginInfo) {
 		GeneralResponse resp = new GeneralResponse();

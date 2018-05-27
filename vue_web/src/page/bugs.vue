@@ -4,14 +4,15 @@
     <div class="ui segment">
       <a class="ui blue ribbon label"> 分配于我 </a>
       <button class="ui labeled icon button right floated" @click="submitBugEvent">
-               <i class="plus icon"></i>提交新 Bug
-          </button>
+                                 <i class="plus icon"></i>提交新 Bug
+                            </button>
       <div class="ui clearing divider"></div>
       <div class="ui cards">
-        <div class="card" v-for="_bug in bugs" :key="_bug.id" v-if="_bug.status != 'closed'">
+        <div v-if="!bugs.find(_ => _.assignedID === userInfo.id && _.insertUser != userInfo.id && _.status != 'Resolved')">暂无数据</div>
+        <div class="card" v-for="_bug in bugs.filter(_ => _.assignedID === userInfo.id && _.insertUser != userInfo.id  && _.status != 'Resolved' )" :key="_bug.id">
           <!-- <span class="ui right corner label">
-                    <i class="warning red icon"></i>
-                  </span> -->
+                                      <i class="warning red icon"></i>
+                                    </span> -->
           <div class="content">
             <div class="header">{{_bug.name}}
               <div class="note" v-if="_bug.project != null">来自项目：{{_bug.project.name}}
@@ -38,24 +39,35 @@
             <div class="ui button" v-if="_bug.assignedId === userId"><i class="add icon"></i> Close </div>
             <div class="ui button" v-else-if="_bug.status === 'created'"><i class="add icon"></i>打开</div>
             <!-- <div class="ui button disabled" v-else><i class="doctor icon"></i>修复中</div> -->
-            <div class="ui animated fade button " tabindex="0">
-              <div class="visible content"><i class="hand peace icon"></i>{{_bug.status}}</div>
+            <div class="ui animated fade button " @click="modifyStatus(_bug)" tabindex="0" v-show="_bug.status === 'Created' || _bug.status === 'Recreated'">
+              <div class="visible content"><i class="bug icon"></i>{{_bug.status}}</div>
               <div class="hidden content">打开</div>
               <!-- <i class="doctor icon"></i> -->
             </div>
-            <div class="ui button green" @click="resolveEvent"><i class="child icon"></i>解决</div>
+            <div class="ui animated fade button disabled" @click="modifyStatus(_bug)" tabindex="0" v-show="_bug.status === 'Processing'">
+              <div class="visible content"><i class="doctor icon"></i>{{_bug.status}}</div>
+              <div class="hidden content"></div>
+              <!-- <i class="doctor icon"></i> -->
+            </div>
+            <div @click="modifyStatus(_bug)" :class="['ui', 'animated', 'fade', 'button', {'disabled': _bug.insertUser != userId.id}]" tabindex="0" v-show="_bug.status === 'Resolved'">
+              <div class="visible content"><i class="checkmark icon"></i>{{_bug.status}}</div>
+              <div class="hidden content">重新创建</div>
+              <!-- <i class="doctor icon"></i> -->
+            </div>
+            <div :class="['ui', 'button', 'green',{'disabled': _bug.status != 'Processing'}]" @click="resolveEvent(_bug)"><i class="child icon"></i>解决</div>
           </div>
         </div>
       </div>
     </div>
     <div class="ui segment">
-      <a class="ui green ribbon label"> 现已解决 </a>
+      <a class="ui green ribbon label"> 我提交的 </a>
       <div class="ui clearing divider"></div>
       <div class="ui cards">
-        <div class="card" v-for="_bug in bugs" :key="_bug.id" v-if="_bug.status == 'closed'">
+        <div v-if="!bugs.find(_ => _.insertUser === userInfo.id )">暂无数据</div>
+        <div class="card" v-for="_bug in bugs.filter(_ => _.insertUser === userInfo.id )" :key="_bug.id">
           <!-- <span class="ui right corner label">
-                    <i class="warning red icon"></i>
-                  </span> -->
+                                      <i class="warning red icon"></i>
+                                    </span> -->
           <div class="content">
             <div class="header">{{_bug.name}}
               <div class="note" v-if="_bug.project != null">来自项目：{{_bug.project.name}}
@@ -79,7 +91,25 @@
             </div>
           </div>
           <div class="ui bottom attached buttons">
-            <div class="ui button disabled"><i class="doctor icon"></i>已关闭</div>
+            <div class="ui button" v-if="_bug.assignedId === userId"><i class="add icon"></i> Close </div>
+            <div class="ui button" v-else-if="_bug.status === 'created'"><i class="add icon"></i>打开</div>
+            <!-- <div class="ui button disabled" v-else><i class="doctor icon"></i>修复中</div> -->
+            <div class="ui animated fade button " @click="modifyStatus(_bug)" tabindex="0" v-show="_bug.status === 'Created' || _bug.status === 'Recreated'">
+              <div class="visible content"><i class="bug icon"></i>{{_bug.status}}</div>
+              <div class="hidden content">打开</div>
+              <!-- <i class="doctor icon"></i> -->
+            </div>
+            <div class="ui animated fade button disabled" @click="modifyStatus(_bug)" tabindex="0" v-show="_bug.status === 'Processing'">
+              <div class="visible content"><i class="doctor icon"></i>{{_bug.status}}</div>
+              <div class="hidden content"></div>
+              <!-- <i class="doctor icon"></i> -->
+            </div>
+            <div @click="modifyStatus(_bug)" :class="['ui', 'animated', 'fade', 'button']" tabindex="0" v-show="_bug.status === 'Resolved'">
+              <div class="visible content"><i class="checkmark icon"></i>{{_bug.status}}</div>
+              <div class="hidden content">重新创建</div>
+              <!-- <i class="doctor icon"></i> -->
+            </div>
+            <div :class="['ui', 'button', 'green',{'disabled': _bug.status != 'Processing'}]" @click="resolveEvent(_bug)"><i class="child icon"></i>解决</div>
           </div>
         </div>
       </div>
@@ -182,7 +212,7 @@
         <div class="ui red deny button">
           取消
         </div>
-        <div class="ui positive right button" @click="submitBug">
+        <div class="ui positive right button">
           提交
         </div>
       </div>
@@ -198,17 +228,17 @@
       </div>
       <div class="content">
         <form class="ui form">
-          <div class="four wide field">
-            <label>分配于</label>
-            <div class="ui fluid multiple search selection dropdown resolve_assign staffDropdown">
-              <input type="hidden" name="receipt">
-              <i class="dropdown icon"></i>
-              <div class="default text"></div>
-            </div>
-          </div>
+          <!-- <div class="four wide field">
+              <label>分配于</label>
+              <div class="ui fluid multiple search selection dropdown resolve_assign staffDropdown">
+                <input type="hidden" name="receipt">
+                <i class="dropdown icon"></i>
+                <div class="default text"></div>
+              </div>
+            </div> -->
           <div class="field">
             <label>描述</label>
-            <textarea rows="6" maxlength="800" v-model="resolve.description"></textarea>
+            <textarea rows="6" maxlength="800" v-model="resolve.note"></textarea>
           </div>
         </form>
       </div>
@@ -264,6 +294,43 @@
       }
     },
     methods: {
+      modifyStatus: function(_bug) {
+        if (window.confirm('你确定要改变此Bug的状态吗？')) {
+          let bugToPut = {
+            id: _bug.id,
+            note: _bug.note,
+            status: _bug.status
+          }
+          this.$api.put(
+            this.$apiUrl + `/projects/${_bug.project.id}/bugs/${_bug.id}?token=${this.token}`,
+            bugToPut,
+            data => {
+              if (data.responseCode === 401) {
+                window.localStorage.removeItem('token')
+                window.localStorage.removeItem('userInfo')
+                this.$router.push({
+                  path: '/login',
+                  replace: true
+                })
+              } else {
+                if (data.successful) {
+                  for (let _ of this.bugs) {
+                    // if(_.id = _bug.id){
+                    //    _.status =  data.object.status
+                    //    _.note =  data.object.note
+                    //    _.lasEditStaff =  data.object.lasEditStaff
+                    //    console.log(_)
+                    //    break;
+                    // }
+                    this.getBugs()
+                  }
+                }
+                window.alert(data.information)
+              }
+            }
+          )
+        }
+      },
       getBugs() {
         this.$api.get(
           this.$apiUrl + '/statistics/bugs?token=' + this.token,
@@ -286,14 +353,44 @@
           }
         )
       },
-      resolveEvent: function() {
+      resolveBug: function(_bug) {
+        this.resolve.id = _bug.id
+        this.resolve.status = _bug.status
+        if (!this.resolve.note) {
+          window.alert('请填写说明信息.')
+          return false
+        }
+        this.$api.put(
+          this.$apiUrl + `/projects/${_bug.project.id}/bugs/${_bug.id}?token=${this.token}`,
+          this.resolve,
+          data => {
+            if (data.responseCode === 401) {
+              window.localStorage.removeItem('token')
+              window.localStorage.removeItem('userInfo')
+              this.$router.push({
+                path: '/login',
+                replace: true
+              })
+            } else {
+              if (data.successful) {
+                this.getBugs()
+              }
+              window.alert(data.information)
+            }
+          }
+        )
+      },
+      resolveEvent: function(_bug) {
         $('.resolve')
           .modal({
             centered: true,
             blurring: false,
             inverted: false,
             closable: false,
-            context: 'div2'
+            context: 'div2',
+            onApprove: () => {
+              return this.resolveBug(_bug)
+            }
           })
           .modal('show')
       },
@@ -304,23 +401,69 @@
             blurring: false,
             inverted: false,
             closable: false,
-            context: 'div2'
+            context: 'div2',
+            onApprove: () => {
+              return this.submitBug()
+            }
           })
           .modal('show')
       },
       submitBug: function() {
         this.bug.projectID = $('.projectDropdown').dropdown('get value')
         this.bug.subtaskID = $('.subtaskDropdown').dropdown('get value')
-        this.bug.status = 'Opened'
-        this.bug.origin = $('.origin').dropdown('get value')
         this.bug.source = $('.source').dropdown('get value')
+        this.bug.origin = $('.origin').dropdown('get value')
         this.bug.severity = $('.severity').dropdown('get value')
         this.bug.priority = $('.priority').dropdown('get value')
-        this.bug.assignedID = 2
-        this.$api.post(this.$apiUrl + '/projects/0/bugs',
+        this.bug.source = this.bug.source ? this.bug.source : '编码'
+        this.bug.origin = this.bug.source ? this.bug.source : '测试阶段'
+        this.bug.severity = this.bug.source ? this.bug.source : 'Major'
+        this.bug.priority = this.bug.source ? this.bug.source : 'Normal'
+  
+        if (!this.bug.name || !this.bug.name.trim()) {
+          window.alert('请填写Bug名称.')
+          return false
+        }
+        if (!this.bug.projectID) {
+          window.alert('请选择所属项目.')
+          return false
+        }
+        if (!this.bug.subtaskID) {
+          window.alert('请选择所属子任务.')
+          return false
+        }
+        if (!this.bug.source || !this.bug.source.trim()) {
+          window.alert('源于 为非空字段.')
+          return false
+        }
+        if (!this.bug.origin || !this.bug.origin.trim()) {
+          window.alert('发现于 为非空字段.')
+          return false
+        }
+        if (!this.bug.severity || !this.bug.severity.trim()) {
+          window.alert('严重程度 为非空字段.')
+          return false
+        }
+        if (!this.bug.priority || !this.bug.priority.trim()) {
+          window.alert('优先级 为非空字段.')
+          return false
+        }
+        this.$api.post(this.$apiUrl + '/projects/0/bugs?token=' + this.token,
           this.bug,
           data => {
-            console.log(data.information)
+            if (data.responseCode === 401) {
+              window.localStorage.removeItem('token')
+              window.localStorage.removeItem('userInfo')
+              this.$router.push({
+                path: '/login',
+                replace: true
+              })
+            } else {
+              if (data.successful) {
+                this.getBugs()
+              }
+              window.alert(data.information)
+            }
           })
       },
       subtaskDropdown: function() {

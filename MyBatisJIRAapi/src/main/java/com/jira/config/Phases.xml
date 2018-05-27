@@ -28,6 +28,8 @@
     <result column="Name" jdbcType="VARCHAR" property="name"/>
     <result column="ProjectID" jdbcType="INTEGER" property="projectID"/>
     <result column="PhaseNum" jdbcType="INTEGER" property="phaseNum"/>
+    <result column="requiredTime" jdbcType="INTEGER" property="requiredTime"/>
+    <result column="timeCost" jdbcType="INTEGER" property="timeCost"/>
     <result column="Status" jdbcType="VARCHAR" property="status"/>
     <result column="StartDate" jdbcType="DATE" property="startDate"/>
     <result column="EndDate" jdbcType="DATE" property="endDate"/>
@@ -51,5 +53,9 @@
 	VALUES
 		( #{name}, #{projectID}, #{startDate}, #{endDate}, #{managerID}, #{insertUser}, NOW(), #{lastEditUser}, NOW())
   </insert>
+  
+  <delete id="deletePhase" parameterType="int">
+		DELETE FROM Phases WHERE ID = #{id:INTEGER}
+	</delete>
 
 </mapper>

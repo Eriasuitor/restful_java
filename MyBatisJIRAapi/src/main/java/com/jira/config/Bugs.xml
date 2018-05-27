@@ -34,22 +34,34 @@
 	</resultMap>
 
 	<select id="getBugsBySubId" parameterType="int" resultMap="BugResult">
-		SELECT * FROM Bugs WHERE SubtaskID = #{id:INTEGER}
+		SELECT * FROM Bugs WHERE SubtaskID = #{id:INTEGER} AND Status != "Closed"
+	</select>
+	
+	<select id="getBugsById" parameterType="int" resultMap="BugResult">
+		SELECT * FROM Bugs WHERE ID = #{id:INTEGER}
 	</select>
 
 	<select id="getBugsByUId" parameterType="int" resultMap="BugResult">
 		SELECT *
-		FROM Bugs WHERE AssignedID = #{id:INTEGER}
+		FROM Bugs WHERE (AssignedID = #{id:INTEGER} OR InsertUser = #{id:INTEGER}) AND Status != "Closed"
 	</select>
+	
+	<update id="modifyStatus" parameterType="java.util.Map">
+		UPDATE Bugs SET Status = #{status}, Note = #{note},lastEditUser = #{userId}, LastEditDate = NOW() WHERE ID = #{id};
+	</update>
+	
+	<update id="resolveBug" parameterType="java.util.Map">
+		UPDATE Bugs SET Status = #{status}, Note = #{note},lastEditUser = #{userId},AssignedID = #{assignedID}, LastEditDate = NOW() WHERE ID = #{id};
+	</update>
 
 	<insert id="addBug" parameterType="com.jira.bean.Bug">
 		INSERT Bugs(ProjectID,
-		SubtaskID, Name, Description, Importance, Status, Origin, Source,
+		SubtaskID, Name, Description, Origin, Source,
 		Severity, Priority, AssignedID, Note, InsertUser, InsertDate,
 		LastEditUser, LastEditDate) VALUES( #{projectID}, #{subtaskID},
 		#{name},
-		#{description}, #{importance},
-		#{status}, #{origin}, #{source},
+		#{description}, 
+		#{origin}, #{source},
 		#{severity},#{priority}, #{assignedID},#{note},#{insertUser},NOW(),
 		#{lastEditUser},
 		NOW()) ;

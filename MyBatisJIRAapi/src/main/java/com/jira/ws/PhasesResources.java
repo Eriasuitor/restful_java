@@ -1,6 +1,7 @@
 package com.jira.ws;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
@@ -59,11 +60,44 @@ public class PhasesResources {
 				.header("Access-Control-Allow-Methods", "*").entity(resp).build();
 	}
 
+	@DELETE
+	@Path("{id}")
+	public Response deletePhase(@QueryParam("token") String token, @PathParam("id") int phaId) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			new PhasesService().deletePhase(phaId, staffid);
+			resp.setInformation("删除成功");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			resp.setSuccessful(false);
+			resp.setInformation(e.getMessage());
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").entity(resp).build();
+	}
+
 	@OPTIONS
 	public Response addPhaseOptions() {
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
 				.header("Access-Control-Allow-Methods", "*").build();
+	}
+
+	@OPTIONS
+	@Path("{id}")
+	public Response deleteOption() {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").build();
 	}
 }

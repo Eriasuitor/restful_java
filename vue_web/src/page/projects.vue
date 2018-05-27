@@ -25,7 +25,7 @@
                     <div class="description ellipsis">{{project.description}}</div>
                 </div>
                 <div class="extra content">
-                    <span class="right floated">{{project.completed}}% 完成度</span>
+                    <span class="right floated">{{Math.round(project.completed / project.requiredTime * 100) || 0}}% 完成度</span>
                     <!-- <span><i class="user icon"></i> {{project.participants}} 参与者</span> -->
                 </div>
             </div>
@@ -44,11 +44,14 @@
                     <div class="description ellipsis">{{project.description}}</div>
                 </div>
                 <div class="extra content">
-                    <span class="right floated"> {{project.completed}}% 完成度 </span>
+                    <span class="right floated"> {{Math.round(project.completed / project.requiredTime *100) || 0}}% 完成度 </span>
                     <!-- <span><i class="user icon"></i> {{project.participants}} 参与者 </span> -->
                 </div>
             </div>
         </div>
+
+        <div class="ui horizontal divider header" v-if="projects.length === 0">暂无与你相关项目</div>
+
         <div class="ui modal newProject" id='newProject'>
             <i class="close icon"></i>
             <div class="header">

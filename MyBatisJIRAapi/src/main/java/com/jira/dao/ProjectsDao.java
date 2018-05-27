@@ -26,6 +26,18 @@ public class ProjectsDao {
 		return sqlSession.getMapper(IProjects.class).queryProjectsByStaffId(staffId);
 	}
 
+	public ProjectList queryAllProjectsByStaffId(int id) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// return sqlSession.selectList("Namespaces"."FunctionName",
+		// Parameters);
+		return sqlSession.getMapper(IProjects.class).queryAllProjectsByStaffId(id);
+	}
+
 	public Project queryProjectByPhaseId(int phaseId) {
 		SqlSession sqlSession = null;
 		try {
@@ -118,6 +130,22 @@ public class ProjectsDao {
 		sqlSession.getMapper(IParticipants.class).addParticipants(map2);
 		sqlSession.commit();
 
+	}
+
+	public void modifyStatus(int projectId, int userId, Project.Status status) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", projectId);
+		map.put("userId", userId);
+		map.put("status", status);
+		sqlSession.getMapper(IProjects.class).modifyStatus(map);
+		sqlSession.commit();
+		return;
 	}
 
 	public int deleteProject(int id) {

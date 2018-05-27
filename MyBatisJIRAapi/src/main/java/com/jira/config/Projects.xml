@@ -55,6 +55,16 @@
 	ORDER BY `StartDate`
   </select>
   
+  <select id="queryAllProjectsByStaffId" parameterType="int" resultMap="ProjectListResult">
+	SELECT `ID`,`Name`,`Description`,`Status`,`StartDate`,`EndDate`, `Completed`, `Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
+	FROM
+		projects 
+	WHERE
+		status = 'Closed' AND
+		id IN ( SELECT ProjectID FROM Participants WHERE StaffID = #{id:INTEGER} )
+	ORDER BY `StartDate`
+  </select>
+  
   <select id="queryProjectByPhaseId" parameterType="int" resultMap="ProjectResult">
 	SELECT `ID`,`Name`,`Description`,`Status`,`StartDate`,`EndDate`, `Completed`, `Url`,`ManagerID`,`TimeCost`,`EconomicCost`,`RequiredTime`,`LastEditDate`
 	FROM
@@ -94,9 +104,9 @@
   </select>
   
   <insert id="newProject" parameterType="com.jira.bean.Project" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO Projects ( Name, Description, StartDate, EndDate, Url, ManagerID, requiredTime,InsertUser, InsertDate, LastEditUser, LastEditDate )
+  	INSERT INTO Projects ( Name, Description, StartDate, EndDate, Url, ManagerID,InsertUser, InsertDate, LastEditUser, LastEditDate )
 	VALUES
-		( #{name}, #{description}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{requiredTime}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
+		( #{name}, #{description}, #{startDate}, #{endDate}, #{url}, #{managerID}, #{insertUser}, NOW( ) , #{lastEditUser}, NOW( )  )
   </insert>
 
 	<update id="modifyProject" parameterType="com.jira.bean.Project">
@@ -105,6 +115,15 @@
 	
 	<update id="modifyManagerID" parameterType="com.jira.bean.Project">
 		UPDATE Projects SET ManagerID = #{managerID}, LastEditUser = #{lastEditUser}, LastEditDate = NOW() WHERE ID = #{id};
+	</update>
+	
+	<update id="modifyStatus" parameterType="java.util.Map">
+	 START TRANSACTION;
+		UPDATE Projects SET Status = #{status}, LastEditUser = #{userId}, LastEditDate = NOW() WHERE ID = #{id};
+		UPDATE Phases SET Status = #{status}, LastEditUser = #{userId}, LastEditDate = NOW() WHERE ProjectID = #{id};
+		UPDATE Subtasks SET Status = #{status}, LastEditUser = #{userId}, LastEditDate = NOW() WHERE PhaseId in (SELECT id FROM Phases WHERE ProjectID = #{id});
+		UPDATE Bugs SET Status = #{status}, LastEditUser = #{userId}, LastEditDate = NOW() WHERE SubtaskID in (SELECT id FROM Subtasks WHERE PhaseID in (SELECT id FROM Phases WHERE ProjectID = #{id}));
+	COMMIT;
 	</update>
 	
 	<delete id="deleteProject" parameterType="int">

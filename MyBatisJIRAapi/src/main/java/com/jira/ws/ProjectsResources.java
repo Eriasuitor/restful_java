@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import com.jira.bean.Project;
 import com.jira.entity.GeneralResponse;
+import com.jira.entity.ProjectList;
 import com.jira.entity.ProjectResponse;
 import com.jira.services.LoginService;
 import com.jira.services.ProjectsService;
@@ -35,11 +36,18 @@ public class ProjectsResources {
 				throw new Exception("无效的Token");
 			}
 			if (pName == null) {
-				return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-						.entity(new ProjectsService().queryProjectsBySatffId(staffid)).build();
+				ProjectList pl = new ProjectsService().queryProjectsBySatffId(staffid);
+				if (pl == null) {
+					pl = new ProjectList();
+				}
+				return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(pl)
+						.build();
 			}
-			return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
-					.entity(new ProjectsService().searchProject(pName, staffid)).build();
+			ProjectList pl = new ProjectsService().searchProject(pName, staffid);
+			if (pl == null) {
+				pl = new ProjectList();
+			}
+			return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(pl).build();
 		} catch (Exception e) {
 			resp.setSuccessful(false);
 			resp.setInformation(e.getMessage());
@@ -119,6 +127,29 @@ public class ProjectsResources {
 	}
 
 	@PUT
+	@Path("{id}/status")
+	public Response modifyProjectStatus(@QueryParam("token") String token, Project project) {
+		GeneralResponse resp = new GeneralResponse();
+		try {
+			int staffid = LoginService.getUserId(token);
+			if (staffid == 0) {
+				resp.setResponseCode(401);
+				throw new Exception("无效的Token");
+			}
+			resp.setObject(new ProjectsService().modifyStatus(project, staffid));
+			resp.setInformation("项目状态已更改。");
+		} catch (Exception e) {
+			// TODO: handle exception
+			resp.setInformation(e.getMessage());
+			resp.setSuccessful(false);
+		}
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").entity(resp).build();
+	}
+
+	@PUT
 	@Path("{id}/manager")
 	public Response modifyManagerID(@QueryParam("token") String token, Project project) {
 		ProjectResponse resp = new ProjectResponse();
@@ -144,6 +175,15 @@ public class ProjectsResources {
 	@OPTIONS
 	@Path("{id}/manager")
 	public Response modifyProjectOptionsOptions() {
+		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers",
+						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")
+				.header("Access-Control-Allow-Methods", "GET,PUT,DELETE,OPTIONS").build();
+	}
+
+	@OPTIONS
+	@Path("{id}/status")
+	public Response modifystatusptions() {
 		return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers",
 						"Content-Type,Content-Length, Authorization, Accept,X-Requested-With")

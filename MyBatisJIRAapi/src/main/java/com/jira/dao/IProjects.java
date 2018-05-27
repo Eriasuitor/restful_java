@@ -9,6 +9,8 @@ import com.jira.entity.ProjectList;
 public interface IProjects {
 	public ProjectList queryProjectsByStaffId(int id);
 
+	public ProjectList queryAllProjectsByStaffId(int id);
+
 	public Project queryProjectByPhaseId(int phaseId);
 
 	public Project queryProjectById(int id);
@@ -22,6 +24,8 @@ public interface IProjects {
 	public int modifyProject(Project project);
 
 	public int modifyManagerID(Project project);
+
+	public int modifyStatus(Map<String, Object> map);
 
 	public int deleteProject(int id);
 }

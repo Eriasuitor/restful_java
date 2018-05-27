@@ -17,6 +17,10 @@ public class ProjectsService {
 		return new ProjectsDao().queryByStaffId(staffId);
 	}
 
+	public ProjectList queryAllProjectsBySatffId(int staffId) {
+		return new ProjectsDao().queryAllProjectsByStaffId(staffId);
+	}
+
 	public Project queryProjectById(int id, int staffId) throws Exception {
 		Project project = new ProjectsDao().queryById(id);
 		if (project == null) {
@@ -98,10 +102,42 @@ public class ProjectsService {
 		return new ProjectsService().queryProjectById(project.getId(), userId);
 	}
 
+	public Project modifyStatus(Project project, int userId) throws Exception {
+		if (project.getId() < 0 || project.getStatus() == null) {
+			throw new Exception("Invalid Request");
+		}
+		Project _project = new ProjectsDao().queryById(project.getId());
+		if (_project == null) {
+			throw new Exception("此项目已不存在");
+		}
+		if (_project.getManagerID() != userId) {
+			throw new Exception("你不是此项目负责人，无法更改此项目状态。");
+		}
+		if (_project.getStatus() != project.getStatus()) {
+			throw new Exception("该项目状态已发生改变，请刷新后重试。");
+		}
+		switch (_project.getStatus()) {
+		case Created:
+			project.setStatus(Project.Status.Processing);
+			break;
+		case Processing:
+			project.setStatus(Project.Status.Closed);
+			break;
+		case Closed:
+			project.setStatus(Project.Status.Processing);
+			break;
+		default:
+			break;
+		}
+		project.setLastEditUser(userId);
+		new ProjectsDao().modifyStatus(project.getId(), userId, project.getStatus());
+		return new ProjectsService().queryProjectById(project.getId(), userId);
+	}
+
 	public int deleteProject(int id, int userId) throws Exception {
 		if (new ProjectsDao().queryById(id).getManagerID() == userId) {
 			return new ProjectsDao().deleteProject(id);
 		}
-		throw new Exception("Invalid Request");
+		throw new Exception("你不是当前项目负责人，无法删除此项目。");
 	}
 }

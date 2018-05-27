@@ -41,7 +41,7 @@
           this.$apiUrl + '/login?',
           this.loginInfo,
           data => {
-            if (data.responseCode === 401) {
+            if (data.responseCode === 401 || !data.successful) {
               window.alert(data.information)
             } else {
               window.localStorage.setItem('token', data.information)

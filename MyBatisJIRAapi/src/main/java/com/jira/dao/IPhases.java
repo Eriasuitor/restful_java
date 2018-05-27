@@ -10,4 +10,6 @@ public interface IPhases {
 	public List<Phase> queryPhases(int projectId);
 
 	public Phase queryPhasesById(int phaseId);
+
+	public int deletePhase(int phaId);
 }

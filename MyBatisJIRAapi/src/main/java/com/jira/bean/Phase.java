@@ -16,6 +16,8 @@ public class Phase {
 	private Date startDate;
 	private Date endDate;
 	private int managerID;
+	private int requiredTime;
+	private int timeCost;
 	private List<Subtask> subtaskList;
 	private int insertUser;
 	private Date insertDate;
@@ -28,6 +30,22 @@ public class Phase {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getTimeCost() {
+		return timeCost;
+	}
+
+	public void setTimeCost(int timeCost) {
+		this.timeCost = timeCost;
+	}
+
+	public int getRequiredTime() {
+		return requiredTime;
+	}
+
+	public void setRequiredTime(int requiredTime) {
+		this.requiredTime = requiredTime;
 	}
 
 	public String getName() {

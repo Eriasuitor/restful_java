@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jira.bean.Log;
 import com.jira.bean.Phase;
+import com.jira.bean.Project;
 import com.jira.bean.Staff;
 import com.jira.bean.Subtask;
 import com.jira.dao.PhasesDao;
@@ -34,11 +35,22 @@ public class SubtasksService {
 				}
 				subtask.setLastEditUser(userId);
 				subtask.setInsertUser(userId);
+				Project pro = new ProjectsDao().queryProjectByPhaseId(subtask.getPhaseID());
+				if (pro.getStatus() == Project.Status.Processing) {
+					subtask.setStatus(Subtask.Status.Processing);
+				} else {
+					subtask.setStatus(Subtask.Status.Created);
+				}
 				return new SubtasksDao().addSubtask(subtask);
 			}
 		}
 		throw new Exception("你并非当前项目的参与者之一，无法添加新的子任务。");
 	}
+
+	// public static void main(String[] args) {
+	// Date d = new Date();
+	// System.out.println(d.getTime());
+	// }
 
 	public List<Subtask> querySubtasks(List<Integer> phaseIDList) {
 		return new SubtasksDao().querySubtasks(phaseIDList);

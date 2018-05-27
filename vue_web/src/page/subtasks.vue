@@ -71,6 +71,7 @@
         </div>
       </div>
     </div>
+    <div class="ui segment" v-if="subtasks.length === 0">暂无分配于你的子任务</div>
   
     <div class="ui modal newLog" id='newLog'>
       <i class="close icon black"></i>
@@ -269,6 +270,7 @@
             } else {
               if (data.successful) {
                 this.subtask.completed += parseInt(this.log.completed)
+                this.getSubtasks()
               }
               window.alert(data.information)
             }

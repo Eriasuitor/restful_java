@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Bug {
 	public enum Status {
-		Created, Processing, Resolved, Closed
+		Created, Processing, Resolved, Closed, Recreated
 	}
 
 	private int id;

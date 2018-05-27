@@ -40,16 +40,15 @@
                 </div>
             </div>
     
-            <p>日期：{{formatDate(project.startDate)}} 至 {{formatDate(project.endDate)}} 
-                <span v-if="project.ur">代码库：<a :href="project.url">{{project.url}}</a></span>
-                状态：{{project.status}}
+            <p>日期：{{formatDate(project.startDate)}} 至 {{formatDate(project.endDate)}}
+                <span v-if="project.ur">代码库：<a :href="project.url">{{project.url}}</a></span> 状态：{{project.status}}
             </p>
     
             <div class="ui">
                 <div class="ui statistics">
                     <div class="statistic">
                         <div class="value">
-                            {{project.completed}}%
+                            {{Math.round(project.completed / project.requiredTime * 100) || 0}}%
                         </div>
                         <div class="label">完成</div>
                     </div>
@@ -100,31 +99,31 @@
                 </thead>
                 <tbody>
                     <template v-for="phase in phases">
-                                        <tr :key="'pha' + phase.id">
-                                            <td :rowspan="phase.subtaskList.length + 2">{{phase.name}}
-                                                <i class="small circular edit outline link icon"></i>
-                                            </td>
-                                        </tr>
-                                        <tr v-for="subtask in phase.subtaskList" :key="'sub' + subtask.id">
-                                            <td>
-                                                <a class="link" @click="routeTo(project.id + '/subtasks/' + subtask.id)">{{subtask.name}}</a>
-                                            </td>
-                                            <td>
-                                                <div class="ui progress" :id="'pro' + subtask.id">
-                                                    <div class="bar">
-                                                        <div class="progress"></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a v-for="(item, index) in dateList" :key="subtask.id + index" :title="'开始于' + formatDate(subtask.startDate) + '，结束于' + formatDate(subtask.endDate)" :class="{ 'ui': true, 'circular': true, 'label': true,'green':subtask.completed === 100, 'red': item >= new Date(subtask.startDate) && (item <= new Date(subtask.endDate) && setRed(subtask.id) || redMap[subtask.id] == undefined && setRed(subtask.id))}">{{item.getMonth() + '.' + item.getDate()}}</a>
-                                            </td>
-                                        </tr>
-                                        <tr :key="'subAdd' + phase.id">
-                                            <td>
-                                                <i class="small circular plus link icon" @click="newSubtaskEvent(phase.id, phase.name)"></i>
-                                            </td>
-                                        </tr>
+    <tr :key="'pha' + phase.id">
+        <td :rowspan="phase.subtaskList.length + 2">{{phase.name}}
+            <i v-if="phase.managerID === userInfo.id || project.managerID === userInfo.id" class="small circular delete link icon" @click="deletePhase(phase.id)"></i>
+        </td>
+    </tr>
+    <tr v-for="subtask in phase.subtaskList" :key="'sub' + subtask.id">
+        <td>
+            <a class="link" @click="routeTo(project.id + '/subtasks/' + subtask.id)">{{subtask.name}}</a>
+        </td>
+        <td>
+            <div class="ui progress" :id="'pro' + subtask.id">
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <a v-for="(item, index) in dateList" :key="subtask.id + index" :title="'开始于' + formatDate(subtask.startDate) + '，结束于' + formatDate(subtask.endDate)" :class="{ 'ui': true, 'circular': true, 'label': true,'green':subtask.completed === 100, 'red': item >= new Date(subtask.startDate) && (item <= new Date(subtask.endDate) && setRed(subtask.id) || redMap[subtask.id] == undefined && setRed(subtask.id))}">{{item.getMonth() + '.' + item.getDate()}}</a>
+        </td>
+    </tr>
+    <tr :key="'subAdd' + phase.id">
+        <td>
+            <i class="small circular plus link icon" @click="newSubtaskEvent(phase.id, phase.name)"></i>
+        </td>
+    </tr>
 </template>
                 </tbody>
             </table>
@@ -392,6 +391,7 @@
     
         },
         computed: {
+    
             startDate: function() {
                 var date = new Date(this.projectToPut.startDate)
                 return (
@@ -418,6 +418,48 @@
             }
         },
         methods: {
+            changeStatus: function() {
+                let statusTo;
+                switch (this.project.status) {
+                    case 'Created':
+                        statusTo = '开始'
+                        break;
+                    case 'Processing':
+                        statusTo = '关闭'
+                        break;
+                    case 'Closed':
+                        statusTo = '再次开始'
+                        break;
+                    default:
+                        break;
+                }
+                if (window.confirm(`是否${statusTo}此项目？`)) {
+                    let projectToPut = {}
+                    projectToPut.id = this.project.id
+                    projectToPut.status = this.project.status,
+                        this.$api.put(
+                            this.$apiUrl +
+                            '/projects/' +
+                            this.project.id + "/status?token=" + this.token,
+                            projectToPut,
+                            data => {
+                                if (data.responseCode === 401) {
+                                    window.localStorage.setItem('toLogin', this.$route.path)
+                                    window.localStorage.removeItem('token')
+                                    window.localStorage.removeItem('userInfo')
+                                    this.$router.push({
+                                        path: '/login',
+                                        replace: true
+                                    })
+                                } else {
+                                    if (data.successful) {
+                                        this.project = data.object
+                                    }
+                                    window.alert(data.information)
+                                }
+                            })
+                }
+            },
             deleteProject: function() {
                 if (window.confirm('你确定要删除此项目吗？')) {
                     this.$api.delete(
@@ -504,6 +546,30 @@
                         }
                     }
                 )
+            },
+            deletePhase: function(id) {
+                if (window.confirm('你确定要删除此阶段任务及其所包含的所有子任务吗?')) {
+                    this.$api.delete(
+                        this.$apiUrl + '/projects/' + this.project.id + '/phases/' + id + '?token=' + this.token,
+                        null,
+                        data => {
+                            if (data.responseCode === 401) {
+                                window.localStorage.setItem('toLogin', this.$route.path)
+                                window.localStorage.removeItem('token')
+                                window.localStorage.removeItem('userInfo')
+                                this.$router.push({
+                                    path: '/login',
+                                    replace: true
+                                })
+                            } else {
+                                if (data.successful) {
+                                    this.refreshPhases()
+                                }
+                                window.alert(data.information)
+                            }
+                        }
+                    )
+                }
             },
             addParticipant: function() {
                 var participant = {}
@@ -744,8 +810,8 @@
                     'get value'
                 )
                 this.subtask.phaseID = $('.dropdown.subtask_phase').dropdown('get value')
-                if (this.subtask.phaseID === '') this.subtask.phaseID = this.sub_phaseId
-    
+                if (this.subtask.phaseID === '')
+                    this.subtask.phaseID = this.sub_phaseId
                 if (!this.subtask.name) {
                     window.alert('请填写阶段名称')
                     return false
@@ -762,7 +828,7 @@
                     window.alert('请填写开始时间');
                     return false;
                 }
-                let _phase = this.phases.find(_ => _.id = this.subtask.phaseID)
+                let _phase = this.phases.find(_ => _.id == this.subtask.phaseID)
                 if (new Date(_phase.startDate) > new Date(this.subtask.startDate)) {
                     window.alert('子任务的开始时间不得早于所属阶段任务的开始时间，当前所属阶段任务的开始时间为：' + this.$utils.formatDate(_phase.startDate));
                     return false;
@@ -906,9 +972,9 @@
 
 <style scoped>
     /* .scrollY {
-                                                                                                    overflow-x: scroll;
-                                                                                                    overflow-y: hidden;
-                                                                                                    } */
+                                                                                                                    overflow-x: scroll;
+                                                                                                                    overflow-y: hidden;
+                                                                                                                    } */
     
     .link {
         color: rgba(0, 0, 0, 0.7);

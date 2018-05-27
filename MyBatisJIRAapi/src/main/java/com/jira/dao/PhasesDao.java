@@ -40,4 +40,16 @@ public class PhasesDao {
 		}
 		return sqlSession.getMapper(IPhases.class).queryPhasesById(phaseId);
 	}
+
+	public int deletePhase(int phaId) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = DBJIRAAccess.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int effectRows = sqlSession.getMapper(IPhases.class).deletePhase(phaId);
+		sqlSession.commit();
+		return effectRows;
+	}
 }

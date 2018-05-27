@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-       Copyright 2009-2012 the original author or authors.
-
-       Licensed under the Apache License, Version 2.0 (the "License");
-       you may not use this file except in compliance with the License.
-       You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-       Unless required by applicable law or agreed to in writing, software
-       distributed under the License is distributed on an "AS IS" BASIS,
-       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-       See the License for the specific language governing permissions and
-       limitations under the License.
-
--->
+<!-- Copyright 2009-2012 the original author or authors. Licensed under the 
+	Apache License, Version 2.0 (the "License"); you may not use this file except 
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
 
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -23,66 +13,182 @@
 
 <mapper namespace="com.jira.dao.ILogs">
 
-  <resultMap type="com.jira.bean.Log" id="LogResult">
-    <id column="ID" jdbcType="INTEGER" property="id"/>
-    <result column="Name" jdbcType="VARCHAR" property="name"/>
-    <result column="SubtaskID" jdbcType="INTEGER" property="subtaskID"/>
-    <result column="startDate" jdbcType="TIMESTAMP" property="startDate"/>
-    <result column="EndDate" jdbcType="TIMESTAMP" property="endDate"/>
-    <result column="completed" jdbcType="INTEGER" property="completed"/>
-    <result column="assignedID" jdbcType="INTEGER" property="assignedID"/>
-    <result column="timeCost" jdbcType="INTEGER" property="timeCost"/>
-    <result column="economicCost" jdbcType="FLOAT" property="economicCost"/>
-    <result column="note" jdbcType="VARCHAR" property="note"/>
-    <result column="Insertuser" jdbcType="INTEGER" property="insertUser"/>
-    <result column="Insertdate" jdbcType="TIMESTAMP" property="insertDate"/>
-    <result column="Lastedituser" jdbcType="INTEGER" property="lastEditUser"/>
-    <result column="Lasteditdate" jdbcType="TIMESTAMP" property="lastEditDate"/>
-  </resultMap>
+	<resultMap type="com.jira.bean.Log" id="LogResult">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="Name" jdbcType="VARCHAR" property="name" />
+		<result column="SubtaskID" jdbcType="INTEGER" property="subtaskID" />
+		<result column="startDate" jdbcType="TIMESTAMP" property="startDate" />
+		<result column="EndDate" jdbcType="TIMESTAMP" property="endDate" />
+		<result column="Completed" jdbcType="INTEGER" property="completed" />
+		<result column="assignedID" jdbcType="INTEGER" property="assignedID" />
+		<result column="timeCost" jdbcType="INTEGER" property="timeCost" />
+		<result column="economicCost" jdbcType="FLOAT" property="economicCost" />
+		<result column="note" jdbcType="VARCHAR" property="note" />
+		<result column="Insertuser" jdbcType="INTEGER" property="insertUser" />
+		<result column="Insertdate" jdbcType="TIMESTAMP" property="insertDate" />
+		<result column="Lastedituser" jdbcType="INTEGER" property="lastEditUser" />
+		<result column="Lasteditdate" jdbcType="TIMESTAMP" property="lastEditDate" />
+	</resultMap>
 
-  <select id="getLogsBySubId" parameterType="int" resultMap="LogResult">
-  	SELECT * FROM Logs WHERE SubtaskID = #{id:INTEGER}
-  </select>
+	<select id="getLogsBySubId" parameterType="int" resultMap="LogResult">
+		SELECT * FROM Logs WHERE SubtaskID = #{id:INTEGER}
+	</select>
 
-  <select id="getLastLog" parameterType="java.util.List" resultMap="LogResult">
-	  select `ID`,
-	    `SubtaskID`,
-	    `StartDate`,
-	    `EndDate`,
-	    `Completed`,
-	    `AssignedID`,
-	    `TimeCost`,
-	    `EconomicCost`,
-	    `Note`,
-	    `InsertUser`,
-	    `LastEditUser`,
-	    `LastEditDate`,max(insertDate) as InsertDate from logs
-	where `subtaskID` in 
-	<foreach collection="list" item="item" separator="," open="(" close=")">
-		#{item}
-	</foreach>
-  </select>
-  <insert id="addLogWithAssigned" parameterType="com.jira.bean.Log">
-  START TRANSACTION;
-  	INSERT LOGS (SubtaskID, StartDate, EndDate, Completed, AssignedID, TimeCost, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
-	VALUES
-		(#{subtaskID}, #{startDate}, #{endDate}, #{completed}, #{assignedID}, #{timeCost}, #{economicCost}, #{note}, #{insertUser}, NOW(), #{lastEditUser}, NOW());
-	UPDATE Subtasks SET AssignedID = #{assignedID}, TimeCost = TimeCost + #{timeCost}, Completed = Completed + #{completed};
-	UPDATE Projects SET TimeCost = TimeCost + #{timeCost}, EconomicCost = EconomicCost + #{economicCost}, Completed = Completed + #{completed};
-	COMMIT;
-  </insert>
+	<select id="getLastLog" parameterType="java.util.List"
+		resultMap="LogResult">
+		select `ID`,
+		`SubtaskID`,
+		`StartDate`,
+		`EndDate`,
+		`Completed`,
+		`AssignedID`,
+		`TimeCost`,
+		`EconomicCost`,
+		`Note`,
+		`InsertUser`,
+		`LastEditUser`,
+		`LastEditDate`,
+		`InsertDate`
+		from logs
+		where `InsertDate` in(
+		SELECT MAX(`InsertDate`)
+		FROM logs where `subtaskID` in
+		<foreach collection="list" item="item" separator="," open="("
+			close=")">
+			#{item}
+		</foreach>
+		GROUP BY `SubtaskID`)
+	</select>
+	<insert id="addLogWithAssigned" parameterType="com.jira.bean.Log">
+		START TRANSACTION;
+		INSERT LOGS (SubtaskID, StartDate, EndDate, Completed, AssignedID,
+		TimeCost,
+		EconomicCost, Note, InsertUser, InsertDate, LastEditUser,
+		LastEditDate
+		)
+		VALUES
+		(#{subtaskID}, #{startDate}, #{endDate},
+		#{completed}, #{assignedID},
+		#{timeCost}, #{economicCost}, #{note},
+		#{insertUser}, NOW(),
+		#{lastEditUser}, NOW());
 
-  <insert id="addLog" parameterType="com.jira.bean.Log">
-  START TRANSACTION;
-  	INSERT LOGS (SubtaskID, StartDate, EndDate, Completed, TimeCost, EconomicCost, Note, InsertUser, InsertDate, LastEditUser, LastEditDate )
-	VALUES
-		(#{subtaskID}, #{startDate}, #{endDate}, #{completed}, #{timeCost}, #{economicCost}, #{note}, #{insertUser}, NOW(), #{lastEditUser}, NOW());
-	
-	UPDATE Subtasks SET TimeCost = TimeCost + #{timeCost}, Completed = Completed + #{completed};
-	UPDATE Projects SET TimeCost = TimeCost + #{timeCost}, EconomicCost = EconomicCost + #{economicCost}, Completed = Completed + #{completed};
-	COMMIT;
-  </insert>
+		SET @completedTime =
+		(SELECT (TIMESTAMPDIFF(SECOND, StartDate, EndDate)) + 86400 FROM
+		Subtasks WHERE ID
+		= #{subtaskID}) *
+		#{completed} / 100;
+
+		UPDATE Subtasks
+		SET AssignedID = #{assignedID},
+		TimeCost = TimeCost +
+		#{timeCost},
+		Completed = Completed + #{completed}
+		WHERE id =
+		#{subtaskID};
+
+		UPDATE
+		Phases SET TimeCost = TimeCost +
+		#{timeCost}, Completed = Completed +
+		@completedTime WHERE ID = (SELECT
+		PhaseID FROM Subtasks WHERE ID =
+		#{subtaskID});
+
+		UPDATE Projects SET
+		TimeCost = TimeCost + #{timeCost},
+		EconomicCost =
+		EconomicCost +
+		#{economicCost}, Completed = Completed +
+		@completedTime
+		WHERE ID =
+		(SELECT ProjectId FROM Phases WHERE ID =
+		(SELECT PhaseID
+		FROM Subtasks
+		WHERE ID = #{subtaskID}));
+		COMMIT;
+	</insert>
+
+	<insert id="addLog" parameterType="com.jira.bean.Log">
+		START TRANSACTION;
+		INSERT LOGS
+		(SubtaskID, StartDate, EndDate, Completed,
+		TimeCost,
+		EconomicCost, Note,
+		InsertUser, InsertDate, LastEditUser,
+		LastEditDate
+		)
+		VALUES
+		(#{subtaskID}, #{startDate}, #{endDate},
+		#{completed},
+		#{timeCost},
+		#{economicCost}, #{note},
+		#{insertUser}, NOW(),
+		#{lastEditUser}, NOW());
+
+		SET @completedTime =
+		(SELECT (TIMESTAMPDIFF(SECOND, StartDate,
+		EndDate)) + 86400 FROM Subtasks WHERE
+		ID
+		= #{subtaskID}) *
+		#{completed} /
+		100;
+
+		UPDATE Subtasks SET
+		TimeCost = TimeCost +
+		#{timeCost}, Completed =
+		Completed + #{completed}
+		WHERE id
+		=
+		#{subtaskID};
+
+		UPDATE Phases SET
+		TimeCost = TimeCost +
+		#{timeCost},
+		Completed = Completed +
+		@completedTime WHERE ID = (SELECT
+		PhaseID FROM
+		Subtasks WHERE ID =
+		#{subtaskID});
+
+		UPDATE Projects SET
+		TimeCost =
+		TimeCost + #{timeCost},
+		EconomicCost =
+		EconomicCost +
+		#{economicCost},
+		Completed = Completed +
+		@completedTime
+		WHERE ID =
+		(SELECT ProjectId FROM
+		Phases WHERE ID =
+		(SELECT PhaseID
+		FROM Subtasks
+		WHERE ID =
+		#{subtaskID}));
+		COMMIT;
+	</insert>
 	<delete id="deleteLog" parameterType="int">
-		DELETE FROM LOGS WHERE ID = #{id:INTEGER}
+		START TRANSACTION;
+
+		SET @completedTime = (SELECT TIMESTAMPDIFF(SECOND, StartDate, EndDate) +
+		86400 FROM Subtasks WHERE ID
+		= #{subtaskID}) * #{completed} / 100;
+
+		UPDATE Subtasks SET AssignedID = #{assignedID}, TimeCost = TimeCost +
+		#{timeCost}, Completed = Completed + @completedTime WHERE id =
+		#{subtaskID};
+
+		UPDATE Projects SET TimeCost = TimeCost + #{timeCost},
+		EconomicCost =
+		EconomicCost + #{economicCost}, Completed = Completed +
+		#{completed}
+		WHERE ID = (SELECT ProjectId FROM Phases WHERE ID =
+		(SELECT PhaseID
+		FROM Subtasks WHERE ID = #{subtaskID}));
+
+		DELETE FROM
+		LOGS WHERE ID =
+		#{id:INTEGER};
+		COMMIT;
 	</delete>
 </mapper>
