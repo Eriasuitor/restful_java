@@ -27,3 +27,4 @@ semantic
 /vue_web/dist
 /MyBatisJIRAapi/target
 target
+/crawler/node_modules

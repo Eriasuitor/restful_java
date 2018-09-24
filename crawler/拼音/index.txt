@@ -1,0 +1,3031 @@
+{
+    "id": "3",
+    "titleList": ["桑", "梓"],
+    "answerList": ["zǐ", "xīn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "7",
+    "titleList": ["纨", "绔"],
+    "answerList": ["kù", "kuà"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "8",
+    "titleList": ["殷", "红"],
+    "answerList": ["yīn", "yān"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "10",
+    "titleList": ["彩", "券"],
+    "answerList": ["juàn", "quàn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "11",
+    "titleList": ["胴", "体"],
+    "answerList": ["tóng", "dòng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "12",
+    "titleList": ["断", "弦"],
+    "answerList": ["xián", "xuán"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "13",
+    "titleList": ["白", "术"],
+    "answerList": ["shù", "zhú"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "14",
+    "titleList": ["羞", "赧"],
+    "answerList": ["hè", "nǎn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "16",
+    "titleList": ["恫", "吓"],
+    "answerList": ["hè", "xià"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "24",
+    "titleList": ["堵", "塞"],
+    "answerList": ["sāi", "sè"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "25",
+    "titleList": ["贫", "血"],
+    "answerList": ["xuè", "xiě"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "26",
+    "titleList": ["哽", "咽"],
+    "answerList": ["yè", "yàn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "29",
+    "titleList": ["合", "卺"],
+    "answerList": ["zhēng", "jǐn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "30",
+    "titleList": ["墨", "翟"],
+    "answerList": ["zhái", "dí"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "34",
+    "titleList": ["床", "笫"],
+    "answerList": ["zǐ", "dì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "36",
+    "titleList": ["掺", "和"],
+    "answerList": ["he", "huo"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "45",
+    "titleList": ["扎", "染"],
+    "answerList": ["zā", "zhā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "46",
+    "titleList": ["躯", "壳"],
+    "answerList": ["ké", "qiào"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "51",
+    "titleList": ["弄", "堂"],
+    "answerList": ["nòng", "lòng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "52",
+    "titleList": ["女", "红"],
+    "answerList": ["hóng", "gōng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "54",
+    "titleList": ["宫", "钥"],
+    "answerList": ["yuè", "yào"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "55",
+    "titleList": ["参", "差"],
+    "answerList": ["cān", "cēn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "57",
+    "titleList": ["掉", "色"],
+    "answerList": ["sè", "shǎi"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "58",
+    "titleList": ["悲", "恸"],
+    "answerList": ["dòng", "tòng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "60",
+    "titleList": ["负", "荆"],
+    "answerList": ["jīng", "jīn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "62",
+    "titleList": ["角", "色"],
+    "answerList": ["jiǎo", "jué"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "65",
+    "titleList": ["炽", "热"],
+    "answerList": ["chì", "zhì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "71",
+    "titleList": ["坐", "骑"],
+    "answerList": ["qí", "jì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "72",
+    "titleList": ["蓦", "然"],
+    "answerList": ["mù", "mò"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "73",
+    "titleList": ["攒", "集"],
+    "answerList": ["cuán", "zǎn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "74",
+    "titleList": ["解", "数"],
+    "answerList": ["jiě", "xiè"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "76",
+    "titleList": ["莫", "邪"],
+    "answerList": ["xié", "yé"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "77",
+    "titleList": ["莎", "草"],
+    "answerList": ["shā", "suō"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "83",
+    "titleList": ["解", "剖"],
+    "answerList": ["pōu", "pāo"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "87",
+    "titleList": ["熨", "帖"],
+    "answerList": ["yù", "yùn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "91",
+    "titleList": ["刍", "狗"],
+    "answerList": ["chú", "zōu"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "92",
+    "titleList": ["着", "落"],
+    "answerList": ["zhuó", "zháo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "94",
+    "titleList": ["狙", "击"],
+    "answerList": ["jū", "zǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "96",
+    "titleList": ["星", "宿"],
+    "answerList": ["xiù", "sù"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "97",
+    "titleList": ["淬", "火"],
+    "answerList": ["cù", "cuì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "100",
+    "titleList": ["吱", "声"],
+    "answerList": ["zhī", "zī"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "102",
+    "titleList": ["朱", "棣"],
+    "answerList": ["dì", "lì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "106",
+    "titleList": ["剽", "悍"],
+    "answerList": ["piāo", "biāo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "107",
+    "titleList": ["蹄", "髈"],
+    "answerList": ["pǎng", "bǎng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "112",
+    "titleList": ["属", "文"],
+    "answerList": ["shǔ", "zhǔ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "113",
+    "titleList": ["沓", "子"],
+    "answerList": ["tà", "dá"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "115",
+    "titleList": ["咋", "舌"],
+    "answerList": ["zé", "zà"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "116",
+    "titleList": ["狡", "黠"],
+    "answerList": ["jié", "xiá"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "117",
+    "titleList": ["秘", "鲁"],
+    "answerList": ["mì", "bì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "118",
+    "titleList": ["纤", "维"],
+    "answerList": ["qiān", "xiān"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "120",
+    "titleList": ["酗", "酒"],
+    "answerList": ["xiōng", "xù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "122",
+    "titleList": ["沌", "口"],
+    "answerList": ["zhuàn", "tún"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "125",
+    "titleList": ["纶", "巾"],
+    "answerList": ["guān", "lún"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "127",
+    "titleList": ["包", "扎"],
+    "answerList": ["zhā", "zā"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "128",
+    "titleList": ["叱", "咤"],
+    "answerList": ["zhà", "chà"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "133",
+    "titleList": ["塑", "料"],
+    "answerList": ["suò", "sù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "134",
+    "titleList": ["单", "于"],
+    "answerList": ["dān", "chán"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "137",
+    "titleList": ["霓", "裳"],
+    "answerList": ["shāng", "cháng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "138",
+    "titleList": ["分", "娩"],
+    "answerList": ["miǎn", "wǎn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "141",
+    "titleList": ["戛", "纳"],
+    "answerList": ["gā", "jiā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "142",
+    "titleList": ["句", "读"],
+    "answerList": ["dú", "dòu"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "145",
+    "titleList": ["扛", "鼎"],
+    "answerList": ["káng", "gāng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "148",
+    "titleList": ["偌", "大"],
+    "answerList": ["ruò", "nuò"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "150",
+    "titleList": ["馄", "饨"],
+    "answerList": ["tun", "dùn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "152",
+    "titleList": ["掇", "弄"],
+    "answerList": ["zhuì", "duō"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "153",
+    "titleList": ["待", "在"],
+    "answerList": [" dāi", "dài"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "154",
+    "titleList": ["袋", "鼠"],
+    "answerList": ["shǔ", "xǔ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "155",
+    "titleList": ["答", "应"],
+    "answerList": [" dā ", " dá"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "158",
+    "titleList": ["鸵", "鸟"],
+    "answerList": ["niǎo", "liáo"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "160",
+    "titleList": ["奏", "乐"],
+    "answerList": ["  yuè", "lè"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "161",
+    "titleList": ["枪", "杆"],
+    "answerList": [" ɡǎn", "ɡān"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "162",
+    "titleList": ["蛇", "莓"],
+    "answerList": ["shé", "xié"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "163",
+    "titleList": ["假", "冒"],
+    "answerList": ["jiàn", "jiǎ  "],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "164",
+    "titleList": ["冷", "藏"],
+    "answerList": [" cánɡ", " zànɡ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "165",
+    "titleList": ["骨", "头"],
+    "answerList": ["ɡū", "ɡǔ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "166",
+    "titleList": ["蟒", "蛇"],
+    "answerList": ["mǎng", "bàn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "168",
+    "titleList": ["长", "沙"],
+    "answerList": ["cháng", "qiáng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "171",
+    "titleList": ["奶", "牛"],
+    "answerList": ["nǎi", "lái"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "173",
+    "titleList": ["狼", "狗"],
+    "answerList": ["náng", "láng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "175",
+    "titleList": ["扇", "面"],
+    "answerList": ["shān", "shàn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "177",
+    "titleList": ["占", "卜"],
+    "answerList": ["bo", "bǔ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "179",
+    "titleList": ["蛛", "丝"],
+    "answerList": ["jū", "zhū"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "180",
+    "titleList": ["蜘", "蛛"],
+    "answerList": ["zhī", "jī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "182",
+    "titleList": ["蝴", "蝶"],
+    "answerList": ["hú", "fú"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "184",
+    "titleList": ["创", "伤"],
+    "answerList": ["chuàng", "chuāng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "185",
+    "titleList": ["八", "月"],
+    "answerList": ["pā", "bā"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "186",
+    "titleList": ["口", "才"],
+    "answerList": ["gǒu", "kǒu"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "187",
+    "titleList": ["工", "人"],
+    "answerList": ["rén", "yín"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "192",
+    "titleList": ["海", "豚"],
+    "answerList": ["tún", "téng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "193",
+    "titleList": ["人", "口"],
+    "answerList": ["néng", "rén"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "195",
+    "titleList": ["是", "的"],
+    "answerList": ["shì", "xì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "196",
+    "titleList": ["狸", "猫"],
+    "answerList": ["lí", "ní"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "197",
+    "titleList": ["嚼", "舌"],
+    "answerList": ["jiáo", "jué"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "200",
+    "titleList": ["那", "个"],
+    "answerList": ["nà", "là"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "201",
+    "titleList": ["瑰", "宝"],
+    "answerList": ["guì", "guī"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "204",
+    "titleList": ["笼", "络"],
+    "answerList": ["lóng", "lǒng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "205",
+    "titleList": ["这", "个"],
+    "answerList": ["zhè", "jiè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "207",
+    "titleList": ["落", "下"],
+    "answerList": ["lào", "là"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "209",
+    "titleList": ["菠", "萝"],
+    "answerList": ["luó", "nuó"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "212",
+    "titleList": ["玩", "弄"],
+    "answerList": ["lòng", "nòng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "213",
+    "titleList": ["肥", "胖"],
+    "answerList": ["pán", "pàng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "214",
+    "titleList": ["橘", "子"],
+    "answerList": ["jú", "jié"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "215",
+    "titleList": ["仆", "从"],
+    "answerList": ["pú", "pū"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "217",
+    "titleList": ["柿", "子"],
+    "answerList": ["sì", "shì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "218",
+    "titleList": ["木", "瓜"],
+    "answerList": ["mò", "mù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "219",
+    "titleList": ["银", "杏"],
+    "answerList": ["xìng", "qìng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "220",
+    "titleList": ["悄", "悄"],
+    "answerList": ["qiāo ", "qiǎo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "221",
+    "titleList": ["骨", "髓"],
+    "answerList": ["suǐ", "suí"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "222",
+    "titleList": ["生", "肖"],
+    "answerList": ["xiāo", "xiào"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "225",
+    "titleList": ["藤", "蔓"],
+    "answerList": ["wàn", "màn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "227",
+    "titleList": ["剔", "透"],
+    "answerList": ["tì", "tī"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "228",
+    "titleList": ["牵", "强"],
+    "answerList": ["qiǎng", "qiáng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "230",
+    "titleList": ["梵", "语"],
+    "answerList": ["fàn", "fán"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "231",
+    "titleList": ["憧", "憬"],
+    "answerList": ["chóng", "chōng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "232",
+    "titleList": ["驰", "骋"],
+    "answerList": ["chěng", "chéng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "234",
+    "titleList": ["菲", "薄"],
+    "answerList": ["fěi", "fēi"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "239",
+    "titleList": ["可", "爱"],
+    "answerList": ["kě", "kuò"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "244",
+    "titleList": ["老", "虎"],
+    "answerList": ["fǔ", "hǔ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "247",
+    "titleList": ["案", "例"],
+    "answerList": ["lì", "liè"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "249",
+    "titleList": ["女", "娲"],
+    "answerList": ["wā", "guā"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "252",
+    "titleList": ["红", "杏"],
+    "answerList": ["sè", "xìng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "253",
+    "titleList": ["蝎", "子"],
+    "answerList": ["xiē", "xiā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "255",
+    "titleList": ["了", "断"],
+    "answerList": ["e", "liǎo"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "256",
+    "titleList": ["有", "劳"],
+    "answerList": ["yòu", "yǒu"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "257",
+    "titleList": ["这", "些"],
+    "answerList": ["zhè", "zhèi"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "258",
+    "titleList": ["大", "鲵"],
+    "answerList": ["ér", "ní"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "260",
+    "titleList": ["蜥", "蜴"],
+    "answerList": ["yì", "jì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "261",
+    "titleList": ["老", "大"],
+    "answerList": ["dà", "dài"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "264",
+    "titleList": ["蝗", "虫"],
+    "answerList": ["fáng", "huáng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "266",
+    "titleList": ["蟋", "蟀"],
+    "answerList": ["shuài", "sài"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "267",
+    "titleList": ["水", "蛭"],
+    "answerList": ["zhì", "zì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "269",
+    "titleList": ["鸦", "瑚"],
+    "answerList": ["hú", "fú"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "271",
+    "titleList": ["着", "火"],
+    "answerList": ["zháo", "zhāo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "272",
+    "titleList": ["虾", "子"],
+    "answerList": ["xiā", "hā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "273",
+    "titleList": ["蜻", "蜓"],
+    "answerList": ["qīng", "tíng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "274",
+    "titleList": ["乌", "贼"],
+    "answerList": ["zá", "zéi"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "276",
+    "titleList": ["海", "星"],
+    "answerList": ["xīn", "xīng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "277",
+    "titleList": ["水", "母"],
+    "answerList": ["shuǐ", "suí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "280",
+    "titleList": ["海", "绵"],
+    "answerList": ["mián", "miē"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "281",
+    "titleList": ["海", "参"],
+    "answerList": ["shēn", "cān"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "282",
+    "titleList": ["和", "面"],
+    "answerList": ["huó", "hè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "283",
+    "titleList": ["恐", "龙"],
+    "answerList": ["lóng", "nóng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "284",
+    "titleList": ["山", "羊"],
+    "answerList": ["shān", "sān"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "285",
+    "titleList": ["花", "猪"],
+    "answerList": ["jū", "zhū"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "287",
+    "titleList": ["大", "象"],
+    "answerList": ["dài", "dà"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "289",
+    "titleList": ["虎", "王"],
+    "answerList": ["mó", "hǔ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "290",
+    "titleList": ["豹", "子"],
+    "answerList": ["bào", "sháo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "292",
+    "titleList": ["吊", "兰"],
+    "answerList": ["tiào", "diào"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "293",
+    "titleList": ["兰", "花"],
+    "answerList": ["nán", "lán"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "294",
+    "titleList": ["香", "蕉"],
+    "answerList": ["jiā", "jiāo"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "298",
+    "titleList": ["还", "乡"],
+    "answerList": ["huán", "hái"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "302",
+    "titleList": ["诣", "阙"],
+    "answerList": ["yì", "zhǐ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "304",
+    "titleList": ["苫", "布"],
+    "answerList": ["shàn", "zhān"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "305",
+    "titleList": ["中", "枢"],
+    "answerList": ["qū", "shū"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "311",
+    "titleList": ["阡", "陌"],
+    "answerList": ["bǎi", "mò"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "312",
+    "titleList": ["绚", "烂"],
+    "answerList": ["xuàn", "xùn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "316",
+    "titleList": ["沉", "淀"],
+    "answerList": ["dìnɡ", "diàn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "317",
+    "titleList": ["涮", "肉"],
+    "answerList": ["shuàn", "shuā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "318",
+    "titleList": ["干", "涸"],
+    "answerList": ["ɡù", "hé"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "320",
+    "titleList": ["按", "捺"],
+    "answerList": ["nài", "nà"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "322",
+    "titleList": ["偿", "还"],
+    "answerList": ["shǎnɡ", "chánɡ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "323",
+    "titleList": ["破", "绽"],
+    "answerList": ["zhàn", "dìnɡ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "324",
+    "titleList": ["滞", "碍"],
+    "answerList": ["dài", "zhì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "326",
+    "titleList": ["愎", "谏"],
+    "answerList": ["fù", "bì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "327",
+    "titleList": ["日", "晷"],
+    "answerList": ["ɡuǐ", "jiù"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "328",
+    "titleList": ["喟", "然"],
+    "answerList": ["wèi ", "kuì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "330",
+    "titleList": ["渣", "滓"],
+    "answerList": ["zǐ", "zǎi"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "333",
+    "titleList": ["关", "隘"],
+    "answerList": ["ài", "yì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "334",
+    "titleList": ["不", "韪"],
+    "answerList": ["wěi", "huì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "336",
+    "titleList": ["稗", "史"],
+    "answerList": ["bài", "bēi"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "337",
+    "titleList": ["罪", "愆"],
+    "answerList": ["qiān", "yǎn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "338",
+    "titleList": ["小", "狗"],
+    "answerList": ["gǒu", "wāng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "339",
+    "titleList": ["小", "猫"],
+    "answerList": ["māo", "miāo"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "340",
+    "titleList": ["麾", "军"],
+    "answerList": ["huī", "máo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "341",
+    "titleList": ["苦", "撑"],
+    "answerList": ["chēnɡ", "zhǎnɡ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "343",
+    "titleList": ["箧", "笥"],
+    "answerList": ["qiè", "jiā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "346",
+    "titleList": ["瞠", "然"],
+    "answerList": ["chēnɡ", "tánɡ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "348",
+    "titleList": ["臀", "鳍"],
+    "answerList": ["tún", "diàn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "351",
+    "titleList": ["龋", "洞"],
+    "answerList": ["qǔ", "yǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "353",
+    "titleList": ["烦", "懑"],
+    "answerList": ["mǎn", "mèn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "356",
+    "titleList": ["霾", "晦"],
+    "answerList": ["mái", "lí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "358",
+    "titleList": ["汲", "引"],
+    "answerList": ["jí", "xī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "360",
+    "titleList": ["吭", "咽"],
+    "answerList": ["hánɡ", "kēnɡ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "362",
+    "titleList": ["沮", "遏"],
+    "answerList": ["jǔ", "zǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "363",
+    "titleList": ["怙", "恶"],
+    "answerList": ["ɡū", "hù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "366",
+    "titleList": ["拂", "拭"],
+    "answerList": ["fó ", "fú"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "368",
+    "titleList": ["椰", "子"],
+    "answerList": ["zǎi", "zǐ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "369",
+    "titleList": ["观", "察"],
+    "answerList": ["cá", "chá"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "371",
+    "titleList": ["谙", "习"],
+    "answerList": ["yīn", "ān"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "372",
+    "titleList": ["西", "瓜"],
+    "answerList": ["qī", "xī"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "373",
+    "titleList": ["盎", "然"],
+    "answerList": ["yāng ", "ànɡ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "374",
+    "titleList": ["凹", "陷"],
+    "answerList": ["ōu", "āo"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "376",
+    "titleList": ["稗", "草"],
+    "answerList": ["pí", "bài"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "381",
+    "titleList": ["汩", "流"],
+    "answerList": ["gǔ", "mì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "382",
+    "titleList": ["乜", "斜"],
+    "answerList": ["miē", "niè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "383",
+    "titleList": ["壸", "政"],
+    "answerList": ["kǔn", "hú"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "385",
+    "titleList": ["孑", "孓"],
+    "answerList": ["jié", "jué"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "389",
+    "titleList": ["地", "祇"],
+    "answerList": ["zhī", "qí"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "391",
+    "titleList": ["衹", "管"],
+    "answerList": ["zhǐ", "dī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "394",
+    "titleList": ["髦", "马"],
+    "answerList": ["máo", "jì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "397",
+    "titleList": ["短", "喙"],
+    "answerList": ["huì", "zhuó"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "398",
+    "titleList": ["遽", "尔"],
+    "answerList": ["jù", "zhuó"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "399",
+    "titleList": ["蹴", "鞠"],
+    "answerList": ["cù", "cuì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "400",
+    "titleList": ["阒", "寂"],
+    "answerList": ["qù", "xiù"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "401",
+    "titleList": ["捭", "阖"],
+    "answerList": ["kē ", "hé"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "403",
+    "titleList": ["囹", "圄"],
+    "answerList": ["líng", "lín"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "407",
+    "titleList": ["翳", "障"],
+    "answerList": ["jí", "yì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "408",
+    "titleList": ["啐", "酒"],
+    "answerList": ["cuì", "cù"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "409",
+    "titleList": ["山", "峁"],
+    "answerList": ["māng ", "mǎo"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "410",
+    "titleList": ["病", "骸"],
+    "answerList": ["hái", "gāi "],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "411",
+    "titleList": ["箜", "篌"],
+    "answerList": ["háo", "hóu"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "414",
+    "titleList": ["踟", "蹰"],
+    "answerList": ["chú", "chí"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "420",
+    "titleList": ["龃", "龉"],
+    "answerList": ["yǔ", "wú"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "423",
+    "titleList": ["耄", "耋"],
+    "answerList": ["dié", "diē "],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "424",
+    "titleList": ["饕", "餮"],
+    "answerList": ["tiè", "cán"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "425",
+    "titleList": ["痤", "疮"],
+    "answerList": ["chuāng", "chuān"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "427",
+    "titleList": ["番", "薯"],
+    "answerList": ["zhǔ", "shǔ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "431",
+    "titleList": ["迤", "逦"],
+    "answerList": ["yǐ", "yè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "432",
+    "titleList": ["呷", "茶"],
+    "answerList": ["xiā", "qià"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "435",
+    "titleList": ["肄", "业"],
+    "answerList": ["yì", "sì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "436",
+    "titleList": ["徜", "徉"],
+    "answerList": ["chánɡ", "tàng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "437",
+    "titleList": ["罹", "难"],
+    "answerList": ["lí", "jī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "438",
+    "titleList": ["促", "狭"],
+    "answerList": ["xié", "xiá"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "440",
+    "titleList": ["髑", "髅"],
+    "answerList": ["dú", "kū"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "441",
+    "titleList": ["皴", "裂"],
+    "answerList": ["cūn", "jūn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "446",
+    "titleList": ["沟", "壑"],
+    "answerList": ["hè", "è"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "447",
+    "titleList": ["交", "媾"],
+    "answerList": ["gòu", "guō"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "451",
+    "titleList": ["旖", "旎"],
+    "answerList": ["yǐ", "jī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "452",
+    "titleList": ["褴", "褛"],
+    "answerList": ["luè ", "lǚ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "454",
+    "titleList": ["阿", "訇"],
+    "answerList": ["hōng", "fú"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "456",
+    "titleList": ["拥", "趸"],
+    "answerList": ["dǔn", "lěi"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "459",
+    "titleList": ["贲", "临"],
+    "answerList": ["bì", "pēn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "464",
+    "titleList": ["厹", "矛"],
+    "answerList": ["qiú", "qiǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "465",
+    "titleList": ["厽", "砢"],
+    "answerList": ["lěi", "lèi "],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "466",
+    "titleList": ["厾", "玉"],
+    "answerList": ["dú ", "dū"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "468",
+    "titleList": ["暡", "叆"],
+    "answerList": ["ài", "ái"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "469",
+    "titleList": ["叆", "叇"],
+    "answerList": ["dāi", "dài"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "470",
+    "titleList": ["叚", "借"],
+    "answerList": ["jià", "jiǎ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "471",
+    "titleList": ["叻", "女"],
+    "answerList": ["lè", "lèi"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "472",
+    "titleList": ["吇", "吇"],
+    "answerList": ["zī", " zǐ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "473",
+    "titleList": ["吚", "嚘"],
+    "answerList": ["yòu", "yōu"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "474",
+    "titleList": ["郁", "吚"],
+    "answerList": ["yì", "yī"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "476",
+    "titleList": ["吤", "吤"],
+    "answerList": ["jiē", "jiè"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "477",
+    "titleList": ["唝", "吥"],
+    "answerList": ["bǔ", "bù"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "478",
+    "titleList": ["惊", "吪"],
+    "answerList": ["è", "é"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "479",
+    "titleList": ["吰", "吰"],
+    "answerList": ["hòng", "hóng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "480",
+    "titleList": ["吷", "气"],
+    "answerList": ["xuē", "xuè"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "482",
+    "titleList": ["吺", "誻"],
+    "answerList": ["dōu", "dòu"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "483",
+    "titleList": ["呙", "斜"],
+    "answerList": ["guō", "wō"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "485",
+    "titleList": ["呟", "唤"],
+    "answerList": ["xuán", "juǎn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "486",
+    "titleList": ["唇", "呡"],
+    "answerList": ["mǐn", "wěn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "487",
+    "titleList": ["呪", "詈"],
+    "answerList": [" lì", "lǐ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "488",
+    "titleList": ["呪", "祝"],
+    "answerList": ["zhōu", "zhòu"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "489",
+    "titleList": ["嗫", "呫"],
+    "answerList": ["tiē", "tiè"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "493",
+    "titleList": ["呰", "窳"],
+    "answerList": ["yú", "yǔ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "494",
+    "titleList": ["毁", "呰"],
+    "answerList": ["zǐ", "zī"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "495",
+    "titleList": ["呴", "嘘"],
+    "answerList": ["hǒu", "hòu"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "496",
+    "titleList": ["呶", "呶"],
+    "answerList": ["niǎo", "náo"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "497",
+    "titleList": ["呹", "肸"],
+    "answerList": ["yì", "yī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "498",
+    "titleList": ["怒", "呺"],
+    "answerList": ["háo", "hào"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "501",
+    "titleList": ["呿", "唫"],
+    "answerList": ["yín", "yíng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "502",
+    "titleList": ["呿", "吟"],
+    "answerList": ["qū", "qù"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "503",
+    "titleList": ["咈", "咈"],
+    "answerList": ["fú", "fù"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "504",
+    "titleList": ["咉", "咽"],
+    "answerList": ["yǎng", "yāng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "505",
+    "titleList": ["咍", "台"],
+    "answerList": ["hāi", "hài"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "507",
+    "titleList": ["循", "咡"],
+    "answerList": ["ěr", "èr"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "508",
+    "titleList": ["徒", "咢"],
+    "answerList": ["è", "é"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "509",
+    "titleList": ["咥", "咥"],
+    "answerList": ["xī", "zī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "510",
+    "titleList": ["咭", "咶"],
+    "answerList": ["huài", "guā"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "511",
+    "titleList": ["咭", "咕"],
+    "answerList": ["jí", "jī"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "513",
+    "titleList": ["说", "咲"],
+    "answerList": ["xià", "xiào"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "515",
+    "titleList": ["咵", "白"],
+    "answerList": ["kuā", "kuà"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "516",
+    "titleList": ["咶", "耳"],
+    "answerList": ["huài", "guā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "518",
+    "titleList": ["咺", "唏"],
+    "answerList": ["xuān", "xūn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "522",
+    "titleList": ["哌", "嗪"],
+    "answerList": ["qín", "qíng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "523",
+    "titleList": ["逗", "哏"],
+    "answerList": ["gén", "géng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "524",
+    "titleList": ["哓", "舌"],
+    "answerList": ["xiāo", "xiū"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "526",
+    "titleList": ["哕", "哕"],
+    "answerList": ["huì", "huī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "527",
+    "titleList": ["嗢", "哕"],
+    "answerList": ["wà", "yūn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "528",
+    "titleList": ["哕", "喈"],
+    "answerList": ["jiē", "jiè"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "533",
+    "titleList": ["噢", "哢"],
+    "answerList": ["ō", "ōu"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "534",
+    "titleList": ["莺", "哢"],
+    "answerList": ["nòng", "lòng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "536",
+    "titleList": ["哤", "襍"],
+    "answerList": ["zuò ", "zá"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "537",
+    "titleList": ["唼", "哫"],
+    "answerList": ["shà", "qiē"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "538",
+    "titleList": ["哫", "訾"],
+    "answerList": ["zú", "zū"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "539",
+    "titleList": ["哬", "哬"],
+    "answerList": ["hē", "hè"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "540",
+    "titleList": ["嗊", "嗃"],
+    "answerList": ["gōng ", "gòng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "541",
+    "titleList": ["哵", "哥"],
+    "answerList": ["bō", "bā"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "543",
+    "titleList": ["哽", "噎"],
+    "answerList": ["gěng", "gěn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "544",
+    "titleList": ["铜", "哾"],
+    "answerList": ["chuò", "chuō"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "545",
+    "titleList": ["慰", "唁"],
+    "answerList": ["yàn", "yán "],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "546",
+    "titleList": ["唂", "咕"],
+    "answerList": ["gū", "gǔ "],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "547",
+    "titleList": ["唃", "唃"],
+    "answerList": ["gū", "gǔ "],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "549",
+    "titleList": ["营", "唅"],
+    "answerList": ["hán", "háng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "550",
+    "titleList": ["示", "唆"],
+    "answerList": ["shuō", "suō "],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "551",
+    "titleList": ["呜", "唈"],
+    "answerList": ["yì", "yí"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "552",
+    "titleList": ["唈", "僾"],
+    "answerList": ["āi", "ài"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "553",
+    "titleList": ["唌", "唌"],
+    "answerList": ["xián", "yán"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "554",
+    "titleList": ["唍", "尔"],
+    "answerList": ["wǎn", "wān"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "555",
+    "titleList": ["哈", "唎"],
+    "answerList": [" lì", "ná"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "556",
+    "titleList": ["吁", "唏"],
+    "answerList": ["xī", "jí"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "561",
+    "titleList": ["和", "唝"],
+    "answerList": ["gòng", "hòng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "562",
+    "titleList": ["唠", "唠"],
+    "answerList": [" nào", " lào"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "563",
+    "titleList": ["唢", "呐"],
+    "answerList": ["suǒ", "xiāo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "565",
+    "titleList": ["呼", "唤"],
+    "answerList": ["huàn", "huà"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "567",
+    "titleList": ["唧", "筒"],
+    "answerList": ["jī", "jì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "568",
+    "titleList": ["唪", "经"],
+    "answerList": ["fěn", "fěng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "569",
+    "titleList": ["呫", "唫"],
+    "answerList": ["yín", "yíng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "570",
+    "titleList": ["唬", "答"],
+    "answerList": ["hǔ", "fǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "571",
+    "titleList": ["唯", "一"],
+    "answerList": ["wéi ", "wén"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "574",
+    "titleList": ["孤", "唳"],
+    "answerList": ["lì", "nì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "575",
+    "titleList": ["唴", "哴"],
+    "answerList": ["qiàng", "qiāng "],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "576",
+    "titleList": ["唵", "噆"],
+    "answerList": ["zǎn", "zān"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "578",
+    "titleList": ["唶", "惋"],
+    "answerList": ["jiē", "jiè"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "581",
+    "titleList": ["唼", "唼"],
+    "answerList": ["shàn", "shà"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "584",
+    "titleList": ["唿", "哨"],
+    "answerList": ["hū", "huī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "585",
+    "titleList": ["啀", "啀"],
+    "answerList": ["āi", "ái"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "586",
+    "titleList": ["乌", "鸦"],
+    "answerList": ["yán", "yā "],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "587",
+    "titleList": ["雨", "衣"],
+    "answerList": ["yǔ", "yūn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "589",
+    "titleList": ["泥", "土"],
+    "answerList": ["lǐ", "ní"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "590",
+    "titleList": ["绿", "地"],
+    "answerList": ["lǜ", "lù"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "591",
+    "titleList": ["阿", "姨"],
+    "answerList": ["ā", "ē"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "593",
+    "titleList": ["拗", "口"],
+    "answerList": ["niǜ ", "ào"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "594",
+    "titleList": ["扒", "开"],
+    "answerList": ["pá", "bā"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "595",
+    "titleList": ["蛤", "蚌"],
+    "answerList": ["bàng", "bèng "],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "596",
+    "titleList": ["薄", "饼"],
+    "answerList": ["báo", "bò"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "597",
+    "titleList": ["碉", "堡"],
+    "answerList": ["bǔ", "bǎo"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "600",
+    "titleList": ["开", "辟"],
+    "answerList": ["bì", "pì"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "603",
+    "titleList": ["骠", "骑"],
+    "answerList": ["biāo", "piào"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "606",
+    "titleList": ["停", "泊"],
+    "answerList": ["pō", "bó"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "611",
+    "titleList": ["很", "差"],
+    "answerList": ["chà", "chāi"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "613",
+    "titleList": ["颤", "动"],
+    "answerList": ["chàn", "zhàn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "614",
+    "titleList": ["车", "辆"],
+    "answerList": ["chē", "jū"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "619",
+    "titleList": ["攒", "动"],
+    "answerList": ["zǎn", "cuán"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "622",
+    "titleList": ["单", "独"],
+    "answerList": ["dān", "chán"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "625",
+    "titleList": ["首", "都"],
+    "answerList": ["dū", "dōu"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "626",
+    "titleList": ["程", "度"],
+    "answerList": ["dù", "duó"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "628",
+    "titleList": ["改", "革"],
+    "answerList": ["gé", "jí"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "629",
+    "titleList": ["补", "给"],
+    "answerList": ["jǐ", "gěi"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "631",
+    "titleList": ["虾", "蟆"],
+    "answerList": ["há", "xiā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "632",
+    "titleList": ["道", "路"],
+    "answerList": ["dào", "dǎn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "633",
+    "titleList": ["吭", "声"],
+    "answerList": ["háng", "kēng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "637",
+    "titleList": ["会", "场"],
+    "answerList": ["kuài", "huì"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "638",
+    "titleList": ["奇", "偶"],
+    "answerList": ["qí", "jī"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "641",
+    "titleList": ["茄", "子"],
+    "answerList": ["jiā", "qié"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "643",
+    "titleList": ["价", "值"],
+    "answerList": ["jie", "jià"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "647",
+    "titleList": ["校", "场"],
+    "answerList": ["xiào ", "jiào"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "649",
+    "titleList": ["鲤", "鱼"],
+    "answerList": ["lǐ", "nǐ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "652",
+    "titleList": ["龟", "兹"],
+    "answerList": ["jūn", "qiū"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "658",
+    "titleList": ["烙", "铁"],
+    "answerList": ["lào", "luò"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "659",
+    "titleList": ["络", "纱"],
+    "answerList": ["luò", "lào"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "660",
+    "titleList": ["勒", "索"],
+    "answerList": ["lè", "lēi "],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "662",
+    "titleList": ["爷", "俩"],
+    "answerList": ["liǎng", "liǎ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "664",
+    "titleList": ["庸", "碌"],
+    "answerList": ["lù ", "liù"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "666",
+    "titleList": ["绿", "林"],
+    "answerList": ["lǜ", "lù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "667",
+    "titleList": ["脉", "络"],
+    "answerList": ["mò", "mài"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "671",
+    "titleList": ["秘", "诀"],
+    "answerList": ["mì", "bì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "674",
+    "titleList": ["抹", "煞"],
+    "answerList": ["mǒ", "mā"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "676",
+    "titleList": ["戏", "弄"],
+    "answerList": ["nòng", "lòng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "678",
+    "titleList": ["逼", "迫"],
+    "answerList": ["pò", "pǎi"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "681",
+    "titleList": ["瀑", "布"],
+    "answerList": ["pù", "bào"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "685",
+    "titleList": ["稽", "首"],
+    "answerList": ["qǐ", "jī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "686",
+    "titleList": ["坚", "强"],
+    "answerList": ["qiáng ", "jiàng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "689",
+    "titleList": ["色", "泽"],
+    "answerList": ["sè", "sàng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "691",
+    "titleList": ["唼", "咂"],
+    "answerList": ["shā", " shà"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "693",
+    "titleList": ["啁", "啾"],
+    "answerList": ["jiǔ", "jiū"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "695",
+    "titleList": ["嘓", "啅"],
+    "answerList": [" guō", " huō"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "697",
+    "titleList": ["三", "啇"],
+    "answerList": ["dí", "dī"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "699",
+    "titleList": ["喹", "啉"],
+    "answerList": ["lín", "líng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "701",
+    "titleList": ["抵", "啎"],
+    "answerList": ["wǔ", "wù"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "702",
+    "titleList": ["嘈", "啐"],
+    "answerList": ["cuì", "suì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "705",
+    "titleList": ["啘", "呕"],
+    "answerList": ["yuē", "yuè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "706",
+    "titleList": ["啙", "败"],
+    "answerList": ["zǐ", "zī "],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "707",
+    "titleList": ["伯", "啚"],
+    "answerList": ["yǐ", "bǐ"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "709",
+    "titleList": ["啴", "唌"],
+    "answerList": [" dān", "tān"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "710",
+    "titleList": ["吡", "啶"],
+    "answerList": ["dīng", "dìng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "711",
+    "titleList": ["不", "啻"],
+    "answerList": ["zhì", "chì"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "712",
+    "titleList": ["啽", "咔"],
+    "answerList": ["nān", "ān"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "713",
+    "titleList": ["啿", "啿"],
+    "answerList": ["dàng", "dàn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "714",
+    "titleList": ["陬", "喁"],
+    "answerList": ["zōu", "zòu"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "715",
+    "titleList": ["喁", "望"],
+    "answerList": ["yōng", "yóng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "716",
+    "titleList": ["两", "喈"],
+    "answerList": ["jiè", "jiē"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "718",
+    "titleList": ["嘊", "喍"],
+    "answerList": ["cái", "chái"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "720",
+    "titleList": ["喓", "喐"],
+    "answerList": ["xù", "xū "],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "721",
+    "titleList": ["淹", "喒"],
+    "answerList": ["zān", "zán"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "723",
+    "titleList": ["喓", "喓"],
+    "answerList": ["yào", "yāo"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "724",
+    "titleList": ["喤", "聒"],
+    "answerList": ["huāng", "huáng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "725",
+    "titleList": ["喾", "敕"],
+    "answerList": ["kū", "kù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "726",
+    "titleList": ["喿", "名"],
+    "answerList": ["zāo", "zào"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "727",
+    "titleList": ["泣", "嗁"],
+    "answerList": ["tī", "tí"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "728",
+    "titleList": ["嗃", "嗃"],
+    "answerList": ["hē", "hè"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "729",
+    "titleList": ["嗈", "嗈"],
+    "answerList": ["yōn", "yōng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "730",
+    "titleList": ["嗋", "呷"],
+    "answerList": ["xiē", "xié"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "731",
+    "titleList": ["嗌", "交"],
+    "answerList": ["āi", "ài"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "732",
+    "titleList": ["西", "嗕"],
+    "answerList": ["rù ", "rǔ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "733",
+    "titleList": ["嗗", "突"],
+    "answerList": ["wà", "wā"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "734",
+    "titleList": ["嗙", "喻"],
+    "answerList": ["páng", "pǎng"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "735",
+    "titleList": ["嗛", "嗛"],
+    "answerList": ["qiān ", "qiǎn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "739",
+    "titleList": ["嘊", "嘊"],
+    "answerList": ["ái", "āi"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "744",
+    "titleList": ["煞", "气"],
+    "answerList": ["shà", "chà"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "745",
+    "titleList": ["广", "厦"],
+    "answerList": ["shà", "xià"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "747",
+    "titleList": ["舍", "弃"],
+    "answerList": ["shě", "sě"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "748",
+    "titleList": ["什", "么"],
+    "answerList": ["shén", "shí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "751",
+    "titleList": ["生", "熟"],
+    "answerList": ["shóu", "shú"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "753",
+    "titleList": ["数", "落"],
+    "answerList": ["shuò", "shǔ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "757",
+    "titleList": ["调", "笑"],
+    "answerList": ["diào", "tiáo"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "759",
+    "titleList": ["阴", "晴"],
+    "answerList": ["yīng", "yīn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "761",
+    "titleList": ["请", "帖"],
+    "answerList": ["tiě", "tě"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "764",
+    "titleList": ["委", "托"],
+    "answerList": ["wō", "wěi"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "766",
+    "titleList": ["尉", "迟"],
+    "answerList": ["wèi", "yù"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "770",
+    "titleList": ["举", "行"],
+    "answerList": ["xíng", "xín"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "771",
+    "titleList": ["反", "省"],
+    "answerList": [" xǐn", "xǐng"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "773",
+    "titleList": ["削", "发"],
+    "answerList": ["xiāo", "xuē"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "776",
+    "titleList": ["殷", "朝"],
+    "answerList": ["yān", "yīn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "777",
+    "titleList": ["咽", "喉"],
+    "answerList": ["yān", "yè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "778",
+    "titleList": ["锁", "钥"],
+    "answerList": ["yuè", "yào"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "779",
+    "titleList": ["叶", "韵"],
+    "answerList": ["xié", "yè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "780",
+    "titleList": ["自", "艾"],
+    "answerList": ["yì ", "ài"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "782",
+    "titleList": ["嘐", "戛"],
+    "answerList": ["jiāo", "jiǎo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "783",
+    "titleList": ["嘑", "尔"],
+    "answerList": ["hū", "hú"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "784",
+    "titleList": ["嘒", "唳"],
+    "answerList": ["huì", "huī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "786",
+    "titleList": ["邅", "囘"],
+    "answerList": ["huí", "huī"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "787",
+    "titleList": ["阿", "囝"],
+    "answerList": ["jiǎn", "jiān"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "788",
+    "titleList": ["囡", "囡"],
+    "answerList": ["nān", "nán"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "790",
+    "titleList": ["邅", "囬"],
+    "answerList": ["huí", "huì"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "791",
+    "titleList": ["嶙", "囷"],
+    "answerList": ["qún ", "qūn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "792",
+    "titleList": ["园", "囿"],
+    "answerList": ["yóu ", "yòu"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "793",
+    "titleList": ["圐", "圀"],
+    "answerList": ["guó", "guō"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "794",
+    "titleList": ["民", "圂"],
+    "answerList": ["hùn", "hūn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "795",
+    "titleList": ["圉", "人"],
+    "answerList": ["yù", "yǔ"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "796",
+    "titleList": ["圊", "蕵"],
+    "answerList": ["sǔn", "sūn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "797",
+    "titleList": ["溷", "圊"],
+    "answerList": ["hūn ", "hùn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "799",
+    "titleList": ["圊", "牏"],
+    "answerList": ["yú", "yù"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "800",
+    "titleList": ["圊", "溷"],
+    "answerList": ["hùn", "hūn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "801",
+    "titleList": ["雇", "佣"],
+    "answerList": ["yōng", "yōn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "805",
+    "titleList": ["晕", "车"],
+    "answerList": ["yūn", "yùn"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "806",
+    "titleList": ["装", "载"],
+    "answerList": ["zài", "zǎi"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "812",
+    "titleList": ["正", "月"],
+    "answerList": ["zhēng", "zhēn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "815",
+    "titleList": ["种", "族"],
+    "answerList": ["zhǒng", "zhǒn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "820",
+    "titleList": ["屴", "崱"],
+    "answerList": ["lì", "lǐ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "821",
+    "titleList": ["崱", "屴"],
+    "answerList": ["zè", "zé"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "822",
+    "titleList": ["陟", "屺"],
+    "answerList": ["qǐ", "qí"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "823",
+    "titleList": ["屼", "屼"],
+    "answerList": ["wù", "wǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "824",
+    "titleList": ["山", "岅"],
+    "answerList": ["bān", "bǎn"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "825",
+    "titleList": ["岩", "岈"],
+    "answerList": ["yá", "yǎ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "826",
+    "titleList": ["崛", "岉"],
+    "answerList": ["wù", "wǔ"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "827",
+    "titleList": ["地", "岊"],
+    "answerList": ["jié", "jiē"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "828",
+    "titleList": ["岋", "岋"],
+    "answerList": ["é", "è"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "829",
+    "titleList": ["岩", "岍"],
+    "answerList": ["qiān", "qián"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "830",
+    "titleList": ["岎", "崯"],
+    "answerList": ["fěn", "fén"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "831",
+    "titleList": ["岏", "山"],
+    "answerList": ["wǎn", "wán"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "832",
+    "titleList": ["岒", "峨"],
+    "answerList": ["qiān", "qián"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "837",
+    "titleList": ["台", "州"],
+    "answerList": ["tāi", "tái"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "838",
+    "titleList": ["嵊", "州"],
+    "answerList": ["shèng", "chèng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "839",
+    "titleList": ["鄞", "县"],
+    "answerList": ["yín", "jín"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "840",
+    "titleList": ["乐", "清"],
+    "answerList": ["yuè", "lè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "845",
+    "titleList": ["亳", "州"],
+    "answerList": ["bó", "háo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "846",
+    "titleList": ["枞", "阳"],
+    "answerList": ["zōng", "cōng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "847",
+    "titleList": ["黟", "县"],
+    "answerList": ["yī", "yīn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "848",
+    "titleList": ["濉", "溪"],
+    "answerList": ["suī", "shuī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "851",
+    "titleList": ["盱", "眙"],
+    "answerList": ["tái", "yí"],
+    "signIndex": 1,
+    "correctIndex": 1
+},, {
+    "id": "852",
+    "titleList": ["邗", "江"],
+    "answerList": ["hán", "gán"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "853",
+    "titleList": ["邳", "州"],
+    "answerList": ["pī", "pīn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "855",
+    "titleList": ["甪", "堰"],
+    "answerList": ["lù", "jiǎo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "856",
+    "titleList": ["泛", "水"],
+    "answerList": ["fàn", "fàng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "857",
+    "titleList": ["汜", "水"],
+    "answerList": ["sì", "shì"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "858",
+    "titleList": ["睢", "宁"],
+    "answerList": ["suī", "huī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "862",
+    "titleList": ["穆", "棱"],
+    "answerList": ["líng", "léng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "863",
+    "titleList": ["珲", "春"],
+    "answerList": ["hún", "huí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "864",
+    "titleList": ["桦", "甸"],
+    "answerList": ["huà", "hà"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "865",
+    "titleList": ["阜", "新"],
+    "answerList": ["fù", "fǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "866",
+    "titleList": ["桓", "仁"],
+    "answerList": ["héng", "huán"],
+    "signIndex": 0,
+    "correctIndex": 1
+},, {
+    "id": "868",
+    "titleList": ["磴", "口"],
+    "answerList": ["dèng", "dèn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "871",
+    "titleList": ["井", "陉"],
+    "answerList": ["xíng", "jing"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "872",
+    "titleList": ["蠡", "县"],
+    "answerList": ["lǐ", "lí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "873",
+    "titleList": ["藁", "城"],
+    "answerList": ["gǎo", "gǎn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "874",
+    "titleList": ["涿", "州"],
+    "answerList": ["zhuō", "zhú"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "875",
+    "titleList": ["大", "城"],
+    "answerList": ["dài", "dà"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "876",
+    "titleList": ["邯", "郸"],
+    "answerList": ["hán", "há"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "879",
+    "titleList": ["临", "汾"],
+    "answerList": ["fén", "fěn"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "882",
+    "titleList": ["莒", "县"],
+    "answerList": ["jǔ", "lǔ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "883",
+    "titleList": ["茌", "平"],
+    "answerList": ["chí", "cí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "884",
+    "titleList": ["临", "沂"],
+    "answerList": ["yí", "qí"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "885",
+    "titleList": ["郯", "城"],
+    "answerList": ["tán", "táng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "887",
+    "titleList": ["兖", "州"],
+    "answerList": ["yǎn", "yǔn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "888",
+    "titleList": ["淄", "博"],
+    "answerList": ["zī", "cī"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "891",
+    "titleList": ["单", "县"],
+    "answerList": ["shàn", "dān"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "894",
+    "titleList": ["婺", "源"],
+    "answerList": ["wù", "hù"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "896",
+    "titleList": ["郴", "州"],
+    "answerList": ["chēn", "chēng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "898",
+    "titleList": ["黄", "陂"],
+    "answerList": ["pí", "bō"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "899",
+    "titleList": ["郧", "县"],
+    "answerList": ["yún", "xūn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "900",
+    "titleList": ["秭", "归"],
+    "answerList": ["zǐ", "zhǐ"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "901",
+    "titleList": ["猇", "亭"],
+    "answerList": ["xiāo", "shāo"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "902",
+    "titleList": ["蕲", "春"],
+    "answerList": ["qí", "jí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "903",
+    "titleList": ["浚", "县"],
+    "answerList": ["xùn", "jùn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "904",
+    "titleList": ["柘", "城"],
+    "answerList": ["zhè", "chè"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "907",
+    "titleList": ["渑", "池"],
+    "answerList": ["miǎn", "shéng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "909",
+    "titleList": ["荥", "阳"],
+    "answerList": ["xíng", "yíng"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "911",
+    "titleList": ["长", "垣"],
+    "answerList": ["yuán", "huán"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "912",
+    "titleList": ["东", "莞"],
+    "answerList": ["guǎn", "guǎng"],
+    "signIndex": 1,
+    "correctIndex": 0
+},, {
+    "id": "914",
+    "titleList": ["筻", "口"],
+    "answerList": ["gàng", "huàn"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "916",
+    "titleList": ["郫", "县"],
+    "answerList": ["pí", "bí"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "919",
+    "titleList": ["邛", "崃"],
+    "answerList": ["qióng", "qiū"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "920",
+    "titleList": ["筠", "连"],
+    "answerList": ["jūn", "yún"],
+    "signIndex": 0,
+    "correctIndex": 0
+},, {
+    "id": "921",
+    "titleList": ["枨", "冲"],
+    "answerList": ["chéng", "chén"],
+    "signIndex": 0,
+    "correctIndex": 0
+}
